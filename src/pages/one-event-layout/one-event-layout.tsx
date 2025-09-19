@@ -22,33 +22,19 @@ export const OneEventLayout = () => {
 			indexLink: `/event/event-settings/${id}/registration`,
 		},
 		{
-			title: 'Контакты',
-			link: `/event/event-contacts/${id ?? 'new'}`,
-		},
-		{
 			title: 'Контент',
 			link: `/event/event-content/${id ?? 'new'}`,
 			indexLink: `/event/event-content/${id}/content`,
 		},
 		{
-			title: 'Списки и участие',
-			link: `/event/event-visitors/${id}`,
-			indexLink: `/event/event-visitors/${id}/tickets`,
-		},
-		{
-			title: 'Сервисы',
-			link: `/event/event-services/${id ?? 'new'}`,
-			indexLink: `/event/event-services/${id}/list`,
-		},
-		{
-			title: 'Программа',
-			link: `/event/event-program/${id ?? 'new'}`,
-			indexLink: `/event/event-program/${id}/program`,
-		},
-		{
-			title: 'Статистика',
+			title: 'Пропуск',
 			link: `/event/event-statistic/${id ?? 'new'}`,
-			indexLink: `/event/event-statistic/${id}/log-enters`,
+			indexLink: `/event/event-statistic/${id}/gates`,
+		},
+		{
+			title: 'Списки и статистика',
+			link: `/event/event-lists/${id}`,
+			indexLink: `/event/event-lists/${id}/registrations`,
 		},
 	]
 	const [isProgramPage, setIsProgramPage] = useState<boolean>(false)

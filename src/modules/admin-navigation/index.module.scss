@@ -1,9 +1,17 @@
 @import 'src/assets/styles/vars';
 
 .adminNavigation {
-	width: 248px;
-	min-width: 248px;
+	width: 218px;
+	min-width: 218px;
 
+	.express {
+		background: #15A2C1;
+		padding: 12px 13px;
+		font-size: 18px;
+		gap: 3px;
+		margin-bottom: 30px;
+		width: 100%;
+	}
 	.adminNavigationList {
 		display: flex;
 		flex-direction: column;

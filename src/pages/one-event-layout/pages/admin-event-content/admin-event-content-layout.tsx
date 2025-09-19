@@ -15,14 +15,6 @@ export const AdminEventContentLayout = () => {
 			link: `/event/event-content/${id}/content`,
 		},
 		{
-			title: 'Новости',
-			link: `/event/event-content/${id}/event-news`,
-		},
-		{
-			title: 'Видеолента',
-			link: `/event/event-content/${id}/event-videos`,
-		},
-		{
 			title: 'Партнеры',
 			link: `/event/event-content/${id}/event-partners`,
 		},
@@ -30,26 +22,22 @@ export const AdminEventContentLayout = () => {
 			title: 'Правила',
 			link: `/event/event-content/${id}/event-rules`,
 		},
+		{
+			title: 'Программа',
+			link: `/event/event-content/${id}/event-program/${id}`,
+		},
 	]
+
 	return (
-		<AdminContent
-			$padding='0'
-			$backgroundColor={
-				location.pathname.includes('/content') || location.pathname.includes('/event-rules')
-					? '#f5f7fa'
-					: '#ffffff'
-			}
-			className={styles.visitorsPage}
-		>
-			{!location.pathname.includes('one-partner') && (
-				<Container $padding='35px 35px 0 35px' $paddingMobile='35px'>
-					<div className={styles.headRow}>
-						<div className={styles.adminTitleTab}>
-							<TabNavigation variant='visitors' navItems={eventTabs} />
-						</div>
+		<AdminContent $padding='0' $backgroundColor='#ffffff' className={styles.visitorsPage}>
+			<Container $padding='35px 35px 0 35px' $paddingMobile='35px'>
+				<div className={styles.headRow}>
+					<div className={styles.adminTitleTab}>
+						<h2>Контент</h2>
+						<TabNavigation variant='visitors' navItems={eventTabs} />
 					</div>
-				</Container>
-			)}
+				</div>
+			</Container>
 			<Outlet />
 		</AdminContent>
 	)

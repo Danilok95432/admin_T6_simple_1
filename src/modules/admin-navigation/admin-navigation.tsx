@@ -10,12 +10,18 @@ import { AdminNavBtn } from 'src/components/admin-nav-btn/admin-nav-btn'
 import styles from './index.module.scss'
 import { useAppSelector } from 'src/hooks/store'
 import { isAuthUser } from 'src/store/auth/auth.selectors'
+import { AdminButton } from 'src/UI/AdminButton/AdminButton'
+import { AdminExpressEventIconSVG } from 'src/UI/icons/adminExpressEventIconSVG'
 
 export const AdminNavigation: FC = () => {
 	const isAuth = useAppSelector(isAuthUser)
 
 	return (
 		<aside className={styles.adminNavigation}>
+			<AdminButton as='route' to={'/'} className={styles.express}>
+				<AdminExpressEventIconSVG />
+				<p>Экспресс-событие</p>
+			</AdminButton>
 			<ul className={styles.adminNavigationList}>
 				{adminMenuItems.map((navItem) => (
 					<li

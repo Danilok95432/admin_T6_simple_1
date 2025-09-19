@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useParams } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 import { AdminContent } from 'src/components/admin-content/admin-content'
 
 import { TabNavigation } from 'src/components/tab-navigation/tab-navigation'
@@ -14,40 +14,14 @@ export const StatisticEventLayout = () => {
 	const { data: statistic } = useGetAllLogsEnterQuery({ id, limit: 1 })
 	const eventTabs: TabNavigationItem[] = [
 		{
-			title: 'Лог входов',
-			link: `/event/event-statistic/${id}/log-enters`,
+			title: 'Ворота',
+			link: `/event/event-statistic/${id}/gates`,
 		},
 		{
-			title: 'Лог сервисов',
-			link: `/event/event-statistic/${id}/log-services`,
-		},
-		{
-			title: 'Лог оплат',
-			link: `/event/event-statistic/${id}/log-payments`,
-		},
-		{
-			title: 'Уникальные персоны',
-			link: `/event/event-statistic/${id}/unique-persons`,
-		},
-		{
-			title: 'АПП и инспекторы',
+			title: 'Инспекторы',
 			link: `/event/event-statistic/${id}/inspectors`,
 		},
-		{
-			title: 'По регионам',
-			link: `/event/event-statistic/${id}/regions`,
-		},
-		{
-			title: 'Сводки',
-			link: `/event/event-statistic/${id}/summaries`,
-		},
 	]
-
-	const getTitle = (): string => {
-		const location = useLocation()
-		const lastPath: string = location.pathname.split('/')[location.pathname.split('/').length - 1]
-		return eventTabs.find((el) => el.link.includes(lastPath))?.title ?? ''
-	}
 
 	return (
 		<AdminContent $padding='0' $backgroundColor='#ffffff' className={styles.visitorsPage}>
@@ -60,7 +34,7 @@ export const StatisticEventLayout = () => {
 							})}
 						>
 							<div className={styles.adminTitleTab}>
-								<h2>{getTitle()}</h2>
+								<h2>Пропуск</h2>
 								<TabNavigation variant='visitors' navItems={eventTabs} />
 							</div>
 							{location.pathname.includes('/log-enters') && (

@@ -109,8 +109,6 @@ export const PartnerElements = () => {
 
 	return (
 		<div className={styles.partnerElementsPage}>
-			<h3 className={styles.title}>Партнеры</h3>
-
 			<GridRow $margin='0 0 15px 0' $padding='0 29px' className={styles.searchRow}>
 				<TableFiltration filterInputs={PartnerElementsFiltrationInputs} />
 			</GridRow>

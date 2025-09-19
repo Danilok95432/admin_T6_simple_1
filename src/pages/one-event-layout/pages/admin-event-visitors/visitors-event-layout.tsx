@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useParams } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 import { AdminContent } from 'src/components/admin-content/admin-content'
 
 import { TabNavigation } from 'src/components/tab-navigation/tab-navigation'
@@ -12,43 +12,33 @@ export const VisitorsEventLayout = () => {
 	const eventTabs: TabNavigationItem[] = [
 		{
 			title: 'Регистрация',
-			link: `/event/event-visitors/${id}/tickets`,
+			link: `/event/event-lists/${id}/registrations`,
 		},
 		{
-			title: 'Заявки',
-			link: `/event/event-visitors/${id}/requests`,
+			title: 'Купленные билеты',
+			link: `/event/event-lists/${id}/tickets`,
 		},
 		{
-			title: 'Гости',
-			link: `/event/event-visitors/${id}/guests`,
+			title: 'Журнал проходов',
+			link: `/event/event-lists/${id}/log-enters`,
 		},
 		{
-			title: 'Участники',
-			link: `/event/event-visitors/${id}/participants`,
+			title: 'Сводка продаж',
+			link: `/event/event-lists/${id}/sales`,
 		},
 		{
-			title: 'Группы',
-			link: `/event/event-visitors/${id}/groups`,
+			title: 'Наплывы',
+			link: `/event/event-lists/${id}/naplivi`,
 		},
 		{
-			title: 'Транспорт',
-			link: `/event/event-visitors/${id}/transport`,
+			title: 'Статистика SMS',
+			link: `/event/event-lists/${id}/sms`,
 		},
 		{
-			title: 'Браслеты',
-			link: `/event/event-visitors/${id}/bracelets`,
-		},
-		{
-			title: 'Инспекторы',
-			link: `/event/event-visitors/${id}/inspectors`,
+			title: 'Агентский баланс',
+			link: `/event/event-lists/${id}/balance`,
 		},
 	]
-
-	const getTitle = (): string => {
-		const location = useLocation()
-		const lastPath: string = location.pathname.split('/')[location.pathname.split('/').length - 1]
-		return eventTabs.find((el) => el.link.includes(lastPath))?.title ?? ''
-	}
 
 	return (
 		<AdminContent $padding='0' $backgroundColor='#ffffff' className={styles.visitorsPage}>
@@ -59,23 +49,9 @@ export const VisitorsEventLayout = () => {
 					!location.pathname.includes('/guests/') && (
 						<div className={styles.headRow}>
 							<div className={styles.adminTitleTab}>
-								<h2>{getTitle() === 'Регистрация' ? 'Списки и участие' : getTitle()}</h2>
+								<h2>Списки и статистика</h2>
 								<TabNavigation variant='visitors' navItems={eventTabs} />
 							</div>
-							{location.pathname.includes('/pass') && (
-								<div className={styles.statBlock}>
-									<div className={styles.leftSide}>
-										<p>Куплено билетов, всего: </p>
-										<p>Прошло посетителей: </p>
-										<p>Всего неуникальных проходов: </p>
-									</div>
-									<div className={styles.rightSide}>
-										<p>{0}</p>
-										<p>{0}</p>
-										<p>{0}</p>
-									</div>
-								</div>
-							)}
 						</div>
 					)}
 			</Container>

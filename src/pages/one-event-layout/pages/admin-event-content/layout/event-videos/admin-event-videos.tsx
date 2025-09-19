@@ -18,9 +18,6 @@ export const AdminEventVideos: FC = () => {
 				<title>Видеолента</title>
 			</Helmet>
 			<AdminContent $padding='0' $backgroundColor='#ffffff' className={styles.eventVideosPage}>
-				<Container $padding='0px 35px 0 35px' $paddingMobile='35px'>
-					<h3 className={styles.title}>Видеолента</h3>
-				</Container>
 				<EventVideosList />
 				<Container $padding='20px 35px' $paddingMobile='50px 35px' $position='unset'>
 					<Link

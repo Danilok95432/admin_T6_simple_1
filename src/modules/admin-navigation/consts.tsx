@@ -1,34 +1,29 @@
 import { type NavigationItem } from 'src/types/navigation'
-import { AdminNewsIconSvg } from 'src/UI/icons/adminNewsIconSVG'
 import { AdminSupportIconSvg } from 'src/UI/icons/adminSupportIconSVG'
 import { AdminEventsIconSvg } from 'src/UI/icons/adminEventsIconSVG'
 import { AdminSettingsIconSvg } from 'src/UI/icons/adminSettingsIconSVG'
 // import { AdminAboutIconSvg } from 'src/UI/icons/adminFederationIconSVG'
-import { AdminLibraryIconSvg } from 'src/UI/icons/adminLibraryIconSVG'
-import { AdminDepartmentsIconSvg } from 'src/UI/icons/adminDepartmentsIconSVG'
 import { AdminPartnersIconSvg } from 'src/UI/icons/adminPartnersIconSvg'
 import { AdminQuestionsIcon } from 'src/UI/icons/adminQuestionsIcon'
+import { AdminOrgIconSVG } from 'src/UI/icons/adminOrgIncoSVG'
+import { AdminGuestsIconSVG } from 'src/UI/icons/adminGuestsIconSVG'
+import { AdminStatisticIconSVG } from 'src/UI/icons/adminStatisticIconSVG'
 
 export const adminMenuItems: NavigationItem[] = [
 	{
-		title: 'Новости',
-		icon: <AdminNewsIconSvg />,
-		link: 'news/news-list',
-	},
-	{
-		title: 'Об этноспорте',
-		icon: <AdminLibraryIconSvg />,
-		link: 'about',
-	},
-	{
-		title: 'Объекты',
-		icon: <AdminDepartmentsIconSvg />,
-		link: 'objects',
+		title: 'Организатор',
+		icon: <AdminOrgIconSVG />,
+		link: 'org',
 	},
 	{
 		title: 'События',
 		icon: <AdminEventsIconSvg />,
 		link: 'events/events-list',
+	},
+	{
+		title: 'Гости',
+		icon: <AdminGuestsIconSVG />,
+		link: 'guests',
 	},
 	{
 		title: 'Партнеры',
@@ -41,10 +36,9 @@ export const adminMenuItems: NavigationItem[] = [
 		link: 'frequent-questions',
 	},
 	{
-		title: 'Библиотека',
-		icon: <AdminLibraryIconSvg />,
-		link: 'admin-library',
-		disable: true,
+		title: 'Статистика',
+		icon: <AdminStatisticIconSVG />,
+		link: 'statistic',
 	},
 	{
 		title: 'Поддержка',

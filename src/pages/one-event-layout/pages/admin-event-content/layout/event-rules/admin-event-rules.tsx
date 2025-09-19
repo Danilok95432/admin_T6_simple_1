@@ -56,7 +56,6 @@ export const AdminEventRules: FC = () => {
 
 	return (
 		<AdminContent className={styles.eventRulesPage}>
-			<h3>Правила</h3>
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} noValidate autoComplete='off'>
 					<RulesSection />

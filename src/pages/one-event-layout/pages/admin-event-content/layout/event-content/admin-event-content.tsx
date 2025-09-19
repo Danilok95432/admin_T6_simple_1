@@ -112,7 +112,6 @@ export const AdminEventContent: FC = () => {
 
 	return (
 		<AdminContent className={styles.eventContentPage}>
-			<h3>Контент</h3>
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} noValidate autoComplete='off'>
 					<PreviewSection logo={contentInfoData?.photo} />

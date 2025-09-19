@@ -95,38 +95,36 @@ import { ServicesPage } from 'src/pages/one-event-layout/pages/admin-event-servi
 import { PointsPage } from 'src/pages/one-event-layout/pages/admin-event-services/layout/points-page/points-page'
 import { RecipientsPage } from 'src/pages/one-event-layout/pages/admin-event-services/layout/recipients-page/recipients-page'
 import { StatisticEventLayout } from 'src/pages/one-event-layout/pages/admin-event-statistic/statistic-event-layout'
-import { LogEntersPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/log-enters-page/log-enters-page'
-import { LogServicesPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/log-services-page/log-services-page'
-import { LogPaymentsPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/log-payments-page/log-payments-page'
-import { UniquePersonsPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/unique-persons-page/unique-persons-page'
 import { InspectorsPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/inspectors-page/inspectors-page'
-import { RegionsPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/regions-page/regions-page'
-import { SummariesPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/summaries-page/summaries-page'
 import { RequestsPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/requests-page/requests-page'
 import { RequestsElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/requests-page/components/requests-elements/requests-elements'
 import { TransportPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/transport-page/transport-page'
 import { TransportElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/transport-page/components/transport-elements/transport-elements'
 import { BraceletPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/bracelet-page/bracelet-page'
 import { BraceletElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/bracelet-page/components/bracelet-elements/bracelet-elements'
-import { LogEntersElements } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/log-enters-page/components/log-enters-elements/log-enters-elements'
 import { OneRequestList } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/requests-page/components/one-request/one-request'
 import { ParticipantView } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/participants-page/components/participant-view/participant-view'
 import { GuestView } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/visitors-page/components/guest-view/guest-view'
 import { InspectorsElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/inspectors-page/components/inspectors-elements/inspectors-elements'
 import { OneInspector } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/inspectors-page/components/one-inspector/one-inspector'
 import { InspectorsVisitPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/inspectors-page/inspectors-page'
-import { LogServicesElements } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/log-services-page/components/log-services-page/log-services-elements'
-import { UniquePersonsElements } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/unique-persons-page/components/unique-persons-elements/unique-persons-elements'
 import { InspectorsElementsStatistic } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/inspectors-page/components/inspectors-elements/inspectors-elements'
-import { RegionElements } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/regions-page/components/region-elements/region-elements'
-import { SummariesElements } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/summaries-page/components/summaries-elements/summaries-elements'
-import { OneSummaryTable } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/summaries-page/components/one-summary/one-summary-table'
 import { OneInspectorStatistic } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/inspectors-page/components/one-inspector-statistic/one-inspector-statistic'
+import { PaymentsPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/payments-page/payments-page'
+import { StatisticGatesPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/gates-page/gates-page'
+import { SMSPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sms-page/sms-page'
+import { SMSElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sms-page/components/sms-elements/sms-elements'
+import { AdminOrgLayout } from 'src/pages/admin-org/admin-org-layout'
+import { AdminGuestsLayout } from 'src/pages/admin-guests/admin-guests-layout'
+import { AdminStatisticLayout } from 'src/pages/admin-statistic/admin-guests-layout'
 
 export const AdminRoutes: FC = () => {
 	return (
 		<Routes>
 			<Route path='/' element={<AdminLayout />}>
+				<Route path={AdminRoute.AdminOrg} element={<AdminOrgLayout />} />
+				<Route path={AdminRoute.Guests} element={<AdminGuestsLayout />} />
+				<Route path={AdminRoute.AdminStatistic} element={<AdminStatisticLayout />} />
 				<Route path={AdminRoute.AdminNews} element={<AdminNewsLayout />}>
 					<Route path={AdminRoute.AdminNewsList} element={<NewsLayout />}>
 						<Route index element={<NewsList />} />
@@ -179,6 +177,7 @@ export const AdminRoutes: FC = () => {
 					<Route path={`${AdminRoute.AdminEventSettings}/:id`} element={<SettingsEventLayout />}>
 						<Route path={`${AdminRoute.Registration}`} element={<RegistrationPage />} />
 						<Route path={`${AdminRoute.Tickets}`} element={<TypeTicketsPage />} />
+						<Route path={`${AdminRoute.Payments}`} element={<PaymentsPage />} />
 						<Route path={`${AdminRoute.Participants}`} element={<TypeParticipantsPage />} />
 						<Route path={`${AdminRoute.Groups}`} element={<TypeGroupsPage />} />
 						<Route path={`${AdminRoute.Gates}`} element={<GatesPage />} />
@@ -196,6 +195,22 @@ export const AdminRoutes: FC = () => {
 						<Route path={`${AdminRoute.AdminEventRules}`} element={<AdminEventRules />} />
 						<Route path={`${AdminRoute.AdminEventNews}`} element={<AdminEventNews />} />
 						<Route path={`${AdminRoute.AdminEventVideos}`} element={<AdminEventVideos />} />
+						<Route path={`${AdminRoute.AdminEventProgram}/:id`} element={<AdminProgramLayout />}>
+							<Route
+								path={`${AdminRoute.AdminEventSubEvents}`}
+								element={<AdminEventProgramsLayout />}
+							>
+								<Route index element={<ProgramElements />} />
+								<Route
+									path={`${AdminRoute.AdminEventOneProgram}/:programId`}
+									element={<OneProgram />}
+								/>
+							</Route>
+							<Route
+								path={`${AdminRoute.Participants}`}
+								element={<AdminEventParticipantsLayout />}
+							/>
+						</Route>
 					</Route>
 					<Route path={`${AdminRoute.AdminEventProgram}/:id`} element={<AdminProgramLayout />}>
 						<Route
@@ -248,6 +263,31 @@ export const AdminRoutes: FC = () => {
 							<Route path=':subId' element={<OneInspector />} />
 						</Route>
 					</Route>
+					<Route path={`${AdminRoute.AdminEventLists}/:id`} element={<VisitorsEventLayout />}>
+						<Route path={`${AdminRoute.Registrations}`} element={<TicketsPage />}>
+							<Route index element={<TicketsElements />} />
+							<Route path=':subId' element={<OneTicket />} />
+						</Route>
+						<Route path={`${AdminRoute.Tickets}`} element={<TicketsPage />}>
+							<Route index element={<TicketsElements />} />
+							<Route path=':subId' element={<OneTicket />} />
+						</Route>
+						<Route path={`${AdminRoute.LogEnters}`} element={<SMSPage />}>
+							<Route index element={<SMSElements />} />
+						</Route>
+						<Route path={`${AdminRoute.Sales}`} element={<SMSPage />}>
+							<Route index element={<SMSElements />} />
+						</Route>
+						<Route path={`${AdminRoute.Naplivi}`} element={<SMSPage />}>
+							<Route index element={<SMSElements />} />
+						</Route>
+						<Route path={`${AdminRoute.SMS}`} element={<SMSPage />}>
+							<Route index element={<SMSElements />} />
+						</Route>
+						<Route path={`${AdminRoute.Balance}`} element={<SMSPage />}>
+							<Route index element={<SMSElements />} />
+						</Route>
+					</Route>
 					<Route path={`${AdminRoute.AdminEventServices}/:id`} element={<ServicesEventLayout />}>
 						<Route path={`${AdminRoute.List}`} element={<ListPage />} />
 						<Route path={`${AdminRoute.Services}`} element={<ServicesPage />} />
@@ -255,26 +295,12 @@ export const AdminRoutes: FC = () => {
 						<Route path={`${AdminRoute.Recipients}`} element={<RecipientsPage />} />
 					</Route>
 					<Route path={`${AdminRoute.AdminEventStatistic}/:id`} element={<StatisticEventLayout />}>
-						<Route path={`${AdminRoute.LogEnters}`} element={<LogEntersPage />}>
-							<Route index element={<LogEntersElements />} />
-						</Route>
-						<Route path={`${AdminRoute.LogServices}`} element={<LogServicesPage />}>
-							<Route index element={<LogServicesElements />} />
-						</Route>
-						<Route path={`${AdminRoute.LogPayments}`} element={<LogPaymentsPage />} />
-						<Route path={`${AdminRoute.UniquePersons}`} element={<UniquePersonsPage />}>
-							<Route index element={<UniquePersonsElements />} />
+						<Route path={`${AdminRoute.Gates}`} element={<StatisticGatesPage />}>
+							<Route index element={<InspectorsElementsStatistic />} />
 						</Route>
 						<Route path={`${AdminRoute.Inspectors}`} element={<InspectorsPage />}>
 							<Route index element={<InspectorsElementsStatistic />} />
 							<Route path=':subId' element={<OneInspectorStatistic />} />
-						</Route>
-						<Route path={`${AdminRoute.Regions}`} element={<RegionsPage />}>
-							<Route index element={<RegionElements />} />
-						</Route>
-						<Route path={`${AdminRoute.Summaries}`} element={<SummariesPage />}>
-							<Route index element={<SummariesElements />} />
-							<Route path=':subId' element={<OneSummaryTable />} />
 						</Route>
 					</Route>
 				</Route>

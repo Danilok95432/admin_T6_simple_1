@@ -18,9 +18,6 @@ export const AdminEventNews: FC = () => {
 				<title>Новости</title>
 			</Helmet>
 			<AdminContent $padding='0' $backgroundColor='#ffffff' className={styles.eventNewsPage}>
-				<Container $padding='0px 35px 0 35px' $paddingMobile='35px'>
-					<h3 className={styles.title}>Новости</h3>
-				</Container>
 				<EventNewsList />
 				<Container $padding='20px 35px' $paddingMobile='50px 35px' $position='unset'>
 					<Link

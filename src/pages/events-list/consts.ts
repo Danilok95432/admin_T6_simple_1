@@ -5,8 +5,4 @@ export const eventTabs: TabNavigationItem[] = [
 		title: 'События',
 		link: 'events-list',
 	},
-	{
-		title: 'Циклы событий',
-		link: 'cicles-list',
-	},
 ]
