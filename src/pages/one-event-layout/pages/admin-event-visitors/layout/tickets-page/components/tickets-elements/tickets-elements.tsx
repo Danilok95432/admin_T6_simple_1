@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import cn from 'classnames'
 import { useState } from 'react'
 
@@ -16,12 +16,14 @@ import { useGetTicketsQuery } from 'src/store/events/events.api'
 import { type EventTickets } from 'src/types/events'
 import { StatusTickets } from 'src/components/status-tickets/status-tickets'
 import { formatDateTimeTicket } from 'src/helpers/utils'
+import { AdminRoute } from 'src/routes/admin-routes/consts'
 
 export const TicketsElements = () => {
 	const { id = '0' } = useParams()
 	const filterValues = useAppSelector(getFiltrationValues)
 	const [currentPage, setCurrentPage] = useState(1)
 	const [itemsPerPage, setItemsPerPage] = useState<number | 'all'>(100)
+	const navigate = useNavigate()
 
 	const { data: ticketsData, isLoading } = useGetTicketsQuery({
 		id,
@@ -40,6 +42,12 @@ export const TicketsElements = () => {
 		const newValue = value === 'all' ? 'all' : parseInt(value)
 		setItemsPerPage(newValue)
 		setCurrentPage(1)
+	}
+
+	const rowClickHandler = (personId: string) => {
+		navigate(
+			`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventLists}/${id}/${AdminRoute.OnePersonStatistic}/${personId}`,
+		)
 	}
 
 	const tableTitles = [
@@ -94,6 +102,7 @@ export const TicketsElements = () => {
 				rowData={formatObjectsTableData(ticketsData.tickets)}
 				colTitles={tableTitles}
 				sortTitles={sortTableTitles}
+				rowClickHandler={rowClickHandler}
 			/>
 			<TableFooter
 				totalElements={Number(ticketsData?.total) || ticketsData.tickets.length}

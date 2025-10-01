@@ -12,13 +12,18 @@ import { useAppSelector } from 'src/hooks/store'
 import { isAuthUser } from 'src/store/auth/auth.selectors'
 import { AdminButton } from 'src/UI/AdminButton/AdminButton'
 import { AdminExpressEventIconSVG } from 'src/UI/icons/adminExpressEventIconSVG'
+import { AdminRoute } from 'src/routes/admin-routes/consts'
 
 export const AdminNavigation: FC = () => {
 	const isAuth = useAppSelector(isAuthUser)
 
 	return (
 		<aside className={styles.adminNavigation}>
-			<AdminButton as='route' to={'/'} className={styles.express}>
+			<AdminButton
+				as='route'
+				to={`${AdminRoute.AdminExpressEvent}/${AdminRoute.ExpressMain}`}
+				className={styles.express}
+			>
 				<AdminExpressEventIconSVG />
 				<p>Экспресс-событие</p>
 			</AdminButton>

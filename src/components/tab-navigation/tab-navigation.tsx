@@ -5,10 +5,11 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { setActive } from 'src/helpers/utils'
 
 import styles from './index.module.scss'
+import { FlexRow } from '../flex-row/flex-row'
 
 type TabNavigationProps = {
 	navItems: TabNavigationItem[]
-	variant?: 'main' | 'sub' | 'visitors'
+	variant?: 'main' | 'sub' | 'visitors' | 'express'
 }
 export const TabNavigation: FC<TabNavigationProps> = ({ navItems, variant = 'main' }) => {
 	const location = useLocation()
@@ -55,6 +56,26 @@ export const TabNavigation: FC<TabNavigationProps> = ({ navItems, variant = 'mai
 							end={navEl.exact}
 						>
 							{navEl.title}
+						</NavLink>
+					</li>
+				))}
+			</ul>
+		)
+	}
+	if (variant === 'express') {
+		return (
+			<ul className={styles.expressTabList}>
+				{navItems?.map((navEl) => (
+					<li key={navEl.title}>
+						<NavLink
+							className={({ isActive }) => setActive(isActive, styles.activeLink)}
+							to={navEl.link}
+							end={navEl.exact}
+						>
+							<FlexRow className={styles.stepRow}>
+								<p className={styles.subtitle}>{navEl.subtitle}</p>
+								<p className={styles.title}>{navEl.title}</p>
+							</FlexRow>
 						</NavLink>
 					</li>
 				))}

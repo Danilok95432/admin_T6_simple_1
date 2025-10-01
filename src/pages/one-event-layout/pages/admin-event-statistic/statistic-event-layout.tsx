@@ -14,12 +14,8 @@ export const StatisticEventLayout = () => {
 	const { data: statistic } = useGetAllLogsEnterQuery({ id, limit: 1 })
 	const eventTabs: TabNavigationItem[] = [
 		{
-			title: 'Ворота',
+			title: 'Ворота и инспекторы',
 			link: `/event/event-statistic/${id}/gates`,
-		},
-		{
-			title: 'Инспекторы',
-			link: `/event/event-statistic/${id}/inspectors`,
 		},
 	]
 

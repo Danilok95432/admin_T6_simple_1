@@ -46,7 +46,8 @@ export const VisitorsEventLayout = () => {
 				{!location.pathname.includes('/requests/') &&
 					!location.pathname.includes('/participants/') &&
 					!location.pathname.includes('/inspectors/') &&
-					!location.pathname.includes('/guests/') && (
+					!location.pathname.includes('/guests/') &&
+					!location.pathname.includes('/person-statistic/') && (
 						<div className={styles.headRow}>
 							<div className={styles.adminTitleTab}>
 								<h2>Списки и статистика</h2>

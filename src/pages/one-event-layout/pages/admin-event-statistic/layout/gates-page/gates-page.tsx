@@ -7,7 +7,7 @@ export const StatisticGatesPage: FC = () => {
 	return (
 		<>
 			<Helmet>
-				<title>Ворота</title>
+				<title>Ворота и инспекторы</title>
 			</Helmet>
 			<Outlet />
 		</>

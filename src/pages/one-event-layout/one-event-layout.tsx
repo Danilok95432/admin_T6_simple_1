@@ -36,6 +36,11 @@ export const OneEventLayout = () => {
 			link: `/event/event-lists/${id}`,
 			indexLink: `/event/event-lists/${id}/registrations`,
 		},
+		{
+			title: 'Размещение',
+			link: `/event/event-placement/${id}`,
+			indexLink: `/event/event-placement/${id}`,
+		},
 	]
 	const [isProgramPage, setIsProgramPage] = useState<boolean>(false)
 

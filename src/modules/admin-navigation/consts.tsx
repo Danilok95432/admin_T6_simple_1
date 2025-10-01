@@ -7,13 +7,12 @@ import { AdminPartnersIconSvg } from 'src/UI/icons/adminPartnersIconSvg'
 import { AdminQuestionsIcon } from 'src/UI/icons/adminQuestionsIcon'
 import { AdminOrgIconSVG } from 'src/UI/icons/adminOrgIncoSVG'
 import { AdminGuestsIconSVG } from 'src/UI/icons/adminGuestsIconSVG'
-import { AdminStatisticIconSVG } from 'src/UI/icons/adminStatisticIconSVG'
 
 export const adminMenuItems: NavigationItem[] = [
 	{
 		title: 'Организатор',
 		icon: <AdminOrgIconSVG />,
-		link: 'org',
+		link: 'org/info',
 	},
 	{
 		title: 'События',
@@ -34,11 +33,6 @@ export const adminMenuItems: NavigationItem[] = [
 		title: 'Частые вопросы',
 		icon: <AdminQuestionsIcon />,
 		link: 'frequent-questions',
-	},
-	{
-		title: 'Статистика',
-		icon: <AdminStatisticIconSVG />,
-		link: 'statistic',
 	},
 	{
 		title: 'Поддержка',

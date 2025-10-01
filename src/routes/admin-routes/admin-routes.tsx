@@ -95,7 +95,6 @@ import { ServicesPage } from 'src/pages/one-event-layout/pages/admin-event-servi
 import { PointsPage } from 'src/pages/one-event-layout/pages/admin-event-services/layout/points-page/points-page'
 import { RecipientsPage } from 'src/pages/one-event-layout/pages/admin-event-services/layout/recipients-page/recipients-page'
 import { StatisticEventLayout } from 'src/pages/one-event-layout/pages/admin-event-statistic/statistic-event-layout'
-import { InspectorsPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/inspectors-page/inspectors-page'
 import { RequestsPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/requests-page/requests-page'
 import { RequestsElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/requests-page/components/requests-elements/requests-elements'
 import { TransportPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/transport-page/transport-page'
@@ -109,20 +108,43 @@ import { InspectorsElements } from 'src/pages/one-event-layout/pages/admin-event
 import { OneInspector } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/inspectors-page/components/one-inspector/one-inspector'
 import { InspectorsVisitPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/inspectors-page/inspectors-page'
 import { InspectorsElementsStatistic } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/inspectors-page/components/inspectors-elements/inspectors-elements'
-import { OneInspectorStatistic } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/inspectors-page/components/one-inspector-statistic/one-inspector-statistic'
 import { PaymentsPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/payments-page/payments-page'
 import { StatisticGatesPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/gates-page/gates-page'
 import { SMSPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sms-page/sms-page'
 import { SMSElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sms-page/components/sms-elements/sms-elements'
 import { AdminOrgLayout } from 'src/pages/admin-org/admin-org-layout'
 import { AdminGuestsLayout } from 'src/pages/admin-guests/admin-guests-layout'
-import { AdminStatisticLayout } from 'src/pages/admin-statistic/admin-guests-layout'
+import { AdminStatisticLayout } from 'src/pages/admin-statistic/admin-statistic-layout'
+import { OrgInfo } from 'src/pages/admin-org/pages/org-info/org-info'
+import { OrgFinances } from 'src/pages/admin-org/pages/org-finances/org-finances'
+import { OrgStatistic } from 'src/pages/admin-org/pages/org-statistic/org-statistic'
+import { OrgProfile } from 'src/pages/admin-org/pages/org-profile/org-profile'
+import { PlacementEventLayout } from 'src/pages/one-event-layout/pages/admin-event-placement/placement-event-layout'
+import { OnePersonStatistic } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/one-person-statistic/one-person-statistic'
+import { AdminExpressEventLayout } from 'src/pages/admin-express-event/admin-express-event-layout'
+import { StepMain } from 'src/pages/admin-express-event/layout/step-main/step-main'
+import { StepInfo } from 'src/pages/admin-express-event/layout/step-info/step-info'
+import { StepTickets } from 'src/pages/admin-express-event/layout/step-tickets/step-tickets'
+import { StepPass } from 'src/pages/admin-express-event/layout/step-pass/step-pass'
+import { StepPlacement } from 'src/pages/admin-express-event/layout/step-placement/step-placement'
 
 export const AdminRoutes: FC = () => {
 	return (
 		<Routes>
 			<Route path='/' element={<AdminLayout />}>
-				<Route path={AdminRoute.AdminOrg} element={<AdminOrgLayout />} />
+				<Route path={AdminRoute.AdminExpressEvent} element={<AdminExpressEventLayout />}>
+					<Route path={AdminRoute.ExpressMain} element={<StepMain />} />
+					<Route path={AdminRoute.ExpressInfo} element={<StepInfo />} />
+					<Route path={AdminRoute.ExpressRegistration} element={<StepTickets />} />
+					<Route path={AdminRoute.ExpressPasses} element={<StepPass />} />
+					<Route path={AdminRoute.ExpressPlacement} element={<StepPlacement />} />
+				</Route>
+				<Route path={AdminRoute.AdminOrg} element={<AdminOrgLayout />}>
+					<Route path={AdminRoute.OrgInfo} element={<OrgInfo />} />
+					<Route path={AdminRoute.OrgProfile} element={<OrgProfile />} />
+					<Route path={AdminRoute.OrgStatistic} element={<OrgStatistic />} />
+					<Route path={AdminRoute.OrgFinances} element={<OrgFinances />} />
+				</Route>
 				<Route path={AdminRoute.Guests} element={<AdminGuestsLayout />} />
 				<Route path={AdminRoute.AdminStatistic} element={<AdminStatisticLayout />} />
 				<Route path={AdminRoute.AdminNews} element={<AdminNewsLayout />}>
@@ -183,6 +205,10 @@ export const AdminRoutes: FC = () => {
 						<Route path={`${AdminRoute.Gates}`} element={<GatesPage />} />
 					</Route>
 					<Route path={`${AdminRoute.AdminEventContacts}/:id`} element={<AdminEventContacts />} />
+					<Route
+						path={`${AdminRoute.AdminEventPlacement}/:id`}
+						element={<PlacementEventLayout />}
+					/>
 					<Route path={`${AdminRoute.AdminEventContent}/:id`} element={<AdminEventContentLayout />}>
 						<Route path={`${AdminRoute.AdminContent}`} element={<AdminEventContent />} />
 						<Route path={`${AdminRoute.AdminEventPartners}`} element={<AdminEventPartnersLayout />}>
@@ -264,6 +290,10 @@ export const AdminRoutes: FC = () => {
 						</Route>
 					</Route>
 					<Route path={`${AdminRoute.AdminEventLists}/:id`} element={<VisitorsEventLayout />}>
+						<Route
+							path={`${AdminRoute.OnePersonStatistic}/:personId`}
+							element={<OnePersonStatistic />}
+						/>
 						<Route path={`${AdminRoute.Registrations}`} element={<TicketsPage />}>
 							<Route index element={<TicketsElements />} />
 							<Route path=':subId' element={<OneTicket />} />
@@ -297,10 +327,6 @@ export const AdminRoutes: FC = () => {
 					<Route path={`${AdminRoute.AdminEventStatistic}/:id`} element={<StatisticEventLayout />}>
 						<Route path={`${AdminRoute.Gates}`} element={<StatisticGatesPage />}>
 							<Route index element={<InspectorsElementsStatistic />} />
-						</Route>
-						<Route path={`${AdminRoute.Inspectors}`} element={<InspectorsPage />}>
-							<Route index element={<InspectorsElementsStatistic />} />
-							<Route path=':subId' element={<OneInspectorStatistic />} />
 						</Route>
 					</Route>
 				</Route>

@@ -86,3 +86,44 @@
 	}
 }
 
+.expressTabList {
+	display: flex;
+	gap: 15px;
+	flex-wrap: wrap;
+	align-items: center;
+	padding-bottom: 20px;
+	@media (max-width: 768px) {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	li {
+		.stepRow {
+			flex-direction: column;
+			gap: 5px;
+			.subtitle {
+				font-size: 18px;
+				font-weight: 600;
+			}
+			.title {
+				font-size: 14px;
+				font-weight: 400;
+			}
+		}
+
+		a {
+			display: flex;
+			padding: 8px 12px;
+			background: #f6f7fb;
+			min-width: 180px;
+			border-radius: 5px;
+			color: #000000;
+		}
+
+		.activeLink {
+			border: 2px solid #a5e2e2;
+			background: #ffffff;
+			color: #239a9e;
+		}
+	}
+}
+
