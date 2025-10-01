@@ -127,6 +127,12 @@ import { StepInfo } from 'src/pages/admin-express-event/layout/step-info/step-in
 import { StepTickets } from 'src/pages/admin-express-event/layout/step-tickets/step-tickets'
 import { StepPass } from 'src/pages/admin-express-event/layout/step-pass/step-pass'
 import { StepPlacement } from 'src/pages/admin-express-event/layout/step-placement/step-placement'
+import { PurchasedTicketsPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/purchased-tickets-page/purchased-tickets-page'
+import { PurchasedTicketsElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/purchased-tickets-page/components/purchased-tickets-elements/purchased-tickets-elements'
+import { EntersListPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/enters-list-page/enters-list-page'
+import { EntersListElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/enters-list-page/components/enters-list-elements/enters-list-elements'
+import { SaleStatPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sale-stat-page/sale-stat-page'
+import { SaleStatElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sale-stat-page/components/sale-stat-elements/sale-stat-elements'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -298,15 +304,15 @@ export const AdminRoutes: FC = () => {
 							<Route index element={<TicketsElements />} />
 							<Route path=':subId' element={<OneTicket />} />
 						</Route>
-						<Route path={`${AdminRoute.Tickets}`} element={<TicketsPage />}>
-							<Route index element={<TicketsElements />} />
+						<Route path={`${AdminRoute.Tickets}`} element={<PurchasedTicketsPage />}>
+							<Route index element={<PurchasedTicketsElements />} />
 							<Route path=':subId' element={<OneTicket />} />
 						</Route>
-						<Route path={`${AdminRoute.LogEnters}`} element={<SMSPage />}>
-							<Route index element={<SMSElements />} />
+						<Route path={`${AdminRoute.LogEnters}`} element={<EntersListPage />}>
+							<Route index element={<EntersListElements />} />
 						</Route>
-						<Route path={`${AdminRoute.Sales}`} element={<SMSPage />}>
-							<Route index element={<SMSElements />} />
+						<Route path={`${AdminRoute.Sales}`} element={<SaleStatPage />}>
+							<Route index element={<SaleStatElements />} />
 						</Route>
 						<Route path={`${AdminRoute.Naplivi}`} element={<SMSPage />}>
 							<Route index element={<SMSElements />} />
