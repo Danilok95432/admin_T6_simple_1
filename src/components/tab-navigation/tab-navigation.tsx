@@ -6,6 +6,8 @@ import { setActive } from 'src/helpers/utils'
 
 import styles from './index.module.scss'
 import { FlexRow } from '../flex-row/flex-row'
+import { ActiveStepSVG } from 'src/UI/icons/activeStepSVG'
+import { NotActiveStepSVG } from 'src/UI/icons/notActiveStep'
 
 type TabNavigationProps = {
 	navItems: TabNavigationItem[]
@@ -65,20 +67,35 @@ export const TabNavigation: FC<TabNavigationProps> = ({ navItems, variant = 'mai
 	if (variant === 'express') {
 		return (
 			<ul className={styles.expressTabList}>
-				{navItems?.map((navEl) => (
-					<li key={navEl.title}>
-						<NavLink
-							className={({ isActive }) => setActive(isActive, styles.activeLink)}
-							to={navEl.link}
-							end={navEl.exact}
-						>
-							<FlexRow className={styles.stepRow}>
-								<p className={styles.subtitle}>{navEl.subtitle}</p>
-								<p className={styles.title}>{navEl.title}</p>
-							</FlexRow>
-						</NavLink>
-					</li>
-				))}
+				{navItems?.map((navEl, index) => {
+					const activeIndex = navItems.findIndex(
+						(item) =>
+							location.pathname.split('/')[location.pathname.split('/').length - 1] === item.link,
+					)
+					return (
+						<li key={navEl.title} className={index < activeIndex ? styles.pass : ''}>
+							<NavLink
+								className={({ isActive }) => (isActive ? styles.activeLink : '')}
+								to={navEl.link}
+								end={navEl.exact}
+							>
+								{({ isActive }) => (
+									<FlexRow className={styles.navRow}>
+										<FlexRow className={styles.stepRow}>
+											<p className={styles.subtitle}>{navEl.subtitle}</p>
+											<p className={styles.title}>{navEl.title}</p>
+										</FlexRow>
+										{isActive ? (
+											<ActiveStepSVG />
+										) : (
+											<NotActiveStepSVG color={index < activeIndex ? '#ffffff' : '#01A7B4'} />
+										)}
+									</FlexRow>
+								)}
+							</NavLink>
+						</li>
+					)
+				})}
 			</ul>
 		)
 	}

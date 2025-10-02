@@ -96,7 +96,23 @@
 		flex-direction: column;
 		align-items: flex-start;
 	}
+	.pass {
+		pointer-events: all;
+		a {
+			background: #00BDCB;
+			color: #fff;
+			.subtitle {
+				text-decoration: underline #fff;
+			}
+		}
+	}
 	li {
+		pointer-events: none;
+		.navRow {
+			width: 100%;
+			justify-content: space-between;
+			gap: 0;
+		}
 		.stepRow {
 			flex-direction: column;
 			gap: 5px;
@@ -111,18 +127,28 @@
 		}
 
 		a {
+			width: 100%;
 			display: flex;
 			padding: 8px 12px;
-			background: #f6f7fb;
+			background: #F5F7FA;
 			min-width: 180px;
 			border-radius: 5px;
 			color: #000000;
 		}
 
 		.activeLink {
-			border: 2px solid #a5e2e2;
+			border: 2px solid #00BDCB;
 			background: #ffffff;
-			color: #239a9e;
+			.subtitle {
+				font-size: 18px;
+				font-weight: 600;
+				color: #01A7B4;
+			}
+			.title {
+				font-size: 14px;
+				font-weight: 400;
+				color: #000;
+			}
 		}
 	}
 }

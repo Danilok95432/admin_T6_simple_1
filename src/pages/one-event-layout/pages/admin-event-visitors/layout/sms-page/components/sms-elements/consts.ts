@@ -3,22 +3,12 @@ import { type FilterTableInput } from 'src/types/global'
 export const TicketsFiltrationInputs: FilterTableInput[] = [
 	{
 		name: 'telphone',
-		placeholder: 'искать по номеру телефона...',
+		placeholder: 'искать по телефону получателя...',
 		type: 'text',
 	},
 	{
-		name: 'surname',
-		placeholder: 'искать по фамилии покупателя...',
-		type: 'text',
-	},
-	{
-		name: 'email',
-		placeholder: 'искать по e-mail...',
-		type: 'text',
-	},
-	{
-		name: 'use_ticket',
-		placeholder: 'вид билета',
+		name: 'use_operator',
+		placeholder: 'оператор получателя',
 		type: 'select',
 		options: [
 			{ label: 'Одиночный', value: '0' },
@@ -26,8 +16,8 @@ export const TicketsFiltrationInputs: FilterTableInput[] = [
 		],
 	},
 	{
-		name: 'use_purchase',
-		placeholder: 'вид покупки',
+		name: 'use_message',
+		placeholder: 'тип сообщения',
 		type: 'select',
 		options: [
 			{ label: 'Одиночный', value: '0' },

@@ -20,6 +20,7 @@ type ControlledInputProps = {
 	isReadOnly?: boolean
 	isLogin?: boolean
 	disabled?: boolean
+	isRequired?: boolean
 } & React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>
 
 export const ControlledInput: FC<ControlledInputProps> = ({
@@ -36,6 +37,7 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 	isReadOnly,
 	isLogin = false,
 	disabled,
+	isRequired,
 	...props
 }) => {
 	const {
@@ -52,7 +54,11 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 				style={{ margin, width, maxWidth }}
 			>
 				<label className={cn(styles.inputWrapper, styles.textareaWrapper)}>
-					{label && <p>{label}</p>}
+					{label && (
+						<p>
+							{label} {isRequired ? <span className={styles.reqStar}>*</span> : null}
+						</p>
+					)}
 					<textarea
 						{...register(name)}
 						{...props}
@@ -111,7 +117,11 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 	return (
 		<div className={cn(styles.inputEl, className)} style={{ margin, width, maxWidth }}>
 			<label className={styles.inputWrapper}>
-				{label && <p>{label}</p>}
+				{label && (
+					<p>
+						{label} {isRequired ? <span className={styles.reqStar}>*</span> : null}
+					</p>
+				)}
 				<input
 					{...register(name)}
 					{...props}

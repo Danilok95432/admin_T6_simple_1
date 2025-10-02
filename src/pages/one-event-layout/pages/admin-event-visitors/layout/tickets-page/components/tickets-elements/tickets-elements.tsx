@@ -1,31 +1,24 @@
-import { useNavigate, useParams } from 'react-router-dom'
 import cn from 'classnames'
-import { useState } from 'react'
 
 import { CustomTable } from 'src/components/custom-table/custom-table'
-import { Loader } from 'src/components/loader/loader'
 import { TableFooter } from 'src/components/table-footer/table-footer'
 import { GridRow } from 'src/components/grid-row/grid-row'
 
 import styles from './index.module.scss'
-import { useAppSelector } from 'src/hooks/store'
-import { getFiltrationValues } from 'src/modules/table-filtration/store/table-filtration.selectors'
 import { TableFiltration } from 'src/modules/table-filtration/table-filtration'
 import { TicketsFiltrationInputs } from './consts'
-import { useGetTicketsQuery } from 'src/store/events/events.api'
 import { type EventTickets } from 'src/types/events'
 import { StatusTickets } from 'src/components/status-tickets/status-tickets'
 import { formatDateTimeTicket } from 'src/helpers/utils'
-import { AdminRoute } from 'src/routes/admin-routes/consts'
 
 export const TicketsElements = () => {
-	const { id = '0' } = useParams()
-	const filterValues = useAppSelector(getFiltrationValues)
-	const [currentPage, setCurrentPage] = useState(1)
-	const [itemsPerPage, setItemsPerPage] = useState<number | 'all'>(100)
-	const navigate = useNavigate()
+	// const { id = '0' } = useParams()
+	// const filterValues = useAppSelector(getFiltrationValues)
+	// const [currentPage, setCurrentPage] = useState(1)
+	// const [itemsPerPage, setItemsPerPage] = useState<number | 'all'>(100)
+	// const navigate = useNavigate()
 
-	const { data: ticketsData, isLoading } = useGetTicketsQuery({
+	/* const { data: ticketsData, isLoading } = useGetTicketsQuery({
 		id,
 		telphone: filterValues.telphone,
 		surname: filterValues.surname,
@@ -49,19 +42,19 @@ export const TicketsElements = () => {
 			`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventLists}/${id}/${AdminRoute.OnePersonStatistic}/${personId}`,
 		)
 	}
+    */
 
 	const tableTitles = [
-		'Статус',
-		'Номер билета',
-		'Дата и время продажи',
-		'Группа',
-		'Посетитель',
+		'ID',
+		'Дата и время регистрации',
+		'Вид регистрации',
+		'Билетов',
 		'Телефон',
-		'Регион',
-		'Доставлен',
+		'E-mail',
+		'Посетитель',
+		'Оплачено ₽',
+		'Вид доставки',
 	]
-
-	const sortTableTitles = ['Дата и время продажи']
 
 	const formatObjectsTableData = (tickets: EventTickets[]) => {
 		return (
@@ -90,7 +83,7 @@ export const TicketsElements = () => {
 		)
 	}
 
-	if (isLoading || !ticketsData?.tickets) return <Loader />
+	// if (isLoading || !ticketsData?.tickets) return <Loader />
 
 	return (
 		<div className={styles.eventNewsContainer}>
@@ -99,26 +92,10 @@ export const TicketsElements = () => {
 			</GridRow>
 			<CustomTable
 				className={styles.newsTable}
-				rowData={formatObjectsTableData(ticketsData.tickets)}
+				rowData={formatObjectsTableData([])}
 				colTitles={tableTitles}
-				sortTitles={sortTableTitles}
-				rowClickHandler={rowClickHandler}
 			/>
-			<TableFooter
-				totalElements={Number(ticketsData?.total) || ticketsData.tickets.length}
-				currentPage={currentPage}
-				totalPages={Math.ceil(
-					(Number(ticketsData?.total) || ticketsData.tickets.length) /
-						(itemsPerPage === 'all'
-							? Number(ticketsData?.total) || ticketsData.tickets.length
-							: itemsPerPage),
-				)}
-				onPageChange={handlePageChange}
-				onLimitChange={handleItemsPerPageChange}
-				noAdd
-				downloadBtn
-				ticketStyle
-			/>
+			<TableFooter totalElements={0} currentPage={0} totalPages={0} noAdd downloadBtn ticketStyle />
 		</div>
 	)
 }

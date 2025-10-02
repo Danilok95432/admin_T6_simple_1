@@ -17,6 +17,7 @@ type ControlledSelectProps = {
 	margin?: string
 	dynamicError?: FieldError | undefined
 	disabled?: boolean
+	isRequired?: boolean
 }
 export const ControlledSelect: FC<ControlledSelectProps> = ({
 	selectOptions,
@@ -26,6 +27,7 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 	margin,
 	dynamicError,
 	disabled,
+	isRequired,
 	...props
 }) => {
 	const {
@@ -43,7 +45,11 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 	})
 	return (
 		<div className={cn(styles.selectWrapper, className)} style={{ margin }}>
-			{label && <label>{label}</label>}
+			{label && (
+				<label>
+					{label} {isRequired ? <span className={styles.reqStar}>*</span> : null}
+				</label>
+			)}
 			<Select
 				{...register(name)}
 				{...props}

@@ -4,12 +4,12 @@
 	display: flex;
 	align-items: flex-start;
 	flex-direction: column;
-	gap: 5px;
+	gap: 7px;
 	position: relative;
 	p {
 		font-weight: 600;
 		color: #000000;
-		font-size: 14px;
+		font-size: 20px;
 
 		span {
 			font-weight: 400;
@@ -19,6 +19,12 @@
 				display: block;
 			}
 		}
+	}
+	.reqStar {
+		color: #01A7B4;
+		margin-left: 4px;
+		font-weight: 600;
+		font-size: 20px;
 	}
 
 	span {
@@ -30,7 +36,7 @@
 }
 .controlledInput {
 	@include opensans-regular;
-	font-size: 14px;
+	font-size: 20px;
 	padding: 9px 10px;
 	width: 100%;
 	background-color: transparent;
