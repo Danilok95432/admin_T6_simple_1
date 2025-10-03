@@ -22,12 +22,13 @@ export const AdminExpressEventLayout = () => {
 			<AdminContent className={styles.newsContent} $backgroundColor='#ffffff' $padding='30px 0'>
 				<Container $padding='0px 35px 0 35px' $paddingMobile='35px'>
 					<FlexRow className={styles.navRow}>
-						<CustomDisclaimer
-							text='Следуя инструкциям этого раздела Вы сможете быстро создать событие 
-							на основе стандартных настроек. Для того, чтобы использовать расширенные настройки, 
-							перейдите в профиль события после завершения первого шага.'
-							closable
-						/>
+						<CustomDisclaimer closable>
+							<p>
+								Следуя инструкциям этого раздела Вы сможете быстро создать событие на основе
+								стандартных настроек. Для того, чтобы использовать расширенные настройки, перейдите
+								в профиль события после завершения первого шага.
+							</p>
+						</CustomDisclaimer>
 						<TabNavigation navItems={expressTabs} variant='express' />
 					</FlexRow>
 					<Outlet />

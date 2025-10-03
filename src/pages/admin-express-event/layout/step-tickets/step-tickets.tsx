@@ -13,6 +13,11 @@ export const StepTickets = () => {
 	const methods = useForm<TicketInputs>({
 		mode: 'onBlur',
 		defaultValues: {
+			use_reg: false,
+			use_group: false,
+			use_sale: false,
+			use_one_ticket: false,
+			use_count: false,
 			price: '0',
 			guests: '0',
 		},
@@ -29,10 +34,13 @@ export const StepTickets = () => {
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
 					<MainSection />
-					<CustomDisclaimer
-						text='Тонкие настройки регистрации, состав полей формы, создание разных вариантов билетов и скидок на них можно сделать в разделе «Настройки».'
-						closable
-					/>
+					<CustomDisclaimer closable>
+						<p>
+							Тонкие настройки регистрации, состав полей формы, создание разных вариантов билетов и
+							скидок на них можно сделать
+							<a href={`${AdminRoute.AdminSettings}`}> в разделе «Настройки»</a>.
+						</p>
+					</CustomDisclaimer>
 					<FlexRow className={styles.nextRow}>
 						<AdminButton
 							$height='auto'

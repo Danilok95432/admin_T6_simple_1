@@ -9,7 +9,7 @@ export const MainSection = () => {
 		<AdminSection isBlock={false} className={styles.titleSectionInner}>
 			<FlexRow className={styles.checkboxRow}>
 				<ControlledCheckbox
-					name='hide_telphone'
+					name='use_reg'
 					label='Включить регистрацию на событие'
 					type='checkbox'
 					className={styles.checkbox}
@@ -21,7 +21,7 @@ export const MainSection = () => {
 			</FlexRow>
 			<FlexRow className={styles.checkboxRow}>
 				<ControlledCheckbox
-					name='hide_telphone'
+					name='use_group'
 					label='Разрешить регистрацию групп'
 					type='checkbox'
 					className={styles.checkbox}
@@ -34,7 +34,7 @@ export const MainSection = () => {
 			</FlexRow>
 			<FlexRow className={styles.checkboxRow}>
 				<ControlledCheckbox
-					name='hide_telphone'
+					name='use_sale'
 					label='Открыть продажу билетов'
 					type='checkbox'
 					className={styles.checkbox}
@@ -51,7 +51,7 @@ export const MainSection = () => {
 			</FlexRow>
 			<FlexRow className={styles.checkboxRow}>
 				<ControlledCheckbox
-					name='hide_telphone'
+					name='use_one_ticket'
 					label='Вся группа по одному билету'
 					type='checkbox'
 					className={styles.checkbox}
@@ -63,7 +63,7 @@ export const MainSection = () => {
 			</FlexRow>
 			<FlexRow className={styles.checkboxRow}>
 				<ControlledCheckbox
-					name='hide_telphone'
+					name='use_count'
 					label='Ограничить количество посетителей'
 					type='checkbox'
 					className={styles.checkbox}
