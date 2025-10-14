@@ -37,7 +37,7 @@ export const OneEventLayout = () => {
 			indexLink: `/event/event-lists/${id}/registrations`,
 		},
 		{
-			title: 'Размещение',
+			title: 'Размещение(публикация)',
 			link: `/event/event-placement/${id}`,
 			indexLink: `/event/event-placement/${id}`,
 		},

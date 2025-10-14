@@ -133,6 +133,7 @@ import { EntersListPage } from 'src/pages/one-event-layout/pages/admin-event-vis
 import { EntersListElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/enters-list-page/components/enters-list-elements/enters-list-elements'
 import { SaleStatPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sale-stat-page/sale-stat-page'
 import { SaleStatElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sale-stat-page/components/sale-stat-elements/sale-stat-elements'
+import { InfoElements } from 'src/pages/admin-org/pages/org-info/components/info-elements/info-elements'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -146,7 +147,9 @@ export const AdminRoutes: FC = () => {
 					<Route path={AdminRoute.ExpressPlacement} element={<StepPlacement />} />
 				</Route>
 				<Route path={AdminRoute.AdminOrg} element={<AdminOrgLayout />}>
-					<Route path={AdminRoute.OrgInfo} element={<OrgInfo />} />
+					<Route path={AdminRoute.OrgInfo} element={<OrgInfo />}>
+						<Route index element={<InfoElements />} />
+					</Route>
 					<Route path={AdminRoute.OrgProfile} element={<OrgProfile />} />
 					<Route path={AdminRoute.OrgStatistic} element={<OrgStatistic />} />
 					<Route path={AdminRoute.OrgFinances} element={<OrgFinances />} />

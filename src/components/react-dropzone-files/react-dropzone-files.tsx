@@ -33,8 +33,8 @@ type ReactDropzoneProps = {
 	removeIcon?: ReactNode
 	customUploadBtn?: ReactNode
 	uploadBtnText?: string
-	variant?: 'main' | 'text'
-	previewVariant?: 'main' | 'text' | 'sm-img' | 'list'
+	variant?: 'main' | 'text' | 'icons'
+	previewVariant?: 'main' | 'text' | 'sm-img' | 'list' | 'icons'
 	files?: FileItem[]
 	fileType?: string
 }
@@ -180,6 +180,44 @@ export const ReactDropzoneFiles: FC<ReactDropzoneProps> = ({
 				{currentFiles.length < maxFiles && (
 					<div className={styles.textFileController} onClick={open}>
 						{customUploadBtn ?? <AddButton icon={<UploadFileSvg />}>{uploadBtnText}</AddButton>}
+					</div>
+				)}
+				{errors[name] && (
+					<p className={styles.warningMessage}>
+						<ErrorMessage errors={errors} name={name} />
+					</p>
+				)}
+			</div>
+		)
+	}
+
+	if (variant === 'icons') {
+		return (
+			<div className={cn(styles.reactDropzone, className)} style={{ margin: margin ?? '' }}>
+				{label && <label>{label}</label>}
+				<FilePreviewsFiles
+					variant={previewVariant ?? 'main'}
+					files={currentFiles}
+					removeBtn={removeIcon ?? <RemovePhotoSvg />}
+					removeHandler={removeFile}
+				/>
+				{currentFiles.length < maxFiles && (
+					<div
+						className={cn(dzAreaClassName, {
+							[styles.activeArea]: isDragActive,
+							[styles.dropzoneArea]: !customUploadBtn,
+						})}
+						{...getRootProps()}
+					>
+						<input {...register(name)} {...getInputProps()} />
+						{customUploadBtn ?? (
+							<>
+								<span>Прикрепить файл</span>
+								<p>
+									{prompt ?? 'Перетащите файл на это поле'} <AttachIconSvg />
+								</p>
+							</>
+						)}
 					</div>
 				)}
 				{errors[name] && (

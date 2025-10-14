@@ -8,7 +8,7 @@ type FilePreviewsProps = {
 	files: FileItem[]
 	removeBtn?: ReactNode
 	removeHandler?: (idx: number) => void
-	variant?: 'main' | 'text' | 'sm-img' | 'list' | 'sm-img-edit'
+	variant?: 'main' | 'text' | 'sm-img' | 'list' | 'sm-img-edit' | 'icons'
 }
 export const FilePreviewsFiles: FC<FilePreviewsProps> = ({
 	files,
@@ -39,6 +39,34 @@ export const FilePreviewsFiles: FC<FilePreviewsProps> = ({
 						)}
 					</li>
 				))}
+			</ul>
+		)
+	}
+
+	if (variant === 'icons') {
+		return (
+			<ul className={styles.filesList}>
+				{files.map((file, idx) => {
+					return (
+						<li key={file.id}>
+							{removeBtn && (
+								<button
+									className={styles.removeBtn}
+									type='button'
+									onClick={() => removeHandler?.(idx)}
+								>
+									{removeBtn}
+								</button>
+							)}
+							<div className={styles.textFile}>
+								<span></span>
+								<a href={file.url} download>
+									{file.name}
+								</a>
+							</div>
+						</li>
+					)
+				})}
 			</ul>
 		)
 	}

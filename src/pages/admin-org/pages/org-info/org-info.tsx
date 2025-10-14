@@ -1,15 +1,13 @@
-import { AdminContent } from 'src/components/admin-content/admin-content'
-import styles from './index.module.scss'
-import { Container } from 'src/UI/Container/Container'
+import { Helmet } from 'react-helmet-async'
+import { Outlet } from 'react-router-dom'
 
 export const OrgInfo = () => {
 	return (
-		<AdminContent $padding='0' $backgroundColor='#ffffff' className={styles.orgPage}>
-			<Container $padding='0px 35px 0 35px' $paddingMobile='35px'>
-				<div className={styles.adminTitleTab}>
-					<h2>Сводка</h2>
-				</div>
-			</Container>
-		</AdminContent>
+		<>
+			<Helmet>
+				<title>Сводка</title>
+			</Helmet>
+			<Outlet />
+		</>
 	)
 }

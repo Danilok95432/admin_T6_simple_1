@@ -58,10 +58,10 @@ export const TableFooter: FC<TableFooterProps> = ({
 	}
 
 	const handleLimitChange = (value: string) => {
-    if (onLimitChange) {
-      onLimitChange(value)
-    }
-  }
+		if (onLimitChange) {
+			onLimitChange(value)
+		}
+	}
 	return (
 		<div className={className ?? styles.tableFooterWrapper}>
 			<div className={cn(styles.tableFooter, { [styles.tableFooterShort]: downloadBtn })}>
@@ -132,4 +132,3 @@ export const TableFooter: FC<TableFooterProps> = ({
 		</div>
 	)
 }
-
