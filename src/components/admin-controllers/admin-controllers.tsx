@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 type AdminControllersProps = {
 	outLink?: string
-	variant?: '1' | '2' | '3' | '4'
+	variant?: '1' | '2' | '3' | '4' | '5'
 	isSent?: boolean
 	actionHandler: (action: 'apply' | 'save') => void
 }
@@ -16,7 +16,7 @@ type AdminStyledBtns = {
 }
 
 const StyledAdminControllers = styled.section<AdminStyledBtns>`
-	margin: ${({ $margin }) => $margin ?? '45px 0 0 0'};
+	margin: ${({ $margin }) => $margin ?? '35px 0 0 0'};
 	display: flex;
 	gap: 20px;
 	flex-wrap: wrap;
@@ -124,6 +124,18 @@ export const AdminControllers: FC<AdminControllersProps> = ({
 							Сохранить и выйти
 						</AdminButton>
 					</>
+				)
+			case '5':
+				return (
+					<AdminButton
+						as='button'
+						type='submit'
+						$variant={isSent ? 'sent' : 'primary'}
+						$height='40px'
+						onClick={() => actionHandler('apply')}
+					>
+						{isSent ? 'Изменения сохранены' : 'Сохранить'}
+					</AdminButton>
 				)
 		}
 	}

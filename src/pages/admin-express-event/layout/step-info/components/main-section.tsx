@@ -21,6 +21,7 @@ export const MainSection = () => {
 					placeholder='Точный адрес площадки проведения внутри населенного пункта'
 					margin='0 0 20px 0'
 					isRequired
+					bigFont
 					height='83px'
 					isTextarea
 				/>
@@ -33,6 +34,7 @@ export const MainSection = () => {
 				<ControlledInput
 					name='title'
 					label='Название площадки проведения'
+					bigFont
 					placeholder='Название площадки проведения'
 					margin='0 0 20px 0'
 				/>
@@ -57,7 +59,7 @@ export const MainSection = () => {
 					<InfoNewIconSVG />
 				</Tooltip>
 			</FlexRow>
-			<CustomText $margin='0 0 5px 0' $fontWeight='600'>
+			<CustomText $margin='0 0 5px 0' $fontWeight='600' $fontSize='20px'>
 				Интернет-сайт события
 			</CustomText>
 			<GridRow
@@ -67,7 +69,7 @@ export const MainSection = () => {
 				$margin='0 0 20px 0'
 				$template='auto / 0.35fr 0.65fr'
 			>
-				<ControlledInput name='contact_tg' placeholder='url сайта' />
+				<ControlledInput name='contact_tg' placeholder='url сайта' bigFont />
 				<div className={styles.inputWrapperSpecial}>
 					<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
 						<InfoIconSvg />
@@ -80,7 +82,7 @@ export const MainSection = () => {
 					/>
 				</div>
 			</GridRow>
-			<CustomText $margin='0 0 5px 0' $fontWeight='600'>
+			<CustomText $margin='0 0 5px 0' $fontWeight='600' $fontSize='20px'>
 				Контактный номер телефона
 			</CustomText>
 			<GridRow
@@ -94,6 +96,7 @@ export const MainSection = () => {
 					name='contact_telphone'
 					placeholder='+7 (999) 999-00-00'
 					mask='{+7} (000) 000-00-00'
+					className={styles.inputPhone}
 				/>
 				<div className={styles.inputWrapperSpecial}>
 					<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
@@ -107,7 +110,7 @@ export const MainSection = () => {
 					/>
 				</div>
 			</GridRow>
-			<CustomText $margin='0 0 5px 0' $fontWeight='600'>
+			<CustomText $margin='0 0 5px 0' $fontWeight='600' $fontSize='20px'>
 				Контактный e-mail
 			</CustomText>
 			<GridRow
@@ -117,7 +120,7 @@ export const MainSection = () => {
 				$template='auto / 0.35fr 0.65fr'
 				$margin='0 0 20px 0'
 			>
-				<ControlledInput name='contact_email' placeholder='адрес электронной почты' />
+				<ControlledInput name='contact_email' placeholder='адрес электронной почты' bigFont />
 				<div className={styles.inputWrapperSpecial}>
 					<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
 						<InfoIconSvg />
@@ -130,7 +133,7 @@ export const MainSection = () => {
 					/>
 				</div>
 			</GridRow>
-			<CustomText $margin='0 0 5px 0' $fontWeight='600'>
+			<CustomText $margin='0 0 5px 0' $fontWeight='600' $fontSize='20px'>
 				Телеграм-канал
 			</CustomText>
 			<GridRow
@@ -140,7 +143,7 @@ export const MainSection = () => {
 				$margin='0 0 20px 0'
 				$template='auto / 0.35fr 0.65fr'
 			>
-				<ControlledInput name='contact_tg' placeholder='@ имя пользователя' />
+				<ControlledInput name='contact_tg' placeholder='@ имя пользователя' bigFont />
 				<div className={styles.inputWrapperSpecial}>
 					<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
 						<InfoIconSvg />

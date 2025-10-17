@@ -19,6 +19,7 @@ export const MainSection = () => {
 					name='title'
 					label='Название подсобытия'
 					placeholder='Полное название события'
+					bigFont
 					margin='0 0 20px 0'
 					isRequired
 				/>
@@ -34,6 +35,7 @@ export const MainSection = () => {
 					placeholder='Короткое описание'
 					margin='0 0 20px 0'
 					height='180px'
+					bigFont
 					isTextarea
 					isRequired
 				/>
@@ -48,6 +50,7 @@ export const MainSection = () => {
 					placeholder='Регион и населенный пункт проведения'
 					margin='0 0 20px 0'
 					height='180px'
+					bigFont
 					isTextarea
 					isRequired
 				/>
@@ -111,6 +114,7 @@ export const MainSection = () => {
 				<ControlledSelect
 					label='Возрастной рейтинг'
 					name='age_list'
+					bigFont
 					isRequired
 					selectOptions={[{ label: 'Не выбрано', value: '0' }]}
 				/>
@@ -118,6 +122,7 @@ export const MainSection = () => {
 					<ControlledSelect
 						label='Публичность события'
 						name='publicity_list'
+						bigFont
 						isRequired
 						selectOptions={[{ label: 'Не выбрано', value: '0' }]}
 					/>

@@ -7,8 +7,8 @@ export const orgTabs: TabNavigationItem[] = [
 	},
 	{
 		title: 'Профиль',
-		link: `/org/profile`,
-		indexLink: `/org/profile`,
+		link: `/org/profile/info`,
+		indexLink: `/org/profile/info`,
 	},
 	{
 		title: 'Статистика',
@@ -17,7 +17,7 @@ export const orgTabs: TabNavigationItem[] = [
 	},
 	{
 		title: 'Финансы',
-		link: `/org/finances`,
-		indexLink: `/org/finances`,
+		link: `/org/finances/stat`,
+		indexLink: `/org/finances/stat`,
 	},
 ]

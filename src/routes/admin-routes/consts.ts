@@ -92,5 +92,12 @@ export enum AdminRoute {
 	OrgInfo = 'info',
 	OrgProfile = 'profile',
 	OrgFinances = 'finances',
+	// eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
 	OrgStatistic = 'statistic',
+	OrgAuth = 'auth',
+	OrgDetails = 'details',
+	OrgStat = 'stat',
+	OrgIncome = 'income',
+	OrgReqRefund = 'req-refund',
+	OrgRefund = 'refund',
 }

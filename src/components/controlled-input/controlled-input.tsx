@@ -5,6 +5,7 @@ import { ErrorMessage } from '@hookform/error-message'
 import { PasswordEyeSvg } from 'src/UI/icons/passwordEyeSVG'
 
 import styles from './index.module.scss'
+import { LockedInputSVG } from 'src/UI/icons/lockedInputSVG'
 
 type ControlledInputProps = {
 	className?: string
@@ -21,6 +22,8 @@ type ControlledInputProps = {
 	isLogin?: boolean
 	disabled?: boolean
 	isRequired?: boolean
+	bigFont?: boolean
+	locked?: boolean
 } & React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>
 
 export const ControlledInput: FC<ControlledInputProps> = ({
@@ -38,6 +41,8 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 	isLogin = false,
 	disabled,
 	isRequired,
+	bigFont = false,
+	locked = false,
 	...props
 }) => {
 	const {
@@ -50,7 +55,12 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 	if (isTextarea) {
 		return (
 			<div
-				className={cn(styles.inputEl, styles.textareaEl, className)}
+				className={cn(
+					styles.inputEl,
+					styles.textareaEl,
+					{ [styles.inputElBig]: bigFont },
+					className,
+				)}
 				style={{ margin, width, maxWidth }}
 			>
 				<label className={cn(styles.inputWrapper, styles.textareaWrapper)}>
@@ -66,10 +76,16 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 						disabled={disabled}
 						className={cn(styles.controlledInput, {
 							[styles.noValid]: errors[name],
+							[styles.disabled]: locked,
 						})}
 						style={{ height }}
 					/>
 				</label>
+				{locked && (
+					<div className={styles.locked}>
+						<LockedInputSVG />
+					</div>
+				)}
 				{dynamicError && <p className={styles.warningMessage}>{dynamicError.message}</p>}
 				{errors[name] && (
 					<p className={styles.warningMessage}>
@@ -115,7 +131,10 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 		)
 
 	return (
-		<div className={cn(styles.inputEl, className)} style={{ margin, width, maxWidth }}>
+		<div
+			className={cn(styles.inputEl, { [styles.inputElBig]: bigFont }, className)}
+			style={{ margin, width, maxWidth }}
+		>
 			<label className={styles.inputWrapper}>
 				{label && (
 					<p>
@@ -133,7 +152,11 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 					disabled={disabled}
 				/>
 			</label>
-
+			{locked && (
+				<div className={styles.locked}>
+					<LockedInputSVG />
+				</div>
+			)}
 			{dynamicError && <p className={styles.warningMessage}>{dynamicError.message}</p>}
 			{errors[name] && (
 				<p className={styles.warningMessage}>

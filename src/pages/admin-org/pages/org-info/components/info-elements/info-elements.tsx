@@ -20,13 +20,14 @@ import { TotalSVG } from 'src/UI/icons/totalSVG'
 import { DocumentActionBar } from 'src/components/document-action-bar/document-action-bar'
 import { FormProvider, useForm } from 'react-hook-form'
 import { type InfoDocumentInputs } from './schema'
+import { useNavigate } from 'react-router-dom'
 
 export const InfoElements = () => {
 	// const { id = '0' } = useParams()
 	// const filterValues = useAppSelector(getFiltrationValues)
 	// const [currentPage, setCurrentPage] = useState(1)
 	// const [itemsPerPage, setItemsPerPage] = useState<number | 'all'>(100)
-	// const navigate = useNavigate()
+	const navigate = useNavigate()
 
 	/* const { data: ticketsData, isLoading } = useGetTicketsQuery({
 		id,
@@ -111,6 +112,10 @@ export const InfoElements = () => {
 
 	const rowHideHandler = async (id: string) => {
 		console.log(id)
+	}
+
+	const rowClickHandler = (id: string) => {
+		navigate(`/org/info/${id}`)
 	}
 
 	// if (isLoading || !ticketsData?.tickets) return <Loader />
@@ -210,6 +215,7 @@ export const InfoElements = () => {
 				className={styles.newsTable}
 				rowData={formatObjectsTableData([])}
 				colTitles={tableTitles}
+				rowClickHandler={rowClickHandler}
 			/>
 			<TableFooter totalElements={0} currentPage={0} totalPages={0} addText='Добавить документ' />
 		</div>

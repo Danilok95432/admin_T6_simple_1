@@ -18,6 +18,7 @@ type ControlledSelectProps = {
 	dynamicError?: FieldError | undefined
 	disabled?: boolean
 	isRequired?: boolean
+	bigFont?: boolean
 }
 export const ControlledSelect: FC<ControlledSelectProps> = ({
 	selectOptions,
@@ -28,6 +29,7 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 	dynamicError,
 	disabled,
 	isRequired,
+	bigFont = false,
 	...props
 }) => {
 	const {
@@ -44,7 +46,10 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 		defaultValue: selectOptions[0].value,
 	})
 	return (
-		<div className={cn(styles.selectWrapper, className)} style={{ margin }}>
+		<div
+			className={cn(styles.selectWrapper, { [styles.selectHugeWrapper]: bigFont }, className)}
+			style={{ margin }}
+		>
 			{label && (
 				<label>
 					{label} {isRequired ? <span className={styles.reqStar}>*</span> : null}
