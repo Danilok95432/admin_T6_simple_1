@@ -49,7 +49,7 @@ export const OrgRefund = () => {
   }
     */
 
-	const tableTitles = ['Дата', 'Событие', 'Тип билета', 'Основание', 'Кол-во, сумма, %', '']
+	const tableTitles = ['Дата', 'Событие', 'Тип билета', 'Основание', 'Кол-во, сумма, %']
 
 	const formatObjectsTableData = (tickets: EventTickets[]) => {
 		return (

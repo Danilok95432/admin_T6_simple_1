@@ -44,7 +44,7 @@ export const EventsTable: FC = () => {
 		return newIdResponse.id
 	}
 
-	const tableTitles = ['Наименование события', 'Начало', 'Окончание', 'Объект кластера', '']
+	const tableTitles = ['Наименование события', 'Начало', 'Окончание', 'Площадка', '']
 	const formatEventsTableData = (eventsData: EventItem[]) => {
 		return eventsData.map((eventEl) => {
 			return {
