@@ -5,20 +5,17 @@ import styles from './index.module.scss'
 
 export const MainBlocksSection = () => {
 	return (
-		<AdminSection
-			className={styles.mainBlocksSection}
-			titleText='Основные блоки на главной странице'
-			noBorder
-		>
+		<AdminSection className={styles.mainBlocksSection} noBorder>
+			<h2>Блоки страницы (лендинга)</h2>
 			<ControlledCheckbox
 				name='isShowObjects'
-				label='Показать блок «Объекты»'
+				label='Показать блок «Промо-лента»'
 				$margin='0 0 20px 0'
 				type='checkbox'
 			/>
 			<ControlledCheckbox
 				name='isShowEvents'
-				label='Показать блок «События»'
+				label='Показать блок «Программа»'
 				$margin='0 0 20px 0'
 				type='checkbox'
 			/>
@@ -30,19 +27,19 @@ export const MainBlocksSection = () => {
 			/>
 			<ControlledCheckbox
 				name='isShowNews'
-				label='Показать блок «Новости»'
+				label='Показать блок «Финансовые партнеры»'
 				$margin='0 0 20px 0'
 				type='checkbox'
 			/>
 			<ControlledCheckbox
 				name='isShowVideos'
-				label='Показать блок «Видеолента»'
+				label='Показать блок «Информационные партнеры»'
 				$margin='0 0 20px 0'
 				type='checkbox'
 			/>
 			<ControlledCheckbox
 				name='isShowPartners'
-				label='Показать блок «Партнеры»'
+				label='Показать блок «Партнеры-организаторы»'
 				$margin='0 0 20px 0'
 				type='checkbox'
 			/>
@@ -50,6 +47,13 @@ export const MainBlocksSection = () => {
 				name='isShowFaq'
 				label='Показать блок «Часто задаваемые вопросы»'
 				type='checkbox'
+				$margin='0 0 20px 0'
+			/>
+			<ControlledCheckbox
+				name='isShowForm'
+				label='Показать блок «Форма регистрации в теле страницы»'
+				type='checkbox'
+				className={styles.boldCheck}
 			/>
 		</AdminSection>
 	)

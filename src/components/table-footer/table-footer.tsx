@@ -22,6 +22,7 @@ type TableFooterProps = {
 	className?: string
 	downloadBtn?: boolean
 	downloadHandler?: () => void
+	downloadTextBtn?: string
 	importBtn?: boolean
 	importHandler?: () => void
 	onPageChange?: (page: number) => void
@@ -37,6 +38,7 @@ export const TableFooter: FC<TableFooterProps> = ({
 	importHandler,
 	ticketStyle = false,
 	bigDownloadBtn = false,
+	downloadTextBtn = 'Скачать список в CSV',
 	downloadBtn = false,
 	totalElements = 0,
 	currentPage = 1,
@@ -105,7 +107,7 @@ export const TableFooter: FC<TableFooterProps> = ({
 						<DownloadTableCSV
 							color={noAdd && !bigDownloadBtn && !ticketStyle ? '#ffffff' : '#184F71'}
 						/>
-						<p>Скачать список в CSV</p>
+						<p>{downloadTextBtn}</p>
 					</button>
 				)}
 				{importBtn && (

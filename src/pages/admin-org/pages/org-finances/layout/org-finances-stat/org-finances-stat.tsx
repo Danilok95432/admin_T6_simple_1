@@ -15,13 +15,13 @@ import { QRSVG } from 'src/UI/icons/qrSVG'
 
 export const OrgFinancesStat = () => {
 	const chartData: ChartDataItem[] = [
-		{ date: 'Сен 30', revenue: 1130, refunds: 250, soldCount: 8, refundCount: 11 },
-		{ date: 'Окт 1', revenue: 950, refunds: 100, soldCount: 7.8, refundCount: 9 },
-		{ date: 'Окт 2', revenue: 720, refunds: 40, soldCount: 2.5, refundCount: 5.5 },
-		{ date: 'Окт 3', revenue: 400, refunds: 5, soldCount: 0, refundCount: 3 },
-		{ date: 'Окт 4', revenue: 560, refunds: 15, soldCount: 0, refundCount: 4 },
-		{ date: 'Окт 5', revenue: 430, refunds: 10, soldCount: 0, refundCount: 3 },
-		{ date: 'Окт 6', revenue: 320, refunds: 0, soldCount: 0, refundCount: 2 },
+		{ date: 'Сен 30', revenue: 1130, refunds: 1000, soldCount: 10, refundCount: 9 },
+		{ date: 'Окт 1', revenue: 950, refunds: 800, soldCount: 7, refundCount: 5 },
+		{ date: 'Окт 2', revenue: 720, refunds: 40, soldCount: 4, refundCount: 3 },
+		{ date: 'Окт 3', revenue: 400, refunds: 5, soldCount: 3, refundCount: 3 },
+		{ date: 'Окт 4', revenue: 560, refunds: 15, soldCount: 5, refundCount: 4 },
+		{ date: 'Окт 5', revenue: 430, refunds: 10, soldCount: 4, refundCount: 3 },
+		{ date: 'Окт 6', revenue: 320, refunds: 0, soldCount: 3, refundCount: 2 },
 		{ date: 'Окт 7', revenue: 0, refunds: 0, soldCount: 0, refundCount: 0 },
 	]
 	const customColors: ChartColors = {

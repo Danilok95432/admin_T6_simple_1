@@ -9,8 +9,10 @@ import {
 	Bar,
 	Line,
 	ResponsiveContainer,
+	type MouseHandlerDataParam,
 } from 'recharts'
 import './index.scss'
+import { CustomXAxisTick } from './components/custom-tick/custom-tick'
 
 export interface ChartDataItem {
 	date: string
@@ -40,16 +42,34 @@ const defaultColors: ChartColors = {
 }
 
 const RevenueChart: React.FC<RevenueChartProps> = ({ data, colors = defaultColors }) => {
+	const [activeIndex, setActiveIndex] = React.useState<number | string | null>(null)
+
+	const handleMove = (e: MouseHandlerDataParam) => {
+		const index = e?.activeTooltipIndex
+		if (index !== undefined && (typeof index === 'number' || typeof index === 'string')) {
+			setActiveIndex(index)
+		}
+	}
+
+	const handleLeave = () => {
+		setActiveIndex(null)
+	}
 	return (
 		<div className='wrapper'>
 			<ResponsiveContainer width='100%' height={420}>
-				<ComposedChart data={data}>
-					<CartesianGrid strokeDasharray='3 3' stroke='#eee' />
+				<ComposedChart
+					data={data}
+					barCategoryGap='20%'
+					barGap={-40}
+					onMouseMove={handleMove}
+					onMouseLeave={handleLeave}
+				>
+					<CartesianGrid strokeDasharray='0' stroke='#DDDDDD' vertical={true} horizontal={true} />
 					<XAxis
 						dataKey='date'
-						tick={{ fill: '#444', fontWeight: 600 }}
 						axisLine={false}
 						tickLine={false}
+						tick={(tickProps) => <CustomXAxisTick {...tickProps} activeIndex={activeIndex} />}
 					/>
 					<YAxis
 						yAxisId='left'
@@ -107,7 +127,6 @@ const RevenueChart: React.FC<RevenueChartProps> = ({ data, colors = defaultColor
 						barSize={40}
 						fill={colors.refundBar}
 						radius={[4, 4, 0, 0]}
-						stackId='a'
 					/>
 
 					{/* Линии */}
