@@ -1,0 +1,70 @@
+.legend {
+  display: flex;
+  gap: 40px;
+  padding: 16px 0;
+  margin-top: 20px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.colorBar {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.colorBarRefund {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  background-color: #FFD0CE;
+}
+
+.colorLine {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.line {
+  width: 76px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.lineRefund {
+  width: 76px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #FF5356;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .legend {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

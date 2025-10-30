@@ -15,20 +15,20 @@ import { QRSVG } from 'src/UI/icons/qrSVG'
 
 export const OrgFinancesStat = () => {
 	const chartData: ChartDataItem[] = [
-		{ date: 'Сен 30', revenue: 1130, refunds: 1000, soldCount: 10, refundCount: 9 },
-		{ date: 'Окт 1', revenue: 950, refunds: 800, soldCount: 7, refundCount: 5 },
-		{ date: 'Окт 2', revenue: 720, refunds: 40, soldCount: 4, refundCount: 3 },
-		{ date: 'Окт 3', revenue: 400, refunds: 5, soldCount: 3, refundCount: 3 },
-		{ date: 'Окт 4', revenue: 560, refunds: 15, soldCount: 5, refundCount: 4 },
-		{ date: 'Окт 5', revenue: 430, refunds: 10, soldCount: 4, refundCount: 3 },
-		{ date: 'Окт 6', revenue: 320, refunds: 0, soldCount: 3, refundCount: 2 },
-		{ date: 'Окт 7', revenue: 0, refunds: 0, soldCount: 0, refundCount: 0 },
+		{ date: '2025-09-30', revenue: 1130, refunds: 1000, soldCount: 10, refundCount: 9 },
+		{ date: '2025-10-01', revenue: 950, refunds: 800, soldCount: 7, refundCount: 5 },
+		{ date: '2025-10-02', revenue: 720, refunds: 40, soldCount: 4, refundCount: 3 },
+		{ date: '2025-10-03', revenue: 400, refunds: 5, soldCount: 3, refundCount: 3 },
+		{ date: '2025-10-04', revenue: 560, refunds: 15, soldCount: 5, refundCount: 4 },
+		{ date: '2025-10-05', revenue: 430, refunds: 10, soldCount: 4, refundCount: 3 },
+		{ date: '2025-10-06', revenue: 320, refunds: 0, soldCount: 3, refundCount: 2 },
+		{ date: '2025-10-07', revenue: 0, refunds: 0, soldCount: 0, refundCount: 0 },
 	]
 	const customColors: ChartColors = {
-		revenueBar: '#5CC9A7',
-		refundBar: '#FFC5C5',
-		soldLine: '#0070F3',
-		refundLine: '#E63946',
+		revenueBar: '#7CD2E5',
+		refundBar: '#FFD0CE',
+		soldLine: '#0099BA',
+		refundLine: '#FF5356',
 	}
 	return (
 		<div>

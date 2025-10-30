@@ -1,37 +1,75 @@
+import React from 'react'
+import cn from 'classnames'
+import styles from './index.module.scss'
+
 type CustomXAxisTickProps = {
-	x: string
-	y: string
+	x: number
+	y: number
 	payload: {
-		coordinate: number
-		index: number
-		isShow: boolean
-		offset: number
-		tickCoord: number
 		value: string
 	}
-	activeIndex: string
 	index: number
+	activeIndex: string
 }
 
-export const CustomXAxisTick = ({ x, y, index, payload, activeIndex }: CustomXAxisTickProps) => {
-	const isActive = index === Number(activeIndex)
+const formatDate = (dateString: string, isActive: boolean): string => {
+	const date = new Date(dateString)
 
+	if (isNaN(date.getTime())) {
+		throw new Error('Invalid date string')
+	}
+
+	if (isActive) {
+		// Активный формат: "Октябрь 1, 2025"
+		const month = date.toLocaleString('ru-RU', { month: 'long' })
+		const day = date.getDate()
+		const year = date.getFullYear()
+		return `${capitalizeFirstLetter(month)} ${day}, ${year}`
+	} else {
+		// Неактивный формат: "Окт 1"
+		const month = date.toLocaleString('ru-RU', { month: 'short' })
+		const day = date.getDate()
+		return `${capitalizeFirstLetter(month)} ${day}`
+	}
+}
+
+const capitalizeFirstLetter = (str: string): string => {
+	return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+export const CustomXAxisTick: React.FC<CustomXAxisTickProps> = ({
+	x,
+	y,
+	payload,
+	index,
+	activeIndex,
+}) => {
+	const isActive = index === Number(activeIndex)
 	return (
-		<g transform={`translate(${x},${y})`}>
+		<g transform={isActive ? `translate(${x - 45},${y})` : `translate(${x},${y})`}>
+			{isActive && (
+				<rect
+					className={styles.container}
+					x={-24}
+					y={-8}
+					width={136}
+					height={39}
+					rx={4}
+					fill='#145073'
+					fillOpacity={1}
+				/>
+			)}
 			<text
-				x={0}
-				y={16}
+				x={isActive ? 42 : 0}
+				y={0}
+				dy={16}
 				textAnchor='middle'
-				fontSize={12}
-				fontWeight={600}
-				fill={isActive ? '#000' : '#6b6b6b'}
-				style={{
-					background: isActive ? '#145073' : '#000',
-					padding: '4px 6px',
-					borderRadius: 4,
-				}}
+				fontSize={14}
+				fontWeight={500}
+				fill={isActive ? '#fff' : '#000'}
+				className={cn(styles.text, { [styles.activeText]: isActive })}
 			>
-				{isActive ? payload.value : payload.value}
+				{formatDate(payload.value, isActive)}
 			</text>
 		</g>
 	)

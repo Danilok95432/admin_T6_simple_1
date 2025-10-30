@@ -13,6 +13,8 @@ import {
 } from 'recharts'
 import './index.scss'
 import { CustomXAxisTick } from './components/custom-tick/custom-tick'
+import { CustomTooltip } from './components/custom-tooltip/custom-tooltip'
+import { CustomLegend } from './components/custom-legend/custom-legend'
 
 export interface ChartDataItem {
 	date: string
@@ -35,10 +37,10 @@ interface RevenueChartProps {
 }
 
 const defaultColors: ChartColors = {
-	revenueBar: '#7bd0ee',
-	refundBar: '#f9cdcd',
-	soldLine: '#0094c6',
-	refundLine: '#f05c5c',
+	revenueBar: '#7CD2E5',
+	refundBar: '#FFD0CE',
+	soldLine: '#0099BA',
+	refundLine: '#FF5356',
 }
 
 const RevenueChart: React.FC<RevenueChartProps> = ({ data, colors = defaultColors }) => {
@@ -56,11 +58,11 @@ const RevenueChart: React.FC<RevenueChartProps> = ({ data, colors = defaultColor
 	}
 	return (
 		<div className='wrapper'>
-			<ResponsiveContainer width='100%' height={420}>
+			<ResponsiveContainer width='100%' height={650}>
 				<ComposedChart
 					data={data}
 					barCategoryGap='20%'
-					barGap={-40}
+					barGap={-100}
 					onMouseMove={handleMove}
 					onMouseLeave={handleLeave}
 				>
@@ -95,28 +97,23 @@ const RevenueChart: React.FC<RevenueChartProps> = ({ data, colors = defaultColor
 							fill: '#222',
 						}}
 					/>
-					<Tooltip
+					<Tooltip<number, string>
 						contentStyle={{
 							backgroundColor: '#fff',
 							border: '1px solid #ddd',
 							borderRadius: '8px',
 							fontSize: '13px',
 						}}
+						content={(tooltipProps) => <CustomTooltip {...tooltipProps} />}
 					/>
-					<Legend
-						wrapperStyle={{
-							fontSize: '14px',
-							fontWeight: 500,
-							marginTop: '10px',
-						}}
-					/>
+					<Legend content={<CustomLegend />} />
 
 					{/* Столбцы */}
 					<Bar
 						yAxisId='left'
 						dataKey='revenue'
 						name='Билеты, сумма выручки'
-						barSize={40}
+						barSize={100}
 						fill={colors.revenueBar}
 						radius={[4, 4, 0, 0]}
 					/>
@@ -124,7 +121,7 @@ const RevenueChart: React.FC<RevenueChartProps> = ({ data, colors = defaultColor
 						yAxisId='left'
 						dataKey='refunds'
 						name='Возвраты, сумма'
-						barSize={40}
+						barSize={100}
 						fill={colors.refundBar}
 						radius={[4, 4, 0, 0]}
 					/>

@@ -22,7 +22,6 @@ export const TabNavigation: FC<TabNavigationProps> = ({ navItems, variant = 'mai
 		const trimmedLink = link.endsWith('/') ? link.slice(0, -1) : link
 		const currentSegments = trimmedCurrentPath.split('/').filter(Boolean)
 		const linkSegments = trimmedLink.split('/').filter(Boolean)
-		console.log(location.pathname)
 		if (currentSegments.length < linkSegments.length) return false
 		if (location.pathname.includes('/event/') || location.pathname.includes('/org/')) {
 			for (let i = 0; i < linkSegments.length - 1; i++) {
