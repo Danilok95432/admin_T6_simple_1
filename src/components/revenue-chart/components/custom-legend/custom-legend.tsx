@@ -6,6 +6,7 @@ interface CustomLegendProps {
 		dataKey: string
 		color: string
 		value: string
+		type: string
 	}>
 }
 
@@ -14,29 +15,28 @@ export const CustomLegend: React.FC<CustomLegendProps> = ({ payload }) => {
 	return (
 		<div className={styles.legend}>
 			<div className={styles.column}>
-				<div className={styles.item}>
-					<div className={styles.colorBar} style={{ backgroundColor: '#7CD2E5' }} />
-					<span className={styles.label}>Билеты, сумма выручки</span>
-				</div>
-				<div className={styles.item}>
-					<div className={styles.colorBarRefund} />
-					<span className={styles.label}>Возвраты, сумма</span>
-				</div>
+				{payload?.map((el, index) => {
+					if (el.type === 'rect') {
+						return (
+							<div className={styles.item} key={index}>
+								<div className={styles.colorBar} style={{ backgroundColor: el.color }} />
+								<span className={styles.label}>{el.value}</span>
+							</div>
+						)
+					} else return null
+				})}
 			</div>
-
 			<div className={styles.column}>
-				<div className={styles.item}>
-					<div className={styles.colorLine}>
-						<div className={styles.line} style={{ backgroundColor: '#0099BA' }} />
-					</div>
-					<span className={styles.label}>Билеты, количество проданных</span>
-				</div>
-				<div className={styles.item}>
-					<div className={styles.colorLine}>
-						<div className={styles.lineRefund} />
-					</div>
-					<span className={styles.label}>Возвраты, количество</span>
-				</div>
+				{payload?.map((el, index) => {
+					if (el.type === 'line') {
+						return (
+							<div className={styles.item} key={index}>
+								<div className={styles.colorLine} style={{ backgroundColor: el.color }} />
+								<span className={styles.label}>{el.value}</span>
+							</div>
+						)
+					} else return null
+				})}
 			</div>
 		</div>
 	)

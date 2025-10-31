@@ -106,7 +106,7 @@ const RevenueChart: React.FC<RevenueChartProps> = ({ data, colors = defaultColor
 						}}
 						content={(tooltipProps) => <CustomTooltip {...tooltipProps} />}
 					/>
-					<Legend content={<CustomLegend />} />
+					<Legend wrapperStyle={{ bottom: '-15px' }} content={<CustomLegend />} />
 
 					{/* Столбцы */}
 					<Bar
