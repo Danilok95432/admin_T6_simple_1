@@ -1,0 +1,14 @@
+div.saleSection {
+  gap: 0px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 0;
+  margin: 0 0 15px;
+  border-bottom: 1px solid #e1e1e1;
+  h3 {
+    margin-bottom: 20px;
+  }
+  .checkbox {
+    font-size: 18px;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { type FC, useEffect } from 'react'
+import React, { type FC, type ReactNode, useEffect } from 'react'
 
 import { useController, useFormContext } from 'react-hook-form'
 import cn from 'classnames'
@@ -14,17 +14,32 @@ type RadioOption = {
 	value: string
 }
 
-type ControlledCheckboxProps = {
+type BaseControlledCheckboxProps = {
 	name: string
-	type: 'checkbox' | 'radio'
-	options?: RadioOption[]
 	required?: boolean
-	label?: string
 	className?: string
 	disabled?: boolean
-	checked?: boolean
-	value?: string
+	$margin?: string
+	$marginMobile?: string
 }
+
+type CheckboxProps = BaseControlledCheckboxProps & {
+	type: 'checkbox'
+	label?: string
+	customLabel?: ReactNode
+	autoActive?: boolean
+	options?: never
+}
+
+type RadioProps = BaseControlledCheckboxProps & {
+	type: 'radio'
+	options: RadioOption[]
+	label?: never
+	customLabel?: ReactNode
+	autoActive?: never
+}
+
+type ControlledCheckboxProps = CheckboxProps | RadioProps
 
 type CheckboxInputProps = {
 	$margin?: string
@@ -38,16 +53,18 @@ const StyledCheckboxWrapper = styled.div<CheckboxInputProps>`
 	}
 `
 
-export const ControlledCheckbox: FC<ControlledCheckboxProps & CheckboxInputProps> = ({
+export const ControlledCheckbox: FC<ControlledCheckboxProps> = ({
 	name,
 	type,
 	label,
+	customLabel,
 	className,
 	required,
 	options,
 	$margin,
 	$marginMobile,
 	disabled,
+	autoActive,
 }) => {
 	const {
 		register,
@@ -64,10 +81,10 @@ export const ControlledCheckbox: FC<ControlledCheckboxProps & CheckboxInputProps
 	}
 
 	useEffect(() => {
-		if (disabled) {
-			setValue(name, false)
+		if (type === 'checkbox' && autoActive) {
+			setValue(name, true)
 		}
-	}, [disabled])
+	}, [autoActive, name, setValue, type])
 
 	if (type === 'radio') {
 		return (
@@ -99,7 +116,11 @@ export const ControlledCheckbox: FC<ControlledCheckboxProps & CheckboxInputProps
 			$marginMobile={$marginMobile}
 		>
 			<div
-				className={cn(styles.inputWrapper, { [styles._disabled]: disabled })}
+				className={cn(
+					styles.inputWrapper,
+					{ [styles._disabled]: disabled },
+					{ [styles.customInputWrapper]: customLabel },
+				)}
 				onClick={handleCheckboxChange}
 			>
 				<label className={cn({ [styles._active]: watch(name) })}>
@@ -112,6 +133,7 @@ export const ControlledCheckbox: FC<ControlledCheckboxProps & CheckboxInputProps
 					required={required}
 				/>
 				{label && <p>{label}</p>}
+				{customLabel}
 			</div>
 
 			{errors[name] && (
