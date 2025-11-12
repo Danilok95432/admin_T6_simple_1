@@ -142,6 +142,7 @@ import { OrgFinancesStat } from 'src/pages/admin-org/pages/org-finances/layout/o
 import { OrgIncome } from 'src/pages/admin-org/pages/org-finances/layout/org-income/org-income'
 import { OrgReqRefund } from 'src/pages/admin-org/pages/org-finances/layout/org-req-refund/org-req-refund'
 import { OrgRefund } from 'src/pages/admin-org/pages/org-finances/layout/org-refund/org-refund'
+import { AdminEventPass } from 'src/pages/one-event-layout/pages/admin-event-pass/admin-event-pass'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -356,6 +357,7 @@ export const AdminRoutes: FC = () => {
 							<Route index element={<InspectorsElementsStatistic />} />
 						</Route>
 					</Route>
+					<Route path={`${AdminRoute.AdminEventPass}/:id`} element={<AdminEventPass />} />
 				</Route>
 
 				<Route path={AdminRoute.AdminPartners} element={<AdminPartnersLayout />}>

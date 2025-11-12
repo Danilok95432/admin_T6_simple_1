@@ -44,6 +44,7 @@ export enum AdminRoute {
 	AdminEventOnePartner = 'one-partner',
 	AdminEventNews = 'event-news',
 	AdminEventVideos = 'event-videos',
+	AdminEventPass = 'event-pass',
 	AdminEventProgram = 'event-program',
 	AdminEventOneProgram = 'one-program',
 	AdminEventRules = 'event-rules',

@@ -16,16 +16,17 @@ export const CommonSettingsSection = () => {
 				className={styles.guestInput}
 			/>
 			<FlexRow className={styles.settingElem}>
-				<CustomText $margin='0 0 20px 0' $fontWeight='600'>
+				<CustomText $margin='0 0 12px 0' $fontWeight='600' $fontSize={'16px'}>
 					Повторная регистрация
 				</CustomText>
-				<ControlledCheckbox
-					className={styles.checkBox}
-					name='use_repeat_reg'
-					type={'checkbox'}
-					label='Разрешить повторную регистрацию с ограничением'
-					$margin='0 0 10px 0'
-				/>
+				<FlexRow className={styles.customCheck}>
+					<ControlledCheckbox className={styles.checkBox} name='use_repeat_reg' type={'checkbox'} />
+					<FlexRow className={styles.customLabel}>
+						<p>Разрешить повторную регистрацию с ограничением</p>
+						<ControlledInput name='repeatCount' className={styles.inputCustom} />
+						<p>раз</p>
+					</FlexRow>
+				</FlexRow>
 				<ControlledCheckbox
 					name='rejectEmail'
 					className={styles.checkBox}
@@ -41,7 +42,7 @@ export const CommonSettingsSection = () => {
 				/>
 			</FlexRow>
 			<FlexRow className={styles.settingElem}>
-				<CustomText $margin='0 0 5px 0' $fontWeight='600'>
+				<CustomText $margin='0 0 12px 0' $fontWeight='600' $fontSize={'16px'}>
 					Групповой билет
 				</CustomText>
 				<ControlledCheckbox
@@ -52,7 +53,7 @@ export const CommonSettingsSection = () => {
 				/>
 			</FlexRow>
 			<FlexRow className={styles.settingElem}>
-				<CustomText $margin='0 0 5px 0' $fontWeight='600'>
+				<CustomText $margin='0 0 12px 0' $fontWeight='600' $fontSize={'16px'}>
 					Подписка на рассылку
 				</CustomText>
 				<ControlledCheckbox

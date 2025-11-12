@@ -10,6 +10,7 @@ import { LockedInputSVG } from 'src/UI/icons/lockedInputSVG'
 type ControlledInputProps = {
 	className?: string
 	label?: string | ReactNode
+	subLabel?: string
 	isTextarea?: boolean
 	dynamicError?: FieldError | undefined
 	name: string
@@ -43,6 +44,7 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 	isRequired,
 	bigFont = false,
 	locked = false,
+	subLabel,
 	...props
 }) => {
 	const {
@@ -69,6 +71,7 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 							{label} {isRequired ? <span className={styles.reqStar}>*</span> : null}
 						</p>
 					)}
+					{subLabel && <p className={styles.subLabel}>{subLabel}</p>}
 					<textarea
 						{...register(name)}
 						{...props}
@@ -141,6 +144,7 @@ export const ControlledInput: FC<ControlledInputProps> = ({
 						{label} {isRequired ? <span className={styles.reqStar}>*</span> : null}
 					</p>
 				)}
+				{subLabel && <p className={styles.subLabel}>{subLabel}</p>}
 				<input
 					{...register(name)}
 					{...props}

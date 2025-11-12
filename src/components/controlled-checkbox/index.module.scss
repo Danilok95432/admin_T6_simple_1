@@ -26,12 +26,19 @@
       border: 1px solid #184F71;
       background: #184F71;
     }
+    &.circle {
+      border-radius: 50%;
+    }
   }
 
   p {
     color: #000000;
     line-height: 1.1;
     user-select: none;
+  }
+
+  &.customInputWrapper {
+    align-items: start;
   }
 }
 

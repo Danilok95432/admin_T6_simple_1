@@ -1,6 +1,19 @@
-export const InfoNewIconSVG = () => {
+import { type FC } from 'react'
+
+type InfoIconSvgProps = {
+	width?: string
+	height?: string
+}
+
+export const InfoNewIconSVG: FC<InfoIconSvgProps> = ({ width = '32', height = '33' }) => {
 	return (
-		<svg width='32' height='33' viewBox='0 0 32 33' fill='none' xmlns='http://www.w3.org/2000/svg'>
+		<svg
+			width={width}
+			height={height}
+			viewBox='0 0 32 33'
+			fill='none'
+			xmlns='http://www.w3.org/2000/svg'
+		>
 			<rect
 				x='3.25'
 				y='3.75'

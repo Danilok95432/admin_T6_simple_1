@@ -28,8 +28,8 @@ export const OneEventLayout = () => {
 		},
 		{
 			title: 'Пропуск',
-			link: `/event/event-statistic/${id ?? 'new'}`,
-			indexLink: `/event/event-statistic/${id}/gates`,
+			link: `/event/event-pass/${id ?? 'new'}`,
+			indexLink: `/event/event-pass/${id}`,
 		},
 		{
 			title: 'Списки и статистика',

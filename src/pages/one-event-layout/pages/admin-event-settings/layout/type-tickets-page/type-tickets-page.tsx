@@ -8,6 +8,7 @@ import styles from './index.module.scss'
 import { AdminButton } from 'src/UI/AdminButton/AdminButton'
 import { FlexRow } from 'src/components/flex-row/flex-row'
 import { TicketSection } from './components/ticket-section/ticket-section'
+import { AddTicketBtnSVG } from 'src/UI/icons/addTicketBtnSVG'
 
 export const TypeTicketsPage: FC = () => {
 	// const { id = '0' } = useParams()
@@ -15,7 +16,7 @@ export const TypeTicketsPage: FC = () => {
 	const methods = useForm<TypeTicketsInputs>({
 		mode: 'onBlur',
 	})
-	const [types, setTypes] = useState([{}, {}, {}])
+	const [types, setTypes] = useState([{}, {}])
 	const [, setAction] = useState<'apply' | 'save'>('apply')
 	// const navigate = useNavigate()
 	const handleAddType = () => {
@@ -52,7 +53,9 @@ export const TypeTicketsPage: FC = () => {
 								setAction('save')
 								handleAddType()
 							}}
+							className={styles.addBtn}
 						>
+							<AddTicketBtnSVG />
 							Добавить еще один вид билета
 						</AdminButton>
 					</FlexRow>

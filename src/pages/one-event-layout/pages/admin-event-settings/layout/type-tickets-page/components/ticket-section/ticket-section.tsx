@@ -4,6 +4,9 @@ import { MainSection } from './components/main-section/main-section'
 import { DescSection } from './components/desc-section/desc-section'
 import { SaleSection } from './components/sale-section/sale-section'
 import { AdminButton } from 'src/UI/AdminButton/AdminButton'
+import { FlexRow } from 'src/components/flex-row/flex-row'
+
+import styles from './index.module.scss'
 
 type TicketSectionProps = {
 	index?: number
@@ -20,9 +23,28 @@ export const TicketSection: FC<TicketSectionProps> = ({ index = 0, removeHandle 
 			<MainSection />
 			<DescSection />
 			<SaleSection />
-			<AdminButton as='button' $height='40px' $fontSize='14px' $padding='0px 24px' type='submit'>
-				Сохранить билет
-			</AdminButton>
+			{index > 0 && (
+				<FlexRow className={styles.btnsRow}>
+					<AdminButton
+						as='button'
+						$height='40px'
+						$fontSize='14px'
+						$padding='0px 24px'
+						type='submit'
+					>
+						Сохранить билет
+					</AdminButton>
+					<AdminButton
+						as='button'
+						$height='40px'
+						$fontSize='14px'
+						$padding='0px 24px'
+						type='submit'
+					>
+						Удалить билет
+					</AdminButton>
+				</FlexRow>
+			)}
 		</AdminSection>
 	)
 }

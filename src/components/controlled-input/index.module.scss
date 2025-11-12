@@ -21,6 +21,9 @@
 				}
 			}
 		}
+		p.subLabel {
+			font-weight: 400;
+		}
 		.reqStar {
 			color: #01a7b4;
 			margin-left: 4px;
@@ -76,8 +79,11 @@
 			}
 		}
 	}
+	p.subLabel {
+		font-weight: 400;
+	}
 	.reqStar {
-		color: #01A7B4;
+		color: #01a7b4;
 		margin-left: 4px;
 		font-weight: 600;
 		font-size: 14px;

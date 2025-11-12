@@ -12,6 +12,7 @@ import styled from 'styled-components'
 type RadioOption = {
 	label: string
 	value: string
+	customLabel?: ReactNode
 }
 
 type BaseControlledCheckboxProps = {
@@ -26,6 +27,7 @@ type BaseControlledCheckboxProps = {
 type CheckboxProps = BaseControlledCheckboxProps & {
 	type: 'checkbox'
 	label?: string
+	circle?: boolean
 	customLabel?: ReactNode
 	autoActive?: boolean
 	options?: never
@@ -35,7 +37,8 @@ type RadioProps = BaseControlledCheckboxProps & {
 	type: 'radio'
 	options: RadioOption[]
 	label?: never
-	customLabel?: ReactNode
+	circle?: boolean
+	customLabel?: never
 	autoActive?: never
 }
 
@@ -65,6 +68,7 @@ export const ControlledCheckbox: FC<ControlledCheckboxProps> = ({
 	$marginMobile,
 	disabled,
 	autoActive,
+	circle,
 }) => {
 	const {
 		register,
@@ -86,6 +90,7 @@ export const ControlledCheckbox: FC<ControlledCheckboxProps> = ({
 		}
 	}, [autoActive, name, setValue, type])
 
+	// --- RADIO ---
 	if (type === 'radio') {
 		return (
 			<StyledCheckboxWrapper
@@ -102,13 +107,15 @@ export const ControlledCheckbox: FC<ControlledCheckboxProps> = ({
 							checked={field.value === option.value}
 							onChange={() => field.onChange(option.value)}
 						/>
-						{option.label}
+						{/* приоритет customLabel */}
+						{option.customLabel ? option.customLabel : option.label}
 					</label>
 				))}
 			</StyledCheckboxWrapper>
 		)
 	}
 
+	// --- CHECKBOX ---
 	return (
 		<StyledCheckboxWrapper
 			className={cn(styles.checkboxEl, className)}
@@ -123,7 +130,7 @@ export const ControlledCheckbox: FC<ControlledCheckboxProps> = ({
 				)}
 				onClick={handleCheckboxChange}
 			>
-				<label className={cn({ [styles._active]: watch(name) })}>
+				<label className={cn({ [styles._active]: watch(name) }, { [styles.circle]: circle })}>
 					{watch(name) && <CheckMarkSvg />}
 				</label>
 				<input
@@ -132,8 +139,8 @@ export const ControlledCheckbox: FC<ControlledCheckboxProps> = ({
 					className={styles.checkboxInput}
 					required={required}
 				/>
-				{label && <p>{label}</p>}
-				{customLabel}
+				{/* если есть customLabel — рендерим его, иначе обычный label */}
+				{customLabel ?? (label && <p>{label}</p>)}
 			</div>
 
 			{errors[name] && (

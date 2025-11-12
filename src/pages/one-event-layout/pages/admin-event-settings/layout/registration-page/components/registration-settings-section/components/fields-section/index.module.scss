@@ -5,10 +5,11 @@
     margin-bottom: 20px;
   }
   .fieldsSection {
-    gap: 18%;
+    gap: 24px;
+    flex-direction: column;
     .leftSideRow, .rightSideRow {
-      flex-direction: column;
-      gap: 20px;
+      flex-direction: row;
+      gap: 80px;
     }
     .fieldElem {
       gap: 5px;
@@ -16,7 +17,7 @@
       .checkRow {
         row-gap: 10px;
         column-gap: 20px;
-        max-width: 450px;
+        max-width: 276px;
       }
     }
   }
