@@ -1,5 +1,3 @@
-import cn from 'classnames'
-
 import { CustomTable } from 'src/components/custom-table/custom-table'
 import { TableFooter } from 'src/components/table-footer/table-footer'
 import { GridRow } from 'src/components/grid-row/grid-row'
@@ -7,22 +5,26 @@ import { GridRow } from 'src/components/grid-row/grid-row'
 import styles from './index.module.scss'
 import { TableFiltration } from 'src/modules/table-filtration/table-filtration'
 import { TicketsFiltrationInputs } from './consts'
-import { type EventTickets } from 'src/types/events'
-import { StatusTickets } from 'src/components/status-tickets/status-tickets'
-import { formatDateTimeTicket } from 'src/helpers/utils'
+import { type EventSMSElem } from 'src/types/events'
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { Loader } from 'src/components/loader/loader'
+import { useAppSelector } from 'src/hooks/store'
+import { getFiltrationValues } from 'src/modules/table-filtration/store/table-filtration.selectors'
+import { useGetSMSListQuery } from 'src/store/events/events.api'
 
 export const SMSElements = () => {
-	// const { id = '0' } = useParams()
-	// const filterValues = useAppSelector(getFiltrationValues)
-	// const [currentPage, setCurrentPage] = useState(1)
-	// const [itemsPerPage, setItemsPerPage] = useState<number | 'all'>(100)
-	// const navigate = useNavigate()
+	const { id = '0' } = useParams()
+	const filterValues = useAppSelector(getFiltrationValues)
+	const [currentPage, setCurrentPage] = useState(1)
+	const [itemsPerPage, setItemsPerPage] = useState<number | 'all'>(100)
 
-	/* const { data: ticketsData, isLoading } = useGetTicketsQuery({
+	const { data: smsData, isLoading } = useGetSMSListQuery({
 		id,
-		telphone: filterValues.telphone,
-		surname: filterValues.surname,
-		useGroup: filterValues.use_group,
+		phone: filterValues.phone,
+		operator: filterValues.operator,
+		smsType: filterValues.sms_type,
+		status: filterValues.status,
 		limit: itemsPerPage === 'all' ? undefined : itemsPerPage,
 		page: itemsPerPage === 'all' ? undefined : currentPage,
 	})
@@ -37,13 +39,6 @@ export const SMSElements = () => {
 		setCurrentPage(1)
 	}
 
-	const rowClickHandler = (personId: string) => {
-		navigate(
-			`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventLists}/${id}/${AdminRoute.OnePersonStatistic}/${personId}`,
-		)
-	}
-    */
-
 	const tableTitles = [
 		'ID',
 		'Тип сообщения',
@@ -55,34 +50,29 @@ export const SMSElements = () => {
 		'Стоимость ₽',
 	]
 
-	const formatObjectsTableData = (tickets: EventTickets[]) => {
+	const formatObjectsTableData = (sms: EventSMSElem[]) => {
 		return (
-			tickets?.map((ticketEl) => {
+			sms?.map((smsEl) => {
 				return {
-					rowId: ticketEl.id,
+					rowId: smsEl.id,
 					cells: [
-						<p className={cn(styles.titleNewsTable)} key='0'>
-							{<StatusTickets statusCode={ticketEl.status} />}
+						<p key='0'>{smsEl.id}</p>,
+						<p key='1'>{smsEl.type}</p>,
+						<p key='2'>{smsEl.phone}</p>,
+						<p key='3'>{smsEl.status}</p>,
+						<p key='4' className={styles.center}>
+							{smsEl.operator}
 						</p>,
-						<p key='1'>{ticketEl.ticket_number}</p>,
-						<p key='2' className={styles.date}>
-							<span>{`${formatDateTimeTicket(ticketEl.createdate)[0]}`}</span>
-							<span>{`${formatDateTimeTicket(ticketEl.createdate)[1]}`}</span>
-						</p>,
-						<p key='3' className={styles.center}>
-							{ticketEl.group}
-						</p>,
-						<p key='4'>{ticketEl.fio}</p>,
-						<p key='5'>{ticketEl.telphone}</p>,
-						<p key='6'>{ticketEl.ticket_type}</p>,
-						<p key='7'>{ticketEl.delivery_type}</p>,
+						<p key='5'>{smsEl.sended}</p>,
+						<p key='6'>{smsEl.delivered}</p>,
+						<p key='7'>{smsEl.cost}</p>,
 					],
 				}
 			}) ?? []
 		)
 	}
 
-	// if (isLoading || !ticketsData?.tickets) return <Loader />
+	if (isLoading || !smsData?.sms) return <Loader />
 
 	return (
 		<div className={styles.eventNewsContainer}>
@@ -91,10 +81,21 @@ export const SMSElements = () => {
 			</GridRow>
 			<CustomTable
 				className={styles.newsTable}
-				rowData={formatObjectsTableData([])}
+				rowData={formatObjectsTableData(smsData?.sms ?? [])}
 				colTitles={tableTitles}
 			/>
-			<TableFooter totalElements={0} currentPage={0} totalPages={0} noAdd downloadBtn ticketStyle />
+			<TableFooter
+				totalElements={Number(smsData?.total)}
+				currentPage={currentPage}
+				totalPages={Math.ceil(
+					Number(smsData.total) / (itemsPerPage === 'all' ? Number(smsData.total) : itemsPerPage),
+				)}
+				onPageChange={handlePageChange}
+				onLimitChange={handleItemsPerPageChange}
+				noAdd
+				downloadBtn
+				ticketStyle
+			/>
 		</div>
 	)
 }

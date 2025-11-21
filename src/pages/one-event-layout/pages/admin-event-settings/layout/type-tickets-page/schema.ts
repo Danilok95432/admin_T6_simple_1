@@ -1,12 +1,12 @@
 import * as yup from 'yup'
 
-export type TypeTicketsInputs = {
+export type TypeTicket = {
 	id?: string
 	title?: string
 	ticketsLimit?: string
 	price?: string
 	use_refund?: boolean
-	refundDayLimit?: string
+	refunddaylimit?: string
 	desc?: string
 	use_early?: boolean
 	earlyDayLimit?: string
@@ -18,6 +18,10 @@ export type TypeTicketsInputs = {
 	saleNow?: string
 	use_kid?: boolean
 	saleKid?: string
+}
+
+export type TypeTicketsInputs = {
+	ticket_types: TypeTicket[]
 }
 
 export const typeTicketsSchema = yup.object().shape({})

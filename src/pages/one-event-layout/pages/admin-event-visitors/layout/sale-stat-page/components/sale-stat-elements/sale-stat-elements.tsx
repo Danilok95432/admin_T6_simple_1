@@ -1,18 +1,19 @@
-import cn from 'classnames'
-
 import { CustomTable } from 'src/components/custom-table/custom-table'
 
 import styles from './index.module.scss'
-import { type EventTickets } from 'src/types/events'
-import { StatusTickets } from 'src/components/status-tickets/status-tickets'
-import { formatDateTimeTicket } from 'src/helpers/utils'
+import { type EventSaleStatDiscounts, type EventSaleStatTickets } from 'src/types/events'
 import { FlexRow } from 'src/components/flex-row/flex-row'
 import { Container } from 'src/UI/Container/Container'
 import { SalesSVG } from 'src/UI/icons/salesSVG'
 import { ReturnedSVG } from 'src/UI/icons/returnedSVG'
 import { TotalSVG } from 'src/UI/icons/totalSVG'
+import { useParams } from 'react-router-dom'
+import { useGetSaleStatQuery } from 'src/store/events/events.api'
+import { Loader } from 'src/components/loader/loader'
 
 export const SaleStatElements = () => {
+	const { id = '0' } = useParams()
+	const { data: saleStatData, isLoading } = useGetSaleStatQuery(id)
 	const tableTitlesTickets = [
 		'Вид билета',
 		'Всего проданно',
@@ -25,34 +26,57 @@ export const SaleStatElements = () => {
 
 	const tableTitlesSales = ['Вид скидки', 'Всего раз', 'Всего на сумму']
 
-	const formatObjectsTableData = (tickets: EventTickets[]) => {
+	const formatObjectsTicketsTableData = (tickets: EventSaleStatTickets[]) => {
 		return (
 			tickets?.map((ticketEl) => {
 				return {
 					rowId: ticketEl.id,
 					cells: [
-						<p className={cn(styles.titleNewsTable)} key='0'>
-							{<StatusTickets statusCode={ticketEl.status} />}
+						<p key='0'>{ticketEl.type}</p>,
+						<p key='1' className={styles.center}>
+							{ticketEl.total_count}
 						</p>,
-						<p key='1'>{ticketEl.ticket_number}</p>,
-						<p key='2' className={styles.date}>
-							<span>{`${formatDateTimeTicket(ticketEl.createdate)[0]}`}</span>
-							<span>{`${formatDateTimeTicket(ticketEl.createdate)[1]}`}</span>
+						<p key='2' className={styles.center}>
+							{ticketEl.sum}
 						</p>,
 						<p key='3' className={styles.center}>
-							{ticketEl.group}
+							{ticketEl.refund}
 						</p>,
-						<p key='4'>{ticketEl.fio}</p>,
-						<p key='5'>{ticketEl.telphone}</p>,
-						<p key='6'>{ticketEl.ticket_type}</p>,
-						<p key='7'>{ticketEl.delivery_type}</p>,
+						<p key='4' className={styles.center}>
+							{ticketEl.sum_refund}
+						</p>,
+						<p key='5' className={styles.center}>
+							{ticketEl.discount}
+						</p>,
+						<p key='6' className={styles.center}>
+							{ticketEl.total_sum}
+						</p>,
 					],
 				}
 			}) ?? []
 		)
 	}
 
-	// if (isLoading || !ticketsData?.tickets) return <Loader />
+	const formatObjectsSalesTableData = (discounts: EventSaleStatDiscounts[]) => {
+		return (
+			discounts?.map((discountEl) => {
+				return {
+					rowId: discountEl.id,
+					cells: [
+						<p key='0'>{discountEl.type}</p>,
+						<p key='1' className={styles.center}>
+							{discountEl.count}
+						</p>,
+						<p key='2' className={styles.center}>
+							{discountEl.sum}
+						</p>,
+					],
+				}
+			}) ?? []
+		)
+	}
+
+	if (isLoading || !saleStatData) return <Loader />
 
 	return (
 		<div className={styles.salePage}>
@@ -61,21 +85,21 @@ export const SaleStatElements = () => {
 					<div className={styles.headElement}>
 						<FlexRow className={styles.title}>
 							<p>Продажи:</p>
-							<p>8 000 876.00 ₽</p>
+							<p>{saleStatData?.sales ?? 0} ₽</p>
 						</FlexRow>
 						<SalesSVG />
 					</div>
 					<div className={styles.headElement}>
 						<FlexRow className={styles.title}>
 							<p>Возвраты:</p>
-							<p>2 211.00 ₽</p>
+							<p>{saleStatData?.refunds ?? 0} ₽</p>
 						</FlexRow>
 						<ReturnedSVG />
 					</div>
 					<div className={styles.headElement}>
 						<FlexRow className={styles.title}>
 							<p>Сумма:</p>
-							<p>7 998 665.00 ₽</p>
+							<p>{saleStatData?.sum ?? 0} ₽</p>
 						</FlexRow>
 						<TotalSVG />
 					</div>
@@ -84,32 +108,34 @@ export const SaleStatElements = () => {
 					<h2>Билеты</h2>
 					<FlexRow className={styles.ticketsTotalInfo}>
 						<p className={styles.totalInfo}>
-							Продано всех видов: <strong>{`1 234`}</strong>
+							Продано всех видов: <strong>{saleStatData?.tickets_info.saled_total ?? 0}</strong>
 						</p>
 						<p className={styles.totalInfo}>
-							Продано бесплатных: <strong>{`41`}</strong>
+							Продано бесплатных: <strong>{saleStatData?.tickets_info.saled_free ?? 0}</strong>
 						</p>
 						<p className={styles.totalInfo}>
-							Возврат платных: <strong>{`1`}</strong>
+							Возврат платных: <strong>{saleStatData?.tickets_info.refund_paid ?? 0}</strong>
 						</p>
 						<p className={styles.totalInfo}>
-							Возврат бесплатных: <strong>{`2`}</strong>
+							Возврат бесплатных: <strong>{saleStatData?.tickets_info.refund_free ?? 0}</strong>
 						</p>
 					</FlexRow>
 					<CustomTable
 						className={styles.ticketsTable}
-						rowData={formatObjectsTableData([])}
+						rowData={formatObjectsTicketsTableData(saleStatData?.tickets_info.tickets ?? [])}
 						colTitles={tableTitlesTickets}
 					/>
 				</FlexRow>
 				<FlexRow className={styles.salesRow}>
 					<h2>Скидки</h2>
 					<p className={styles.totalInfo}>
-						Всего на сумму: <strong>{`57 100.00`} ₽</strong>
+						Всего на сумму: <strong>{saleStatData?.tickets_info.discounts_info.sum ?? 0} ₽</strong>
 					</p>
 					<CustomTable
 						className={styles.salesTable}
-						rowData={formatObjectsTableData([])}
+						rowData={formatObjectsSalesTableData(
+							saleStatData?.tickets_info.discounts_info.discounts ?? [],
+						)}
 						colTitles={tableTitlesSales}
 					/>
 				</FlexRow>

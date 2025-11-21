@@ -1,17 +1,17 @@
 import * as yup from 'yup'
 
-type regField = {
+export type regField = {
 	active?: boolean
 	req?: boolean
 }
 
-type regPhoneField = {
+export type regPhoneField = {
 	active?: boolean
 	req?: boolean
 	use_sms?: boolean
 }
 
-type regEmailField = {
+export type regEmailField = {
 	active?: boolean
 	req?: boolean
 	use_email?: boolean
@@ -19,10 +19,10 @@ type regEmailField = {
 
 export type RegistrationSettingsInputs = {
 	use_reg?: boolean
-	startDate?: string
-	startTime?: string
-	endDate?: string
-	endTime?: string
+	startDate: string
+	startTime: Date
+	endDate: string
+	endTime: Date
 	regFields: {
 		surname: regField
 		name: regField
@@ -41,4 +41,9 @@ export type RegistrationSettingsInputs = {
 	use_follow?: boolean
 }
 
-export const registrationSettingsSchema = yup.object().shape({})
+export const registrationSettingsSchema = yup.object().shape({
+	startDate: yup.string().required('Введите дату'),
+	startTime: yup.date().required('Введите время'),
+	endDate: yup.string().required('Введите дату'),
+	endTime: yup.date().required('Введите время'),
+})

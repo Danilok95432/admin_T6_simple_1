@@ -17,8 +17,8 @@ export const TicketsFiltrationInputs: FilterTableInput[] = [
 		type: 'text',
 	},
 	{
-		name: 'use_ticket',
-		placeholder: 'вид билета',
+		name: 'reg_type',
+		placeholder: 'вид регистрации',
 		type: 'select',
 		options: [
 			{ label: 'Одиночный', value: '0' },
@@ -26,17 +26,8 @@ export const TicketsFiltrationInputs: FilterTableInput[] = [
 		],
 	},
 	{
-		name: 'use_purchase',
-		placeholder: 'вид покупки',
-		type: 'select',
-		options: [
-			{ label: 'Одиночный', value: '0' },
-			{ label: 'Групповой', value: '1' },
-		],
-	},
-	{
-		name: 'use_status',
-		placeholder: 'статус',
+		name: 'deliver_type',
+		placeholder: 'вид доставки',
 		type: 'select',
 		options: [
 			{ label: 'Одиночный', value: '0' },

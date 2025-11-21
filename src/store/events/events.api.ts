@@ -23,6 +23,14 @@ import {
 	type EventInspectorsResponse,
 	type EventInspectorInfo,
 	type EventBraceletsResponse,
+	type EventSettingsRegistration,
+	type EventSettingsPayment,
+	type EventSettingsTicketTypes,
+	type EventRegistrationsList,
+	type EventTicketsList,
+	type EventEntersList,
+	type EventSMSList,
+	type EventSaleStat,
 } from 'src/types/events'
 import { type FieldValues } from 'react-hook-form'
 
@@ -57,6 +65,16 @@ export const eventsApi = createApi({
 		'EventInspectors',
 		'EventInspectorInfo',
 		'EventBracelets',
+		'EventSettingsRegistration',
+		'EventSettingsPayment',
+		'EventSettingsTicket',
+		'EventSettingsTickets',
+		'EventRegistrationsList',
+		'EventTicketsList',
+		'EventEntersList',
+		'EventSMSList',
+		'EventSaleStats',
+		'EventRegistrationsCSV',
 	],
 	baseQuery: baseQueryWithReauth,
 	endpoints: (build) => ({
@@ -545,6 +563,245 @@ export const eventsApi = createApi({
 			}),
 			providesTags: ['EventInspectors'],
 		}),
+		// <--------------- Настройка -> Регистрация --------------->
+		getSettingsRegistration: build.query<EventSettingsRegistration, string>({
+			query: (id) => ({
+				url: `events/edit_settings_registration`,
+				params: {
+					id,
+				},
+			}),
+			providesTags: ['EventSettingsRegistration'],
+		}),
+		saveSettingsRegistrationInfo: build.mutation<string, FieldValues>({
+			query: (FormData) => ({
+				url: `events/save_settings_registration`,
+				method: 'POST',
+				body: FormData,
+			}),
+			invalidatesTags: ['EventSettingsRegistration'],
+		}),
+		// <--------------- Настройка -> Оплата --------------->
+		getSettingsPayment: build.query<EventSettingsPayment, string>({
+			query: (id) => ({
+				url: `events/edit_settings_payment`,
+				params: {
+					id,
+				},
+			}),
+			providesTags: ['EventSettingsPayment'],
+		}),
+		saveSettingsPaymentInfo: build.mutation<string, FieldValues>({
+			query: (FormData) => ({
+				url: `events/save_settings_payment`,
+				method: 'POST',
+				body: FormData,
+			}),
+			invalidatesTags: ['EventSettingsPayment'],
+		}),
+		// <--------------- Настройка -> Типы билетов --------------->
+		getSettingsTicketTypes: build.query<EventSettingsTicketTypes, string>({
+			query: (id) => ({
+				url: `events/ticket_types`,
+				params: {
+					id_event: id,
+				},
+			}),
+			providesTags: ['EventSettingsTickets'],
+		}),
+		getNewIdTicket: build.query<{ status: string; id: string }, string>({
+			query: (id) => ({
+				url: `events/getnew_ticket_type`,
+				params: {
+					id_event: id,
+				},
+			}),
+			providesTags: ['EventSettingsTickets', 'EventSettingsTicket'],
+		}),
+		deleteSettingsTicketById: build.mutation<null, string>({
+			query: (ticketId) => ({
+				url: `events/delete_ticket_type`,
+				method: 'DELETE',
+				body: { id: ticketId },
+			}),
+			invalidatesTags: ['EventSettingsTickets', 'EventSettingsTicket'],
+		}),
+		saveSettingsTicketType: build.mutation<string, FieldValues>({
+			query: (FormData) => ({
+				url: `events/save_ticket_type`,
+				method: 'POST',
+				body: FormData,
+			}),
+			invalidatesTags: ['EventSettingsTicket'],
+		}),
+		// <--------------- Списки и статистика -> Регистрация --------------->
+		getRegistrationsList: build.query<
+			EventRegistrationsList,
+			{
+				id: string
+				phone?: string
+				surname?: string
+				email?: string
+				regType?: string
+				deliverType?: string
+				limit?: number
+				step?: number
+				page?: number
+			}
+		>({
+			query: ({ id, phone, surname, email, regType, deliverType, limit, step, page }) => ({
+				url: `events/registrations`,
+				params: {
+					id_event: id,
+					phone,
+					surname,
+					email,
+					reg_type: regType,
+					deliver_type: deliverType,
+					limit,
+					step,
+					page,
+				},
+			}),
+			providesTags: ['EventRegistrationsList'],
+		}),
+		getRegistrationsCSV: build.query<Blob, string>({
+			query: (id) => ({
+				url: `events/registrations_csv`,
+				params: {
+					id_event: id,
+				},
+				responseHandler: async (response) => await response.blob(),
+			}),
+			providesTags: ['EventRegistrationsCSV'],
+		}),
+		// <--------------- Списки и статистика -> Купленные билеты --------------->
+		getTicketsList: build.query<
+			EventTicketsList,
+			{
+				id: string
+				ticketNumber?: string
+				email?: string
+				ticketType?: string
+				purchaseType?: string
+				status?: string
+				limit?: number
+				step?: number
+				page?: number
+			}
+		>({
+			query: ({
+				id,
+				ticketNumber,
+				email,
+				ticketType,
+				purchaseType,
+				status,
+				limit,
+				step,
+				page,
+			}) => ({
+				url: `events/tickets`,
+				params: {
+					id_event: id,
+					ticket_number: ticketNumber,
+					email,
+					ticket_type: ticketType,
+					purchase_type: purchaseType,
+					status,
+					limit,
+					step,
+					page,
+				},
+			}),
+			providesTags: ['EventTicketsList'],
+		}),
+		// <--------------- Списки и статистика -> Журнал проходов --------------->
+		getEntersList: build.query<
+			EventEntersList,
+			{
+				id: string
+				dateFrom?: string
+				dateTo?: string
+				ticketType?: string
+				ticketNumber?: string
+				purchaseType?: string
+				status?: string
+				ageGroup?: string
+				limit?: number
+				step?: number
+				page?: number
+			}
+		>({
+			query: ({
+				id,
+				dateFrom,
+				dateTo,
+				ticketNumber,
+				ticketType,
+				purchaseType,
+				status,
+				ageGroup,
+				limit,
+				step,
+				page,
+			}) => ({
+				url: `events/enters`,
+				params: {
+					id_event: id,
+					ticket_number: ticketNumber,
+					ticket_type: ticketType,
+					purchase_type: purchaseType,
+					status,
+					age_group: ageGroup,
+					datefrom: dateFrom,
+					dateto: dateTo,
+					limit,
+					step,
+					page,
+				},
+			}),
+			providesTags: ['EventEntersList'],
+		}),
+		// <--------------- Списки и статистика -> Статистика SMS --------------->
+		getSMSList: build.query<
+			EventSMSList,
+			{
+				id: string
+				phone?: string
+				operator?: string
+				smsType?: string
+				status?: string
+				limit?: number
+				step?: number
+				page?: number
+			}
+		>({
+			query: ({ id, phone, operator, smsType, status, limit, step, page }) => ({
+				url: `events/sms_stats`,
+				params: {
+					id_event: id,
+					phone,
+					operator,
+					sms_type: smsType,
+					status,
+					limit,
+					step,
+					page,
+				},
+			}),
+			providesTags: ['EventSMSList'],
+		}),
+		// <--------------- Списки и статистика -> Сводка продаж --------------->
+		getSaleStat: build.query<EventSaleStat, string>({
+			query: (id) => ({
+				url: `events/sales`,
+				params: {
+					id_event: id,
+				},
+			}),
+			providesTags: ['EventSaleStats'],
+		}),
 	}),
 })
 
@@ -597,4 +854,20 @@ export const {
 	useHideInspectorByIdMutation,
 	useSaveInspectorInfoMutation,
 	useGetBraceletsQuery,
+	useGetSettingsRegistrationQuery,
+	useSaveSettingsRegistrationInfoMutation,
+	useGetSettingsPaymentQuery,
+	useSaveSettingsPaymentInfoMutation,
+	useGetSettingsTicketTypesQuery,
+	useGetNewIdTicketQuery,
+	useLazyGetNewIdTicketQuery,
+	useDeleteSettingsTicketByIdMutation,
+	useSaveSettingsTicketTypeMutation,
+	useGetRegistrationsListQuery,
+	useGetTicketsListQuery,
+	useGetEntersListQuery,
+	useGetSMSListQuery,
+	useGetSaleStatQuery,
+	useGetRegistrationsCSVQuery,
+	useLazyGetRegistrationsCSVQuery,
 } = eventsApi

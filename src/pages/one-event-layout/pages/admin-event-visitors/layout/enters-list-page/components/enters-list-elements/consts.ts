@@ -2,22 +2,17 @@ import { type FilterTableInput } from 'src/types/global'
 
 export const TicketsFiltrationInputs: FilterTableInput[] = [
 	{
-		name: 'ticket',
+		name: 'ticket_number',
 		placeholder: 'искать по номеру билета',
 		type: 'text',
 	},
 	{
 		name: 'date',
-		placeholder: 'искать по дате и времени...',
-		type: 'text',
+		placeholder: 'дд.мм.гггг — дд.мм.гггг',
+		type: 'date-range',
 	},
 	{
-		name: 'gate',
-		placeholder: 'искать по пункту',
-		type: 'text',
-	},
-	{
-		name: 'use_age',
+		name: 'age_group',
 		placeholder: 'возраст',
 		type: 'select',
 		options: [
@@ -26,7 +21,7 @@ export const TicketsFiltrationInputs: FilterTableInput[] = [
 		],
 	},
 	{
-		name: 'use_ticket',
+		name: 'ticket_type',
 		placeholder: 'вид билета',
 		type: 'select',
 		options: [
@@ -35,7 +30,7 @@ export const TicketsFiltrationInputs: FilterTableInput[] = [
 		],
 	},
 	{
-		name: 'use_sale',
+		name: 'purchase_type',
 		placeholder: 'вид покупки',
 		type: 'select',
 		options: [
@@ -44,7 +39,7 @@ export const TicketsFiltrationInputs: FilterTableInput[] = [
 		],
 	},
 	{
-		name: 'use_status',
+		name: 'status',
 		placeholder: 'статус',
 		type: 'select',
 		options: [

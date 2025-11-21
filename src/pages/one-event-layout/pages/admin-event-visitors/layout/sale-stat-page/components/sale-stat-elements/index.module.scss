@@ -45,6 +45,9 @@
 				minmax(215px, 215px)
 				minmax(215px, 1fr);
 		}
+		.center {
+			margin-left: 40px;
+		}
 	}
 	.salesRow {
 		flex-direction: column;
@@ -62,6 +65,9 @@
 				minmax(215px, 215px)
 				minmax(215px, 215px)
 				minmax(215px, 1fr);
+		}
+		.center {
+			margin-left: 25px;
 		}
 	}
 }

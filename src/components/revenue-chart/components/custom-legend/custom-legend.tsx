@@ -11,7 +11,6 @@ interface CustomLegendProps {
 }
 
 export const CustomLegend: React.FC<CustomLegendProps> = ({ payload }) => {
-	console.log(payload)
 	return (
 		<div className={styles.legend}>
 			<div className={styles.column}>

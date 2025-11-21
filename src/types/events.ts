@@ -1,3 +1,8 @@
+import {
+	type regEmailField,
+	type regField,
+	type regPhoneField,
+} from 'src/pages/one-event-layout/pages/admin-event-settings/layout/registration-page/schema'
 import { type FileItem } from './files'
 import { type PartnerCheckBoxesInfo } from './partners'
 import { type ImageItemWithText } from './photos'
@@ -442,4 +447,160 @@ export type EventBracelets = {
 	ticket_number: string
 	createdate: string
 	inspector: string
+}
+
+export type EventSettingsRegistration = {
+	use_reg?: boolean
+	startDate?: string
+	startTime?: string
+	endDate?: string
+	endTime?: string
+	regFields: {
+		surname: regField
+		name: regField
+		patronymic: regField
+		birthday: regField
+		region: regField
+		phone: regPhoneField
+		email: regEmailField
+	}
+	guestsLimit?: string
+	use_repeat_reg?: boolean
+	repeatCount?: string
+	rejectEmail?: boolean
+	rejectPhone?: boolean
+	use_group_ticket?: boolean
+	use_follow?: boolean
+}
+
+export type EventSettingsPayment = {
+	use_card_pay?: boolean
+	use_sbp?: boolean
+	use_sber_pay?: boolean
+}
+
+export type EventSettingsTicketTypes = {
+	ticket_types: SettingTicketType[]
+}
+
+export type SettingTicketType = {
+	id?: string
+	title?: string
+	ticketsLimit?: string
+	price?: string
+	use_refund?: boolean
+	refunddaylimit?: string
+	desc?: string
+	use_early?: boolean
+	earlyDayLimit?: string
+	earlySaleCount?: string
+	use_group?: boolean
+	guestsCount?: string
+	saleGroup?: string
+	use_now?: boolean
+	saleNow?: string
+	use_kid?: boolean
+	saleKid?: string
+}
+
+export type EventRegistrationsElem = {
+	id: string
+	date: string
+	reg_type: string
+	count_tickets: string
+	phone: string
+	email: string
+	guest: string
+	paid: string
+	deliver_type: string
+}
+
+export type EventRegistrationsList = {
+	registrations: EventRegistrationsElem[]
+	total: string
+}
+
+export type EventTicketsElem = {
+	id: string
+	ticket_type: string
+	age: string
+	ticket_number: string
+	purchase_type: string
+	phone: string
+	email: string
+	discount: string
+	paid: string
+	status: string
+}
+
+export type EventTicketsList = {
+	tickets: EventTicketsElem[]
+	total: string
+}
+
+export type EventEntersElem = {
+	id: string
+	ticket_type: string
+	ticket_number: string
+	purchase_type: string
+	age_group: string
+	date: string
+	gate: string
+	status: string
+}
+
+export type EventEntersList = {
+	enters: EventEntersElem[]
+	total: string
+}
+
+export type EventSMSElem = {
+	id: string
+	type: string
+	phone: string
+	status: string
+	operator: string
+	sended: string
+	delivered: string
+	cost: string
+}
+
+export type EventSMSList = {
+	sms: EventSMSElem[]
+	total: string
+}
+
+export type EventSaleStatTickets = {
+	id: string
+	type: string
+	total_count: string
+	sum: string
+	refund: string
+	sum_refund: string
+	discount: string
+	total_sum: string
+}
+
+export type EventSaleStatDiscounts = {
+	id: string
+	type: string
+	count: string
+	sum: string
+}
+
+export type EventSaleStat = {
+	sales: string
+	refunds: string
+	sum: string
+	tickets_info: {
+		saled_total: string
+		saled_free: string
+		refund_paid: string
+		refund_free: string
+		tickets: EventSaleStatTickets[]
+		discounts_info: {
+			sum: string
+			discounts: EventSaleStatDiscounts[]
+		}
+	}
 }

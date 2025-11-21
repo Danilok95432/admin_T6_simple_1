@@ -22,7 +22,8 @@ type AdminSectionProps = {
 	noBorder?: boolean
 	fullSection?: boolean
 	checkBoxSection?: ReactNode
-	close?: () => void
+	close?: (index: number) => Promise<void>
+	idxClose?: number
 }
 
 export const AdminSection: FC<AdminSectionProps> = ({
@@ -39,6 +40,7 @@ export const AdminSection: FC<AdminSectionProps> = ({
 	fullSection = false,
 	checkBoxSection,
 	close,
+	idxClose = 0,
 }) => {
 	const { watch } = useFormContext()
 	const isChecked = sectionName ? watch(sectionName) : true
@@ -71,7 +73,7 @@ export const AdminSection: FC<AdminSectionProps> = ({
 						{additionalNodeForHead}
 					</FlexRow>
 					{close && (
-						<div className={styles.closeBtn} onClick={() => close()}>
+						<div className={styles.closeBtn} onClick={async () => await close(idxClose)}>
 							<CloseSvg />
 						</div>
 					)}

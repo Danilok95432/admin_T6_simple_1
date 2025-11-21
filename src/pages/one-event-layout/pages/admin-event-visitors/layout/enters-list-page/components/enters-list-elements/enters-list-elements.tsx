@@ -7,22 +7,30 @@ import { GridRow } from 'src/components/grid-row/grid-row'
 import styles from './index.module.scss'
 import { TableFiltration } from 'src/modules/table-filtration/table-filtration'
 import { TicketsFiltrationInputs } from './consts'
-import { type EventTickets } from 'src/types/events'
+import { type EventEntersElem } from 'src/types/events'
 import { StatusTickets } from 'src/components/status-tickets/status-tickets'
-import { formatDateTimeTicket } from 'src/helpers/utils'
+import { useGetEntersListQuery } from 'src/store/events/events.api'
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { Loader } from 'src/components/loader/loader'
+import { useAppSelector } from 'src/hooks/store'
+import { getFiltrationValues } from 'src/modules/table-filtration/store/table-filtration.selectors'
 
 export const EntersListElements = () => {
-	// const { id = '0' } = useParams()
-	// const filterValues = useAppSelector(getFiltrationValues)
-	// const [currentPage, setCurrentPage] = useState(1)
-	// const [itemsPerPage, setItemsPerPage] = useState<number | 'all'>(100)
-	// const navigate = useNavigate()
+	const { id = '0' } = useParams()
+	const filterValues = useAppSelector(getFiltrationValues)
+	const [currentPage, setCurrentPage] = useState(1)
+	const [itemsPerPage, setItemsPerPage] = useState<number | 'all'>(100)
 
-	/* const { data: ticketsData, isLoading } = useGetTicketsQuery({
+	const { data: entersData, isLoading } = useGetEntersListQuery({
 		id,
-		telphone: filterValues.telphone,
-		surname: filterValues.surname,
-		useGroup: filterValues.use_group,
+		dateFrom: filterValues.date,
+		dateTo: filterValues.date,
+		ageGroup: filterValues.age_group,
+		ticketNumber: filterValues.ticket_number,
+		ticketType: filterValues.ticket_type,
+		purchaseType: filterValues.purchase_type,
+		status: filterValues.status,
 		limit: itemsPerPage === 'all' ? undefined : itemsPerPage,
 		page: itemsPerPage === 'all' ? undefined : currentPage,
 	})
@@ -37,13 +45,6 @@ export const EntersListElements = () => {
 		setCurrentPage(1)
 	}
 
-	const rowClickHandler = (personId: string) => {
-		navigate(
-			`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventLists}/${id}/${AdminRoute.OnePersonStatistic}/${personId}`,
-		)
-	}
-    */
-
 	const tableTitles = [
 		'ID',
 		'Вид билета',
@@ -57,34 +58,33 @@ export const EntersListElements = () => {
 
 	const sortTableTitles = ['Дата и время продажи']
 
-	const formatObjectsTableData = (tickets: EventTickets[]) => {
+	const formatObjectsTableData = (enters: EventEntersElem[]) => {
 		return (
-			tickets?.map((ticketEl) => {
+			enters?.map((enterEl) => {
 				return {
-					rowId: ticketEl.id,
+					rowId: enterEl.id,
 					cells: [
-						<p className={cn(styles.titleNewsTable)} key='0'>
-							{<StatusTickets statusCode={ticketEl.status} />}
+						<p key='0'>{enterEl.id}</p>,
+						<p key='1'>{enterEl.ticket_type}</p>,
+						<p key='2' className={styles.center}>
+							{enterEl.ticket_number}
 						</p>,
-						<p key='1'>{ticketEl.ticket_number}</p>,
-						<p key='2' className={styles.date}>
-							<span>{`${formatDateTimeTicket(ticketEl.createdate)[0]}`}</span>
-							<span>{`${formatDateTimeTicket(ticketEl.createdate)[1]}`}</span>
+						<p key='3'>{enterEl.purchase_type}</p>,
+						<p key='4' className={styles.center}>
+							{enterEl.age_group}
 						</p>,
-						<p key='3' className={styles.center}>
-							{ticketEl.group}
+						<p key='5'>{enterEl.date}</p>,
+						<p key='6'>{enterEl.gate}</p>,
+						<p className={cn(styles.titleNewsTable)} key='7'>
+							{<StatusTickets statusCode={enterEl.status} />}
 						</p>,
-						<p key='4'>{ticketEl.fio}</p>,
-						<p key='5'>{ticketEl.telphone}</p>,
-						<p key='6'>{ticketEl.ticket_type}</p>,
-						<p key='7'>{ticketEl.delivery_type}</p>,
 					],
 				}
 			}) ?? []
 		)
 	}
 
-	// if (isLoading || !ticketsData?.tickets) return <Loader />
+	if (isLoading || !entersData?.enters) return <Loader />
 
 	return (
 		<div className={styles.eventNewsContainer}>
@@ -93,11 +93,23 @@ export const EntersListElements = () => {
 			</GridRow>
 			<CustomTable
 				className={styles.newsTable}
-				rowData={formatObjectsTableData([])}
+				rowData={formatObjectsTableData(entersData?.enters ?? [])}
 				colTitles={tableTitles}
 				sortTitles={sortTableTitles}
 			/>
-			<TableFooter totalElements={0} currentPage={0} totalPages={0} noAdd downloadBtn ticketStyle />
+			<TableFooter
+				totalElements={Number(entersData?.total)}
+				currentPage={currentPage}
+				totalPages={Math.ceil(
+					Number(entersData.total) /
+						(itemsPerPage === 'all' ? Number(entersData.total) : itemsPerPage),
+				)}
+				onPageChange={handlePageChange}
+				onLimitChange={handleItemsPerPageChange}
+				noAdd
+				downloadBtn
+				ticketStyle
+			/>
 		</div>
 	)
 }

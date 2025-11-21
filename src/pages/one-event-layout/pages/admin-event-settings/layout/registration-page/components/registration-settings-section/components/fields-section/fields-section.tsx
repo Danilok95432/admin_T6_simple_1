@@ -24,7 +24,6 @@ export const FieldsSection = () => {
 							<ControlledCheckbox
 								name='regFields.surname.req'
 								label='Обязательное поле'
-								disabled
 								type='checkbox'
 							/>
 						</FlexRow>
@@ -43,7 +42,6 @@ export const FieldsSection = () => {
 							<ControlledCheckbox
 								name='regFields.name.req'
 								label='Обязательное поле'
-								disabled
 								type='checkbox'
 							/>
 						</FlexRow>
@@ -62,7 +60,6 @@ export const FieldsSection = () => {
 							<ControlledCheckbox
 								name='regFields.patronymic.req'
 								label='Обязательное поле'
-								disabled
 								type='checkbox'
 							/>
 						</FlexRow>
@@ -81,7 +78,6 @@ export const FieldsSection = () => {
 							<ControlledCheckbox
 								name='regFields.birthday.req'
 								label='Обязательное поле'
-								disabled
 								type='checkbox'
 							/>
 						</FlexRow>
@@ -120,13 +116,11 @@ export const FieldsSection = () => {
 							<ControlledCheckbox
 								name='regFields.phone.req'
 								label='Обязательное поле'
-								disabled
 								type='checkbox'
 							/>
 							<ControlledCheckbox
 								name='regFields.phone.use_sms'
 								label='Использовать SMS для подтверждения регистрации (требует подключения тарифной опции и имени отправителя). Плату за отправку SMS взимает оператор сотовой связи.'
-								disabled
 								type='checkbox'
 							/>
 						</FlexRow>
@@ -145,13 +139,11 @@ export const FieldsSection = () => {
 							<ControlledCheckbox
 								name='regFields.email.req'
 								label='Обязательное поле'
-								disabled
 								type='checkbox'
 							/>
 							<ControlledCheckbox
 								name='regFields.email.use_email'
 								label='Использовать e-mail для подтверждения регистрации'
-								disabled
 								type='checkbox'
 							/>
 						</FlexRow>

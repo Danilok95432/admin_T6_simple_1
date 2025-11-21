@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
 
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form'
 
@@ -10,21 +10,52 @@ import { type PaymentInputs } from './schema'
 import { PaymentSection } from './components/payment-section/payment-section'
 import { AdminButton } from 'src/UI/AdminButton/AdminButton'
 import { FlexRow } from 'src/components/flex-row/flex-row'
+import { useNavigate, useParams } from 'react-router-dom'
+import {
+	useGetSettingsPaymentQuery,
+	useSaveSettingsPaymentInfoMutation,
+} from 'src/store/events/events.api'
+import { AdminRoute } from 'src/routes/admin-routes/consts'
+import { booleanToNumberString } from 'src/helpers/utils'
 
 export const PaymentsPage: FC = () => {
-	// const { id = '0' } = useParams()
-
+	const { id = '0' } = useParams()
+	const { data: paymentData } = useGetSettingsPaymentQuery(id)
+	const [saveSettingsPayments] = useSaveSettingsPaymentInfoMutation()
 	const methods = useForm<PaymentInputs>({
 		mode: 'onBlur',
+		defaultValues: {
+			use_card_pay: false,
+			use_sbp: false,
+			use_sber_pay: false,
+		},
 	})
 
-	const { isSent } = useIsSent(methods.control)
-	const [, setAction] = useState<'apply' | 'save'>('apply')
-	// const navigate = useNavigate()
+	const { isSent, markAsSent } = useIsSent(methods.control)
+	const [action, setAction] = useState<'apply' | 'save'>('apply')
+	const navigate = useNavigate()
 
 	const onSubmit: SubmitHandler<PaymentInputs> = async (data) => {
-		console.log(data)
+		const eventId = id
+		const settingsInfoFormData = new FormData()
+		settingsInfoFormData.append('id', eventId)
+		settingsInfoFormData.append('use_card_pay', booleanToNumberString(data.use_card_pay))
+		settingsInfoFormData.append('use_sbp', booleanToNumberString(data.use_sbp))
+		settingsInfoFormData.append('use_sber_pay', booleanToNumberString(data.use_sber_pay))
+		const res = await saveSettingsPayments(settingsInfoFormData)
+		if (res) {
+			markAsSent(true)
+			if (action === 'save') {
+				navigate(`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminEventsList}`)
+			}
+		}
 	}
+
+	useEffect(() => {
+		if (paymentData) {
+			methods.reset({ ...(paymentData as PaymentInputs) })
+		}
+	}, [paymentData])
 
 	return (
 		<AdminContent className={styles.paymentPage} $backgroundColor='#fff' $padding='0 35px'>

@@ -28,6 +28,7 @@ type CheckboxProps = BaseControlledCheckboxProps & {
 	type: 'checkbox'
 	label?: string
 	circle?: boolean
+	value?: boolean
 	customLabel?: ReactNode
 	autoActive?: boolean
 	options?: never
@@ -38,6 +39,7 @@ type RadioProps = BaseControlledCheckboxProps & {
 	options: RadioOption[]
 	label?: never
 	circle?: boolean
+	value?: boolean
 	customLabel?: never
 	autoActive?: never
 }
@@ -69,6 +71,7 @@ export const ControlledCheckbox: FC<ControlledCheckboxProps> = ({
 	disabled,
 	autoActive,
 	circle,
+	value = false,
 }) => {
 	const {
 		register,
@@ -130,8 +133,10 @@ export const ControlledCheckbox: FC<ControlledCheckboxProps> = ({
 				)}
 				onClick={handleCheckboxChange}
 			>
-				<label className={cn({ [styles._active]: watch(name) }, { [styles.circle]: circle })}>
-					{watch(name) && <CheckMarkSvg />}
+				<label
+					className={cn({ [styles._active]: watch(name) || value }, { [styles.circle]: circle })}
+				>
+					{(watch(name) || value) && <CheckMarkSvg />}
 				</label>
 				<input
 					type='checkbox'

@@ -15,6 +15,7 @@ export const PaymentSection = () => {
 					name='auto'
 					disabled
 					autoActive
+					value={true}
 					label='Подключена агентская (стандартная) схема оплаты'
 					type={'checkbox'}
 				/>
@@ -41,7 +42,7 @@ export const PaymentSection = () => {
 			</p>
 			<ControlledCheckbox
 				className={styles.checkBox}
-				name='use_card'
+				name='use_card_pay'
 				type={'checkbox'}
 				label='Подключить оплату банковской картой'
 				$margin='20px 0 20px 0'

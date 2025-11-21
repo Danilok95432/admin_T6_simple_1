@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 
 export type PaymentInputs = {
-	use_card?: boolean
+	use_card_pay?: boolean
 	use_sbp?: boolean
 	use_sber_pay?: boolean
 }

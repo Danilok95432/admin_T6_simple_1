@@ -13,7 +13,7 @@ export const RegistationSettingsSection = () => {
 			checkBoxSection={
 				<ControlledCheckbox
 					className={styles.checkBox}
-					name='auto'
+					name='use_reg'
 					label='Открыть регистрацию гостей'
 					type={'checkbox'}
 				/>

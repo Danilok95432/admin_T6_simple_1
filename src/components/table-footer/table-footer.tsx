@@ -21,7 +21,7 @@ type TableFooterProps = {
 	totalPages?: number
 	className?: string
 	downloadBtn?: boolean
-	downloadHandler?: () => void
+	downloadHandler?: () => Promise<void>
 	downloadTextBtn?: string
 	importBtn?: boolean
 	importHandler?: () => void
@@ -103,6 +103,7 @@ export const TableFooter: FC<TableFooterProps> = ({
 							{ [styles.downloadBtnDark]: noAdd && !ticketStyle },
 							{ [styles.bigDownloadBtn]: bigDownloadBtn },
 						)}
+						onClick={downloadHandler}
 					>
 						<DownloadTableCSV
 							color={noAdd && !bigDownloadBtn && !ticketStyle ? '#ffffff' : '#184F71'}
