@@ -5,13 +5,8 @@ import { Container } from 'src/UI/Container/Container'
 import { MainSection } from './components/main-section/main-section'
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form'
 import { type PlacementInputs } from './schema'
-import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
-import { useState } from 'react'
-import { FlexRow } from 'src/components/flex-row/flex-row'
-import { AdminButton } from 'src/UI/AdminButton/AdminButton'
 
 export const PlacementEventLayout = () => {
-	const [, setAction] = useState<'apply' | 'save'>('apply')
 	const methods = useForm<PlacementInputs>({
 		mode: 'onBlur',
 		defaultValues: {
@@ -24,7 +19,6 @@ export const PlacementEventLayout = () => {
 	const onSubmit: SubmitHandler<PlacementInputs> = async (data) => {
 		console.log(data)
 	}
-	const { isSent } = useIsSent(methods.control)
 	return (
 		<AdminContent $padding='0' $backgroundColor='#ffffff' className={styles.placementPage}>
 			<Container $padding='35px 35px 55px 35px' $paddingMobile='35px'>
@@ -32,7 +26,8 @@ export const PlacementEventLayout = () => {
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
 						<MainSection />
-						<FlexRow>
+						{/*
+							<FlexRow>
 							<AdminButton
 								as='button'
 								$height='auto'
@@ -55,6 +50,7 @@ export const PlacementEventLayout = () => {
 								Применить и продолжить
 							</AdminButton>
 						</FlexRow>
+							*/}
 					</form>
 				</FormProvider>
 			</Container>

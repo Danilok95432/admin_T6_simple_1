@@ -13,8 +13,9 @@ import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useAppSelector } from 'src/hooks/store'
 import { getFiltrationValues } from 'src/modules/table-filtration/store/table-filtration.selectors'
-import { useGetTicketsListQuery } from 'src/store/events/events.api'
+import { useGetTicketsListQuery, useLazyGetTicketsCSVQuery } from 'src/store/events/events.api'
 import { Loader } from 'src/components/loader/loader'
+import { toast } from 'react-toastify'
 
 export const PurchasedTicketsElements = () => {
 	const { id = '0' } = useParams()
@@ -33,6 +34,7 @@ export const PurchasedTicketsElements = () => {
 		limit: itemsPerPage === 'all' ? undefined : itemsPerPage,
 		page: itemsPerPage === 'all' ? undefined : currentPage,
 	})
+	const [getTicketsCSV] = useLazyGetTicketsCSVQuery()
 
 	const handlePageChange = (newPage: number) => {
 		setCurrentPage(newPage)
@@ -42,6 +44,48 @@ export const PurchasedTicketsElements = () => {
 		const newValue = value === 'all' ? 'all' : parseInt(value)
 		setItemsPerPage(newValue)
 		setCurrentPage(1)
+	}
+
+	const downloadHandler = async () => {
+		try {
+			const blob = await getTicketsCSV(id).unwrap()
+			const arrayBuffer = await blob.arrayBuffer()
+
+			const decoders = [
+				{ name: 'windows-1251', decoder: new TextDecoder('windows-1251') },
+				{ name: 'utf-8', decoder: new TextDecoder('utf-8') },
+				{ name: 'iso-8859-1', decoder: new TextDecoder('iso-8859-1') },
+			]
+
+			let decodedData = ''
+			for (const { name, decoder } of decoders) {
+				try {
+					decodedData = decoder.decode(arrayBuffer)
+					if (!decodedData.includes('�')) {
+						console.log(`Успешная кодировка: ${name}`)
+						break
+					}
+				} catch (e) {
+					console.log(`Кодировка ${name} не подошла`)
+				}
+			}
+
+			const correctedBlob = new Blob([decodedData], { type: 'text/csv; charset=utf-8' })
+			const url = URL.createObjectURL(correctedBlob)
+
+			const link = document.createElement('a')
+			link.href = url
+			link.setAttribute('download', `tickets.csv`)
+			document.body.appendChild(link)
+			link.click()
+
+			document.body.removeChild(link)
+			URL.revokeObjectURL(url)
+		} catch (error) {
+			toast.error(`Ошибка при скачивании CSV: ${error}`, {
+				position: 'bottom-right',
+			})
+		}
 	}
 
 	const rowClickHandler = (personId: string) => {
@@ -129,6 +173,7 @@ export const PurchasedTicketsElements = () => {
 				onLimitChange={handleItemsPerPageChange}
 				noAdd
 				downloadBtn
+				downloadHandler={downloadHandler}
 				ticketStyle
 			/>
 		</div>

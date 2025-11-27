@@ -75,6 +75,9 @@ export const eventsApi = createApi({
 		'EventSMSList',
 		'EventSaleStats',
 		'EventRegistrationsCSV',
+		'EventTicketsCSV',
+		'EventEntersCSV',
+		'EventSMSCSV',
 	],
 	baseQuery: baseQueryWithReauth,
 	endpoints: (build) => ({
@@ -716,6 +719,16 @@ export const eventsApi = createApi({
 			}),
 			providesTags: ['EventTicketsList'],
 		}),
+		getTicketsCSV: build.query<Blob, string>({
+			query: (id) => ({
+				url: `events/tickets_csv`,
+				params: {
+					id_event: id,
+				},
+				responseHandler: async (response) => await response.blob(),
+			}),
+			providesTags: ['EventTicketsCSV'],
+		}),
 		// <--------------- Списки и статистика -> Журнал проходов --------------->
 		getEntersList: build.query<
 			EventEntersList,
@@ -763,6 +776,16 @@ export const eventsApi = createApi({
 			}),
 			providesTags: ['EventEntersList'],
 		}),
+		getEntersCSV: build.query<Blob, string>({
+			query: (id) => ({
+				url: `events/enters_csv`,
+				params: {
+					id_event: id,
+				},
+				responseHandler: async (response) => await response.blob(),
+			}),
+			providesTags: ['EventEntersCSV'],
+		}),
 		// <--------------- Списки и статистика -> Статистика SMS --------------->
 		getSMSList: build.query<
 			EventSMSList,
@@ -791,6 +814,16 @@ export const eventsApi = createApi({
 				},
 			}),
 			providesTags: ['EventSMSList'],
+		}),
+		getSMSCSV: build.query<Blob, string>({
+			query: (id) => ({
+				url: `events/sms_stats_csv`,
+				params: {
+					id_event: id,
+				},
+				responseHandler: async (response) => await response.blob(),
+			}),
+			providesTags: ['EventSMSCSV'],
 		}),
 		// <--------------- Списки и статистика -> Сводка продаж --------------->
 		getSaleStat: build.query<EventSaleStat, string>({
@@ -870,4 +903,7 @@ export const {
 	useGetSaleStatQuery,
 	useGetRegistrationsCSVQuery,
 	useLazyGetRegistrationsCSVQuery,
+	useLazyGetTicketsCSVQuery,
+	useLazyGetEntersCSVQuery,
+	useLazyGetSMSCSVQuery,
 } = eventsApi
