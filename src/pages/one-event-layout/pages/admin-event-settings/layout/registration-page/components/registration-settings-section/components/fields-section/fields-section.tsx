@@ -135,11 +135,17 @@ export const FieldsSection = () => {
 								name='regFields.email.active'
 								label='Активное поле'
 								type='checkbox'
+								disabled
+								autoActive
+								value
 							/>
 							<ControlledCheckbox
 								name='regFields.email.req'
 								label='Обязательное поле'
 								type='checkbox'
+								disabled
+								autoActive
+								value
 							/>
 							<ControlledCheckbox
 								name='regFields.email.use_email'

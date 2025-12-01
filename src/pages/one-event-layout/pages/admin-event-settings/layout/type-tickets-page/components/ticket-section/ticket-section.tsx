@@ -1,5 +1,5 @@
 import { AdminSection } from 'src/components/admin-section/admin-section'
-import { useState, type FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
 import { MainSection } from './components/main-section/main-section'
 import { DescSection } from './components/desc-section/desc-section'
 import { SaleSection } from './components/sale-section/sale-section'
@@ -8,7 +8,6 @@ import { FlexRow } from 'src/components/flex-row/flex-row'
 
 import styles from './index.module.scss'
 import { useFormContext, useWatch } from 'react-hook-form'
-import { type TypeTicketsInputs } from '../../schema'
 
 type TicketSectionProps = {
 	index?: number
@@ -24,17 +23,24 @@ export const TicketSection: FC<TicketSectionProps> = ({
 	setIdx,
 }) => {
 	const [, setAction] = useState<'apply' | 'save'>('apply')
-	const { control } = useFormContext<TypeTicketsInputs>()
+	const [saleActive, setSaleActive] = useState<boolean>(false)
+	const { control } = useFormContext()
 
-	// Используем useWatch для отслеживания значения в реальном времени
 	const priceValue = useWatch({
 		control,
-		name: `ticket_types.${index}.price`,
+		name: `ticket_types[${index}].price`,
 	})
 
-	// Преобразуем в число и проверяем равно ли 0
-	const priceNumber = parseFloat(priceValue?.toString() ?? '0')
-	const isPriceZero = priceNumber === 0
+	useEffect(() => {
+		if (typeof priceValue === 'string') {
+			const numericPrice = parseFloat(priceValue?.toString() ?? '0')
+			if (numericPrice === 0) {
+				setSaleActive(false)
+			} else {
+				setSaleActive(true)
+			}
+		}
+	}, [priceValue, index])
 
 	return (
 		<AdminSection
@@ -45,7 +51,7 @@ export const TicketSection: FC<TicketSectionProps> = ({
 		>
 			<MainSection idx={index} />
 			<DescSection idx={index} />
-			{!isPriceZero && <SaleSection idx={index} />}
+			{saleActive && <SaleSection idx={index} />}
 			<FlexRow className={styles.btnsRow}>
 				<AdminButton
 					as='button'
