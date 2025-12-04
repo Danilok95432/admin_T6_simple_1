@@ -1,18 +1,20 @@
+import { type SelOption } from 'src/types/select'
 import * as yup from 'yup'
 
 export type EventPassInputs = {
-	use_reg?: boolean
-	startDate?: string
-	startTime?: string
-	endDate?: string
-	endTime?: string
-	guestsLimit?: string
-	use_repeat_reg?: boolean
-	repeatCount?: string
-	rejectEmail?: boolean
-	rejectPhone?: boolean
-	use_group_ticket?: boolean
-	use_follow?: boolean
+	control_list: SelOption[] | string
+	auto_list: SelOption[] | string
+	turniketsCount?: string
+	manual_list: SelOption[] | string
+	inspectorsCount?: string
+	use_tech_conditions?: boolean
+	use_com_conditions?: boolean
+	use_paid?: boolean
+	paidCount?: string
+	use_docs?: boolean
+	signed?: string
+	ready?: string
+	inWork?: string
 }
 
 export const eventPassSchema = yup.object().shape({})

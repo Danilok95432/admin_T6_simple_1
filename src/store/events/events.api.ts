@@ -31,6 +31,10 @@ import {
 	type EventEntersList,
 	type EventSMSList,
 	type EventSaleStat,
+	type EventPlacementData,
+	type EventWidget,
+	type EventWidgetReg,
+	type EventPassResponse,
 } from 'src/types/events'
 import { type FieldValues } from 'react-hook-form'
 
@@ -78,6 +82,12 @@ export const eventsApi = createApi({
 		'EventTicketsCSV',
 		'EventEntersCSV',
 		'EventSMSCSV',
+		'EventPlacement',
+		'EventWidget',
+		'EventWidgetReg',
+		'EventLanding',
+		'EventSaveColorLanding',
+		'EventPass',
 	],
 	baseQuery: baseQueryWithReauth,
 	endpoints: (build) => ({
@@ -835,6 +845,69 @@ export const eventsApi = createApi({
 			}),
 			providesTags: ['EventSaleStats'],
 		}),
+		// <--------------- Размещение и публикация --------------->
+		getEventPlacement: build.query<EventPlacementData, string>({
+			query: (id) => ({
+				url: `events/edit_publication`,
+				params: {
+					id,
+				},
+			}),
+			providesTags: ['EventPlacement'],
+		}),
+		getEventWidgetReg: build.query<EventWidgetReg, string>({
+			query: (id) => ({
+				url: `events/widget_reg_code`,
+				params: {
+					id,
+				},
+			}),
+			providesTags: ['EventWidgetReg'],
+		}),
+		getEventWidget: build.query<EventWidget, string>({
+			query: (id) => ({
+				url: `events/widget_event_code`,
+				params: {
+					id,
+				},
+			}),
+			providesTags: ['EventWidget'],
+		}),
+		getEventLanding: build.query<{ landing: string }, string>({
+			query: (id) => ({
+				url: `events/landing`,
+				params: {
+					id,
+				},
+			}),
+			providesTags: ['EventLanding'],
+		}),
+		saveColorLandingChoice: build.mutation<string, FieldValues>({
+			query: (FormData) => ({
+				url: `events/save_color_shema`,
+				method: 'POST',
+				body: FormData,
+			}),
+			invalidatesTags: ['EventSaveColorLanding'],
+		}),
+		// <--------------- Пропуск --------------->
+		getEventPass: build.query<EventPassResponse, string>({
+			query: (id) => ({
+				url: `events/edit_propusk`,
+				params: {
+					id,
+				},
+			}),
+			providesTags: ['EventPass'],
+		}),
+		saveEventPass: build.mutation<string, FieldValues>({
+			query: (FormData) => ({
+				url: `events/save_propusk`,
+				method: 'POST',
+				body: FormData,
+			}),
+			invalidatesTags: ['EventPass'],
+		}),
 	}),
 })
 
@@ -906,4 +979,11 @@ export const {
 	useLazyGetTicketsCSVQuery,
 	useLazyGetEntersCSVQuery,
 	useLazyGetSMSCSVQuery,
+	useGetEventLandingQuery,
+	useGetEventWidgetQuery,
+	useGetEventPlacementQuery,
+	useGetEventWidgetRegQuery,
+	useSaveColorLandingChoiceMutation,
+	useGetEventPassQuery,
+	useSaveEventPassMutation,
 } = eventsApi

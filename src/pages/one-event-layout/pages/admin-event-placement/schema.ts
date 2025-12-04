@@ -1,8 +1,12 @@
 import { type FileUploadRespone } from 'src/types/files'
+import { type SelOption } from 'src/types/select'
 
 export type PlacementInputs = {
-	use_event?: boolean
-	use_reg?: boolean
-	use_lend?: boolean
-	lending?: FileUploadRespone
+	use_widget_event?: boolean
+	widget_event_code?: string
+	use_widget_reg?: boolean
+	widget_reg_code?: string
+	use_create_land?: boolean
+	landing?: FileUploadRespone | string
+	color_schema?: SelOption[] | string
 }

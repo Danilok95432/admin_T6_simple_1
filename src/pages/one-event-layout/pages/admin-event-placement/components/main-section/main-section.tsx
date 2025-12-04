@@ -6,13 +6,36 @@ import { ControlledInput } from 'src/components/controlled-input/controlled-inpu
 import { ReactDropzoneFiles } from 'src/components/react-dropzone-files/react-dropzone-files'
 import cn from 'classnames'
 import { ControlledSelect } from 'src/components/controlled-select/controlled-select'
+import { type SelOption } from 'src/types/select'
+import { type FC } from 'react'
+import { useSaveColorLandingChoiceMutation } from 'src/store/events/events.api'
+import { useParams } from 'react-router-dom'
+import { useFormContext, useWatch } from 'react-hook-form'
+import { type PlacementInputs } from '../../schema'
 
-export const MainSection = () => {
+type MainSectionProps = {
+	colorList?: SelOption[]
+}
+
+export const MainSection: FC<MainSectionProps> = ({ colorList = [{ label: '', value: '' }] }) => {
+	const { id = '' } = useParams()
+	const { control } = useFormContext<PlacementInputs>()
+	const colorChoice = useWatch({
+		control,
+		name: 'color_schema',
+	})
+	const [saveColorChoice] = useSaveColorLandingChoiceMutation()
+	const saveHandler = async () => {
+		const formData = new FormData()
+		formData.append('id_event', id)
+		formData.append('id_color_schema', String(colorChoice))
+		await saveColorChoice(formData)
+	}
 	return (
 		<AdminSection isBlock={false} className={styles.titleSectionInner}>
 			<FlexRow className={styles.checkboxRow}>
 				<ControlledCheckbox
-					name='use_event'
+					name='use_widget_event'
 					label='Включить виджет события на стороннем сайте'
 					type='checkbox'
 					className={styles.checkbox}
@@ -31,7 +54,7 @@ export const MainSection = () => {
 					iframe!
 				</p>
 				<ControlledInput
-					name='event_frame'
+					name='widget_event_code'
 					isTextarea
 					height='113px'
 					className={styles.inputCont}
@@ -39,7 +62,7 @@ export const MainSection = () => {
 			</FlexRow>
 			<FlexRow className={styles.checkboxRow}>
 				<ControlledCheckbox
-					name='use_reg'
+					name='use_widget_reg'
 					label='Включить виджет регистрации на стороннем сайте'
 					type='checkbox'
 					className={styles.checkbox}
@@ -57,11 +80,16 @@ export const MainSection = () => {
 					<strong>Внимание: </strong>на стороннем сайте должен быть разрешен показ содержимого
 					iframe!
 				</p>
-				<ControlledInput name='reg_frame' isTextarea height='113px' className={styles.inputCont} />
+				<ControlledInput
+					name='widget_reg_code'
+					isTextarea
+					height='113px'
+					className={styles.inputCont}
+				/>
 			</FlexRow>
 			<FlexRow className={styles.checkboxRow}>
 				<ControlledCheckbox
-					name='use_lend'
+					name='use_create_land'
 					label='Создать лэндинг события'
 					type='checkbox'
 					className={styles.checkbox}
@@ -73,13 +101,15 @@ export const MainSection = () => {
 				<FlexRow className={styles.selectRow}>
 					<ControlledSelect
 						label='Выбор графической схемы'
-						name='color_list'
+						name='color_schema'
 						isRequired
-						selectOptions={[{ label: 'Не выбрано', value: '0' }]}
+						selectOptions={colorList ?? [{ label: 'Не выбрано', value: '0' }]}
 						className={styles.selectSchema}
 					/>
 					<a href='#'>Посмотреть пример графической схемы</a>
-					<a href='#'>Подтвердить выбор</a>
+					<a href='#' onClick={saveHandler}>
+						Подтвердить выбор
+					</a>
 				</FlexRow>
 				<p className={cn(styles.desc, styles.marginDesc)}>
 					Код лэндинга события создается системой автоматически. Для того, чтобы разместить лэндинг,

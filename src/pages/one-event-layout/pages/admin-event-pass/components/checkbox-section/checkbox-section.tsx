@@ -21,14 +21,14 @@ export const CheckboxSection = () => {
 				<FlexRow className={styles.valuesRow}>
 					<FlexRow className={styles.statusesRow}>
 						<ControlledCheckbox
-							name='check1'
+							name='use_tech_conditions'
 							type='checkbox'
 							label={'Согласованы'}
 							className={styles.check}
 							circle
 						/>
 						<ControlledCheckbox
-							name='check2'
+							name='use_com_conditions'
 							type='checkbox'
 							label={'Согласованы'}
 							className={styles.check}
@@ -38,7 +38,7 @@ export const CheckboxSection = () => {
 					<FlexRow className={styles.statusesRow}>
 						<FlexRow className={styles.specialRow}>
 							<ControlledCheckbox
-								name='check3'
+								name='use_paid'
 								type='checkbox'
 								customLabel={
 									<p>
@@ -56,7 +56,7 @@ export const CheckboxSection = () => {
 							</p>
 						</FlexRow>
 						<ControlledCheckbox
-							name='check4'
+							name='use_docs'
 							type='checkbox'
 							customLabel={
 								<p>

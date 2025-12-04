@@ -604,3 +604,46 @@ export type EventSaleStat = {
 		}
 	}
 }
+
+export type EventPlacementData = {
+	use_widget_event: boolean
+	widget_event_code: string
+	use_widget_reg: boolean
+	widget_reg_code: string
+	use_create_land: boolean
+	landing: string
+	color_schema: SelOption[]
+}
+
+export type EventWidget = {
+	widget_event_code: string
+}
+
+export type EventWidgetReg = {
+	widget_reg_code: string
+}
+
+export type EventPassElement = {
+	id: string
+	inspector: string
+	area: string
+	login: string
+	password: string
+}
+
+export type EventPassResponse = {
+	control_list: SelOption[]
+	auto_list: SelOption[]
+	turniketsCount: string
+	manual_list: SelOption[]
+	inspectorsCount: string
+	passTable: EventPassElement[]
+	use_tech_conditions: boolean
+	use_com_conditions: boolean
+	use_paid: boolean
+	paidCount: string
+	use_docs: boolean
+	signed: string
+	ready: string
+	inWork: string
+}

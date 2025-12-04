@@ -1,28 +1,48 @@
 import styles from './index.module.scss'
+import { useCallback, type FC } from 'react'
+import { toast } from 'react-toastify'
 import { AdminSection } from 'src/components/admin-section/admin-section'
 import { CustomTable } from 'src/components/custom-table/custom-table'
 import { RowController } from 'src/components/row-controller/row-controller'
+import { useCopyToClipboard } from 'src/hooks/copyClipboard/useCopy'
+import { type EventPassElement } from 'src/types/events'
 import { CopyRowPassSVG } from 'src/UI/icons/copyRowPassSVG'
 import { EditRowPassSVG } from 'src/UI/icons/editRowPassSVG'
 
-type EventPass = {
-	id: string
-	inspector: string
-	area: string
-	login: string
-	password: string
+type TableSectionProps = {
+	content: EventPassElement[]
 }
 
-export const TableSection = () => {
+export const TableSection: FC<TableSectionProps> = ({ content }) => {
 	const tableTitlesSales = ['№', 'Инспектор', 'Зона пропуска', 'Логин', 'Пароль', '']
+	const copyToClipboard = useCopyToClipboard()
 	const editRow = () => {
 		console.log('edit')
 	}
-	const copyRow = () => {
-		console.log('copied')
-	}
+	const copyRow = useCallback(
+		async (id: string) => {
+			const pass = content?.find((passEl) => passEl.id === id)
 
-	const formatObjectsTableData = (passes: EventPass[]) => {
+			if (!pass) {
+				console.error('Pass not found')
+				return
+			}
+
+			const textToCopy = `имя: ${pass.inspector}, логин: ${pass.login}, пароль: ${pass.password}`
+
+			try {
+				await copyToClipboard(textToCopy)
+				console.log('Скопировано в буфер обмена:', textToCopy)
+				toast.success('Данные скопированы в буфер обмена')
+			} catch (err) {
+				console.error('Ошибка при копировании:', err)
+				toast.error('Ошибка копирования')
+			}
+		},
+		[content, copyToClipboard],
+	)
+
+	const formatObjectsTableData = (passes: EventPassElement[]) => {
 		return (
 			passes?.map((passEl) => {
 				return {
@@ -54,32 +74,12 @@ export const TableSection = () => {
 	}
 	return (
 		<AdminSection isBlock={false} className={styles.tableSection}>
-			<h3 className={styles.title}>Сгенерирован доступ для выбранного числа инспекторов (3)</h3>
+			<h3
+				className={styles.title}
+			>{`Сгенерирован доступ для выбранного числа инспекторов (${content.length})`}</h3>
 			<CustomTable
 				className={styles.passesTable}
-				rowData={formatObjectsTableData([
-					{
-						id: '1',
-						inspector: 'Афанасий',
-						area: 'Главный вход',
-						login: 'ins_a2477',
-						password: 'qrq!017jTTdae1+',
-					},
-					{
-						id: '2',
-						inspector: 'Афанасий',
-						area: 'Главный вход',
-						login: 'ins_a2477',
-						password: 'qrq!017jTTdae1+',
-					},
-					{
-						id: '3',
-						inspector: 'Афанасий',
-						area: 'Главный вход',
-						login: 'ins_a2477',
-						password: 'qrq!017jTTdae1+',
-					},
-				])}
+				rowData={formatObjectsTableData(content)}
 				colTitles={tableTitlesSales}
 			/>
 		</AdminSection>
