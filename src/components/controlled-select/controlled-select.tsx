@@ -62,6 +62,7 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 				values={[selectOptions[0]]}
 				onChange={(values) => onChange(values[0]?.value)}
 				disabled={disabled}
+				className={cn({ [styles.disabled]: disabled })}
 			/>
 			{dynamicError && <p className={styles.warningMessage}>{dynamicError.message}</p>}
 			{errors[name] && (

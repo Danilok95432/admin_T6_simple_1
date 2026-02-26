@@ -53,6 +53,7 @@ export enum AdminRoute {
 	AdminEventLists = 'event-lists',
 	AdminEventStatistic = 'event-statistic',
 	AdminEventPlacement = 'event-placement',
+	AdminLocationsList = 'locations-list',
 	LogEnters = 'log-enters',
 	OnePersonStatistic = 'person-statistic',
 	LogServices = 'log-services',

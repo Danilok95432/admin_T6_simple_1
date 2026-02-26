@@ -57,7 +57,7 @@ import { AdminEventsLayout } from 'src/pages/events-list/admin-events-layout'
 import { CiclesList } from 'src/pages/events-list/components/cicles-list/cicles-list'
 import { CicleInfo } from 'src/pages/events-list/components/cicles-list/components/cicle-info/cicle-info'
 import { CiclesTable } from 'src/pages/events-list/components/cicles-list/components/cicle-table/cicles-table'
-import { AdminEventProgramsLayout } from 'src/pages/one-event-layout/pages/admin-event-program/layout/program/admin-event-programs-layout'
+import { AdminEventProgramsLayout } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-program/admin-event-programs-layout'
 import { VisitorsEventLayout } from 'src/pages/one-event-layout/pages/admin-event-visitors/visitors-event-layout'
 import { OneTicket } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/registrations-page/components/one-ticket/one-ticket'
 import { AdminEventContentLayout } from 'src/pages/one-event-layout/pages/admin-event-content/admin-event-content-layout'
@@ -68,8 +68,8 @@ import { AdminEventRules } from 'src/pages/one-event-layout/pages/admin-event-co
 import { AdminEventNews } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-news/admin-event-news'
 import { AdminEventVideos } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-videos/admin-event-videos'
 import { AdminProgramLayout } from 'src/pages/one-event-layout/pages/admin-event-program/admin-program-layout'
-import { ProgramElements } from 'src/pages/one-event-layout/pages/admin-event-program/layout/program/components/program-elements/program-elements'
-import { OneProgram } from 'src/pages/one-event-layout/pages/admin-event-program/layout/program/components/one-program/one-program'
+import { ProgramElements } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-program/components/program-elements/program-elements'
+import { OneProgram } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-program/components/one-program/one-program'
 import { AdminEventParticipantsLayout } from 'src/pages/one-event-layout/pages/admin-event-program/layout/participants/admin-event-participants-layout'
 import { SettingsEventLayout } from 'src/pages/one-event-layout/pages/admin-event-settings/settings-event-layout'
 import { RegistrationPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/registration-page/registration-page'
@@ -121,11 +121,24 @@ import { OrgRefund } from 'src/pages/admin-org/pages/org-finances/layout/org-ref
 import { AdminEventPass } from 'src/pages/one-event-layout/pages/admin-event-pass/admin-event-pass'
 import { RegistrationsElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/registrations-page/components/registrations-elements/registrations-elements'
 import { RegistrationsPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/registrations-page/registrations-page'
+import { LocationsList } from 'src/pages/events-list/components/locations-list/locations-list'
+import { LocationsTable } from 'src/pages/events-list/components/locations-list/components/location-table/location-table'
+import { LocationInfo } from 'src/pages/events-list/components/locations-list/components/location-info/location-info'
 
 export const AdminRoutes: FC = () => {
 	return (
 		<Routes>
 			<Route path='/' element={<AdminLayout />}>
+				<Route path={AdminRoute.AdminNews} element={<AdminNewsLayout />}>
+					<Route path={AdminRoute.AdminNewsList} element={<NewsLayout />}>
+						<Route index element={<NewsList />} />
+						<Route path=':id' element={<OneNews />} />
+					</Route>
+					<Route path={AdminRoute.AdminVideosList} element={<VideosLayout />}>
+						<Route index element={<VideosList />} />
+						<Route path=':id' element={<OneVideo />} />
+					</Route>
+				</Route>
 				<Route path={AdminRoute.AdminExpressEvent} element={<AdminExpressEventLayout />}>
 					<Route path={AdminRoute.ExpressMain} element={<StepMain />} />
 					<Route path={AdminRoute.ExpressInfo} element={<StepInfo />} />
@@ -198,6 +211,10 @@ export const AdminRoutes: FC = () => {
 						<Route index element={<CiclesTable />} />
 						<Route path=':id' element={<CicleInfo />} />
 					</Route>
+					<Route path={AdminRoute.AdminLocationsList} element={<LocationsList />}>
+						<Route index element={<LocationsTable />} />
+						<Route path=':id' element={<LocationInfo />} />
+					</Route>
 				</Route>
 
 				<Route path={AdminRoute.AdminEvent} element={<OneEventLayout />}>
@@ -227,17 +244,15 @@ export const AdminRoutes: FC = () => {
 						<Route path={`${AdminRoute.AdminEventRules}`} element={<AdminEventRules />} />
 						<Route path={`${AdminRoute.AdminEventNews}`} element={<AdminEventNews />} />
 						<Route path={`${AdminRoute.AdminEventVideos}`} element={<AdminEventVideos />} />
-						<Route path={`${AdminRoute.AdminEventProgram}/:id`} element={<AdminProgramLayout />}>
+						<Route
+							path={`${AdminRoute.AdminEventProgram}/:id`}
+							element={<AdminEventProgramsLayout />}
+						>
+							<Route index element={<ProgramElements />} />
 							<Route
-								path={`${AdminRoute.AdminEventSubEvents}`}
-								element={<AdminEventProgramsLayout />}
-							>
-								<Route index element={<ProgramElements />} />
-								<Route
-									path={`${AdminRoute.AdminEventOneProgram}/:programId`}
-									element={<OneProgram />}
-								/>
-							</Route>
+								path={`${AdminRoute.AdminEventOneProgram}/:programId`}
+								element={<OneProgram />}
+							/>
 							<Route
 								path={`${AdminRoute.Participants}`}
 								element={<AdminEventParticipantsLayout />}

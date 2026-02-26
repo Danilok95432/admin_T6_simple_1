@@ -55,7 +55,7 @@ export const EventsTable: FC = () => {
 					</p>,
 					<p className={cn({ 'hidden-cell': eventEl.hidden })} key='1'>
 						{typeof eventEl.date === 'string'
-							? formatDateToYYYYMMDD(eventEl.date)
+							? formatDateToYYYYMMDD(eventEl.date, '-', 2)
 							: mainFormatDate(eventEl.date[0])}
 					</p>,
 					<p className={cn({ 'hidden-cell': eventEl.hidden })} key='2'>

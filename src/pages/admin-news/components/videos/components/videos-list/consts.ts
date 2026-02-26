@@ -11,9 +11,4 @@ export const VideosElementsFiltrationInputs: FilterTableInput[] = [
 		placeholder: 'дата',
 		type: 'date',
 	},
-	{
-		name: 'tags',
-		placeholder: 'искать по тегам',
-		type: 'text',
-	},
 ]

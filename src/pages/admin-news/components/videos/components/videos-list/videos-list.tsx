@@ -19,8 +19,8 @@ import { Loader } from 'src/components/loader/loader'
 import { RowController } from 'src/components/row-controller/row-controller'
 import { TableFooter } from 'src/components/table-footer/table-footer'
 import { GridRow } from 'src/components/grid-row/grid-row'
-import { MainCheckBox } from 'src/UI/MainCheckBox/MainCheckBox'
-import { CheckMarkSvg } from 'src/UI/icons/checkMarkSVG'
+// import { MainCheckBox } from 'src/UI/MainCheckBox/MainCheckBox'
+// import { CheckMarkSvg } from 'src/UI/icons/checkMarkSVG'
 
 import styles from './index.module.scss'
 
@@ -42,7 +42,7 @@ export const VideosList = () => {
 		return newIdResponse.id
 	}
 
-	const tableTitles = ['Наименование', 'Дата', 'Ключевая', '']
+	const tableTitles = ['Наименование', 'Дата', '']
 	const formatObjectsTableData = (videosData: VideoItem[]) => {
 		return videosData.map((videosEl) => {
 			return {
@@ -57,13 +57,13 @@ export const VideosList = () => {
 					<p className={cn({ 'hidden-cell': videosEl.hidden })} key='1'>
 						{mainFormatDate(videosEl.date)}
 					</p>,
-					<MainCheckBox
-						key='2'
-						checked={videosEl.key}
-						disabled={true}
-						svgNode={<CheckMarkSvg />}
-						className={styles.checkBoxWrapperVideos}
-					/>,
+					// <MainCheckBox
+					// 	key='2'
+					// 	checked={videosEl.key}
+					// 	disabled={true}
+					// 	svgNode={<CheckMarkSvg />}
+					// 	className={styles.checkBoxWrapperVideos}
+					// />,
 					<RowController
 						id={videosEl.id}
 						hideHandler={rowHideHandler}

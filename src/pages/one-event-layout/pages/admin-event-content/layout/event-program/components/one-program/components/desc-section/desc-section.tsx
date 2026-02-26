@@ -4,7 +4,7 @@ import { InfoIconSvg } from 'src/UI/icons/infoIcon'
 
 import styles from './index.module.scss'
 import { QuillEditor } from 'src/components/quill-editor/quill-editor'
-import { ReactDropzone } from 'src/components/react-dropzone/react-dropzone'
+// import { ReactDropzone } from 'src/components/react-dropzone/react-dropzone'
 import { type ImageItemWithText } from 'src/types/photos'
 import { type FC } from 'react'
 
@@ -27,7 +27,7 @@ export const DescSection: FC<DescSectionProps> = ({ photo }) => {
 					<InfoIconSvg />
 				</Tooltip>
 			</div>
-			<div className={styles.inputWrapperTextArea}>
+			{/* <div className={styles.inputWrapperTextArea}>
 				<QuillEditor
 					name='rules'
 					label='Краткие правила *'
@@ -51,7 +51,7 @@ export const DescSection: FC<DescSectionProps> = ({ photo }) => {
 					fileImages={photo}
 					isProgram
 				/>
-			</div>
+			</div> */}
 		</AdminSection>
 	)
 }

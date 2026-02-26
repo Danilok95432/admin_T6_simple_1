@@ -13,12 +13,12 @@ import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
 import { useGetSubEventInfoQuery, useSaveSubEventInfoMutation } from 'src/store/events/events.api'
 import { type ProgramInputs, programSchema } from './schema'
 import { MainSection } from './components/main-section/main-section'
-import { SelectSection } from './components/select-section/select-section'
+// import { SelectSection } from './components/select-section/select-section'
 import { DescSection } from './components/desc-section/desc-section'
-import { AdditionalSection } from './components/additional-section/additional-section'
+// import { AdditionalSection } from './components/additional-section/additional-section'
 import { FlexRow } from 'src/components/flex-row/flex-row'
 import { useEffect, useState } from 'react'
-import { DocsSection } from './components/docs-section/docs-section'
+// import { DocsSection } from './components/docs-section/docs-section'
 import {
 	booleanToNumberString,
 	currentDateString,
@@ -141,7 +141,7 @@ export const OneProgram = () => {
 	return (
 		<div className={styles.onePartnerPage}>
 			<Link
-				to={`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventProgram}/${id}/${AdminRoute.AdminEventSubEvents}`}
+				to={`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventContent}/${id}/${AdminRoute.AdminEventProgram}/${id}`}
 				className={adminStyles.adminReturnLink}
 			>
 				Возврат к списку подсобытий
@@ -156,14 +156,14 @@ export const OneProgram = () => {
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
 						<MainSection />
-						<SelectSection
+						{/* <SelectSection
 							vidList={programInfo?.vids_list}
 							regList={programInfo?.reg_list}
 							ageList={programInfo?.age_list}
-						/>
-						<AdditionalSection organizatorsList={programInfo?.organizators_list} />
+						/> */}
+						{/* <AdditionalSection organizatorsList={programInfo?.organizators_list} /> */}
 						<DescSection photo={programInfo?.photo} />
-						<DocsSection />
+						{/* <DocsSection /> */}
 						<FlexRow $margin='0 0 40px 0' $maxWidth='1140px' $justifyContent='space-between'>
 							<FlexRow>
 								<AdminButton as='button' type='submit' onClick={() => setAction('save')}>
@@ -180,7 +180,7 @@ export const OneProgram = () => {
 							</FlexRow>
 							<AdminButton
 								as='route'
-								to={`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventProgram}/${id}/${AdminRoute.AdminEventSubEvents}`}
+								to={`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventContent}/${id}/${AdminRoute.AdminEventProgram}/${id}`}
 								$variant='cancel'
 							>
 								Отменить изменения
@@ -190,7 +190,7 @@ export const OneProgram = () => {
 				</FormProvider>
 			</Container>
 			<Link
-				to={`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventProgram}/${id}/${AdminRoute.AdminEventSubEvents}`}
+				to={`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventContent}/${id}/${AdminRoute.AdminEventProgram}/${id}`}
 				className={adminStyles.adminReturnLink}
 			>
 				Возврат к списку подсобытий

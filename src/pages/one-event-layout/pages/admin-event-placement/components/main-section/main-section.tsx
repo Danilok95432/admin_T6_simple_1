@@ -1,39 +1,76 @@
 import { AdminSection } from 'src/components/admin-section/admin-section'
 import styles from './index.module.scss'
-import { ControlledCheckbox } from 'src/components/controlled-checkbox/controlled-checkbox'
-import { FlexRow } from 'src/components/flex-row/flex-row'
-import { ControlledInput } from 'src/components/controlled-input/controlled-input'
-import { ReactDropzoneFiles } from 'src/components/react-dropzone-files/react-dropzone-files'
-import cn from 'classnames'
 import { ControlledSelect } from 'src/components/controlled-select/controlled-select'
 import { type SelOption } from 'src/types/select'
 import { type FC } from 'react'
-import { useSaveColorLandingChoiceMutation } from 'src/store/events/events.api'
+import { useSaveDomainLandingChoiceMutation } from 'src/store/events/events.api'
 import { useParams } from 'react-router-dom'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { type PlacementInputs } from '../../schema'
+import { AdminButton } from 'src/UI/AdminButton/AdminButton'
+import { toast } from 'react-toastify'
 
 type MainSectionProps = {
 	colorList?: SelOption[]
+	domainList?: SelOption[]
 }
 
-export const MainSection: FC<MainSectionProps> = ({ colorList = [{ label: '', value: '' }] }) => {
+export const MainSection: FC<MainSectionProps> = ({
+	colorList = [{ label: '', value: '' }],
+	domainList = [{ label: '', value: '' }],
+}) => {
 	const { id = '' } = useParams()
 	const { control } = useFormContext<PlacementInputs>()
-	const colorChoice = useWatch({
+	// const colorChoice = useWatch({
+	// 	control,
+	// 	name: 'color_schema',
+	// })
+	const domainChoice = useWatch({
 		control,
-		name: 'color_schema',
+		name: 'domain_list',
 	})
-	const [saveColorChoice] = useSaveColorLandingChoiceMutation()
-	const saveHandler = async () => {
+	// const [saveColorChoice] = useSaveColorLandingChoiceMutation()
+	const [saveDomainChoice] = useSaveDomainLandingChoiceMutation()
+	// const saveHandler = async () => {
+	// 	const formData = new FormData()
+	// 	formData.append('id_event', id)
+	// 	formData.append('id_color_schema', String(colorChoice))
+	// 	await saveColorChoice(formData)
+	// }
+	const saveDomain = async () => {
 		const formData = new FormData()
-		formData.append('id_event', id)
-		formData.append('id_color_schema', String(colorChoice))
-		await saveColorChoice(formData)
+		formData.append('id', id)
+		formData.append('id_domain', String(domainChoice))
+		try {
+			await saveDomainChoice(formData)
+			toast.success('Поддомен сохранен')
+		} catch (err) {
+			console.error('Ошибка при сохранении:', err)
+			toast.error('Ошибка сохранения')
+		}
 	}
+
 	return (
 		<AdminSection isBlock={false} className={styles.titleSectionInner}>
-			<FlexRow className={styles.checkboxRow}>
+			<ControlledSelect
+				label='Выбор поддомена'
+				name='domain_list'
+				isRequired
+				selectOptions={domainList ?? [{ label: 'Не выбрано', value: '0' }]}
+				disabled={domainList[0].label !== 'Поддомен не выбран'}
+				className={styles.selectSchema}
+				margin='0 0 15px 0'
+			/>
+			<AdminButton
+				as='button'
+				$height='40px'
+				$margin='0 0 20px 0'
+				onClick={saveDomain}
+				$variant={domainList[0].label !== 'Поддомен не выбран' ? 'disabled' : 'primary'}
+			>
+				Сохранить выбор поддомена
+			</AdminButton>
+			{/* <FlexRow className={styles.checkboxRow}>
 				<ControlledCheckbox
 					name='use_widget_event'
 					label='Включить виджет события на стороннем сайте'
@@ -128,7 +165,7 @@ export const MainSection: FC<MainSectionProps> = ({ colorList = [{ label: '', va
 					label='Архив лэндинга (скачайте для размещения)'
 					className={styles.inputCont}
 				/>
-			</FlexRow>
+			</FlexRow> */}
 		</AdminSection>
 	)
 }

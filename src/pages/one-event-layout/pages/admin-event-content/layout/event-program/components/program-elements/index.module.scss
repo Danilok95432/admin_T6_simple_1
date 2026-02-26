@@ -4,13 +4,9 @@
 	.searchRow {
 		grid-template-columns:
 			minmax(372px, 2.35fr)
-      minmax(130px, 0.8fr)
-      minmax(372px, 2.35fr)
-			minmax(150px, 1fr)
 			minmax(120px, 0.7fr)
 			minmax(100px, 0.5fr)
       minmax(100px, 0.5fr)
-      minmax(150px, 1fr)
 			minmax(50px, 0.2fr);
 		@media (max-width: 1600px) {
 			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -23,13 +19,9 @@
 	.programTable {
 		grid-template-columns:
 			minmax(372px, 2.35fr)
-      minmax(130px, 0.8fr)
-      minmax(372px, 2.35fr)
-			minmax(150px, 1fr)
 			minmax(120px, 0.7fr)
 			minmax(100px, 0.5fr)
       minmax(100px, 0.5fr)
-      minmax(150px, 1fr)
 			minmax(50px, 0.2fr);
 		.priorityBox {
 			width: 50px;

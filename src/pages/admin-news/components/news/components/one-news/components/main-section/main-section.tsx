@@ -14,7 +14,6 @@ import styles from './index.module.scss'
 import { GallerySection } from './components/gallery-section/gallery-section'
 import { useParams } from 'react-router-dom'
 import { ControlledSelect } from 'src/components/controlled-select/controlled-select'
-import { ControlledMultipleSelect } from 'src/components/controlled-multiple-select/controlled-multiple-select'
 
 type MainSectionProps = {
 	galleryOptions?: SelOption[]
@@ -58,17 +57,9 @@ export const MainSection: FC<MainSectionProps> = ({
 				selectOptions={chainedEvent ?? [{ label: 'Выберите событие', value: '0' }]}
 				margin='0 0 20px 0'
 			/>
-			<ControlledMultipleSelect
-				name='vidslist'
-				label='Связанные виды'
-				selectOptions={chainedVids ?? [{ label: 'Выберите вид', value: '0', selected: false }]}
-				placeholder='Выберите виды'
-				margin='0 0 20px 0'
-			/>
-			<ControlledInput name='relatedNews' label='Связанная новость' margin='0 0 20px 0' />
 			<ControlledInput
 				name='short'
-				label='Краткое описание (анонс новости)'
+				label='Анонс новости'
 				isTextarea
 				height='200px'
 				margin='0 0 20px 0'

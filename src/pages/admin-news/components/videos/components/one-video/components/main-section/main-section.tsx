@@ -9,7 +9,6 @@ import { ReactDropzone } from 'src/components/react-dropzone/react-dropzone'
 
 import adminStyles from 'src/routes/admin-layout/index.module.scss'
 import { ControlledSelect } from 'src/components/controlled-select/controlled-select'
-import { ControlledMultipleSelect } from 'src/components/controlled-multiple-select/controlled-multiple-select'
 import { type MultiSelOption, type SelOption } from 'src/types/select'
 
 type MainSectionProps = {
@@ -42,13 +41,6 @@ export const MainSection: FC<MainSectionProps> = ({ photo, chainedVids, chainedE
 				name='events'
 				label='Связанное событие'
 				selectOptions={chainedEvent ?? [{ label: 'Выберите событие', value: '0' }]}
-				margin='0 0 20px 0'
-			/>
-			<ControlledMultipleSelect
-				name='objlist'
-				label='Связанные виды'
-				selectOptions={chainedVids ?? [{ label: 'Выберите виды', value: '0', selected: false }]}
-				placeholder='Выберите виды'
 				margin='0 0 20px 0'
 			/>
 			<ControlledInput

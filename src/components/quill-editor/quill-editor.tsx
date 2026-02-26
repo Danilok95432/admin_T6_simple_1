@@ -13,6 +13,7 @@ interface QuillEditorProps extends Omit<ControllerProps, 'render'> {
 	rules?: ControllerProps['rules']
 	dynamicError?: FieldError | undefined
 	label?: string
+	className?: string
 }
 
 type StyledEditorWrapperProps = {
@@ -138,6 +139,7 @@ export const QuillEditor: FC<QuillEditorProps & StyledEditorWrapperProps> = ({
 	$heightEditor,
 	$maxWidth,
 	$width,
+	className,
 	...rest
 }) => {
 	const {
@@ -196,7 +198,12 @@ export const QuillEditor: FC<QuillEditorProps & StyledEditorWrapperProps> = ({
 	}, [])
 
 	return (
-		<StyledEditorWrapper $heightEditor={$heightEditor} $maxWidth={$maxWidth} $width={$width}>
+		<StyledEditorWrapper
+			$heightEditor={$heightEditor}
+			$maxWidth={$maxWidth}
+			$width={$width}
+			className={className}
+		>
 			{label && <label>{label}</label>}
 			<Controller
 				name={name}

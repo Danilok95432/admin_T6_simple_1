@@ -41,6 +41,7 @@ export const TitleSection: FC<TitleSectionProps> = ({
 				</Tooltip>
 			</div>
 
+			{/*
 			<div className={styles.inputWrapper}>
 				<ControlledSelect
 					name='objects_list'
@@ -58,6 +59,7 @@ export const TitleSection: FC<TitleSectionProps> = ({
 					<InfoIconSvg />
 				</Tooltip>
 			</div>
+			*/}
 
 			<CustomText $margin='0 0 5px 0' $fontWeight='600'>
 				Тип события *
@@ -75,7 +77,7 @@ export const TitleSection: FC<TitleSectionProps> = ({
 					/>
 				</GridRow>
 				*/}
-				<FlexRow $margin='0 0 20px 0' className={styles.typeLevelWrapper}>
+				<FlexRow $margin='0 0 0px 0' className={styles.typeLevelWrapper}>
 					<ControlledSelect
 						name='event_types_list'
 						selectOptions={eventTypesList ?? [{ label: 'Не выбрано', value: '0' }]}
@@ -85,7 +87,7 @@ export const TitleSection: FC<TitleSectionProps> = ({
 					<InfoIconSvg />
 				</Tooltip>
 			</div>
-
+			{/*
 			<div className={styles.inputWrapper}>
 				<ControlledSelect
 					name='cicles'
@@ -97,6 +99,7 @@ export const TitleSection: FC<TitleSectionProps> = ({
 					<InfoIconSvg />
 				</Tooltip>
 			</div>
+			*/}
 		</AdminSection>
 	)
 }

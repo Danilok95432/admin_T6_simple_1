@@ -9,8 +9,4 @@ export const newsTabs: TabNavigationItem[] = [
 		title: 'Видеолента',
 		link: 'videos-list',
 	},
-	{
-		title: 'Заявки',
-		link: 'requests-list',
-	},
 ]

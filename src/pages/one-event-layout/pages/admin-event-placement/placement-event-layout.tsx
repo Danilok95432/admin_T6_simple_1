@@ -86,7 +86,10 @@ export const PlacementEventLayout = () => {
 				<h2>Размещение события в сети</h2>
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-						<MainSection colorList={placementData?.color_schema} />
+						<MainSection
+							colorList={placementData?.color_schema}
+							domainList={placementData?.domains_list}
+						/>
 						{/*
 							<FlexRow>
 							<AdminButton

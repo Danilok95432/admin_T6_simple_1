@@ -88,6 +88,7 @@ export const eventsApi = createApi({
 		'EventLanding',
 		'EventSaveColorLanding',
 		'EventPass',
+		'EventSaveDomainLanding',
 	],
 	baseQuery: baseQueryWithReauth,
 	endpoints: (build) => ({
@@ -890,6 +891,14 @@ export const eventsApi = createApi({
 			}),
 			invalidatesTags: ['EventSaveColorLanding'],
 		}),
+		saveDomainLandingChoice: build.mutation<string, FieldValues>({
+			query: (FormData) => ({
+				url: `events/save_settings_publication_domain`,
+				method: 'POST',
+				body: FormData,
+			}),
+			invalidatesTags: ['EventSaveDomainLanding'],
+		}),
 		// <--------------- Пропуск --------------->
 		getEventPass: build.query<EventPassResponse, string>({
 			query: (id) => ({
@@ -986,4 +995,5 @@ export const {
 	useSaveColorLandingChoiceMutation,
 	useGetEventPassQuery,
 	useSaveEventPassMutation,
+	useSaveDomainLandingChoiceMutation,
 } = eventsApi

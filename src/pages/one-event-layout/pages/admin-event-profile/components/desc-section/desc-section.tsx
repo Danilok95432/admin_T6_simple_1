@@ -10,6 +10,7 @@ import styles from './index.module.scss'
 import { Tooltip } from 'src/components/tooltip/Tooltip'
 import { InfoIconSvg } from 'src/UI/icons/infoIcon'
 import { QuillEditor } from 'src/components/quill-editor/quill-editor'
+import { AdminRoute } from 'src/routes/admin-routes/consts'
 
 type DescSectionProps = {
 	ageList?: SelOption[]
@@ -32,7 +33,7 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 					<InfoIconSvg />
 				</Tooltip>
 			</div>
-
+			{/*
 			<div className={styles.inputWrapperTextArea}>
 				<QuillEditor
 					name='fullinfo'
@@ -46,7 +47,7 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 					<InfoIconSvg />
 				</Tooltip>
 			</div>
-
+			*/}
 			<div className={styles.inputWrapperTextArea}>
 				<QuillEditor
 					name='conditions'
@@ -89,7 +90,10 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 			</div>
 
 			<p className={styles.placeRequest}>
-				Если площадки нет в списке, Вы можете <a href='#'>запросить добавление новой площадки</a>
+				Если площадки нет в списке, Вы можете{' '}
+				<a href={`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminLocationsList}/1`}>
+					запросить добавление новой площадки
+				</a>
 			</p>
 		</AdminSection>
 	)

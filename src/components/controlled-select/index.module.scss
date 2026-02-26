@@ -7,13 +7,19 @@
 		font-weight: 600;
 		display: block;
 		font-family: 'Open Sans', sans-serif;
-		margin-bottom: 5px;
+		margin-bottom: 7px;
 		.reqStar {
-			color: #01A7B4;
+			color: #01a7b4;
 			margin-left: 4px;
 			font-weight: 600;
 			font-size: 14px;
 		}
+	}
+
+	.disabled {
+		background-color: #afafaf6c;
+		outline: 1px solid #afafaf;
+		background-blend-mode: luminosity;
 	}
 
 	:global {
@@ -54,7 +60,7 @@
 		font-family: 'Open Sans', sans-serif;
 		margin-bottom: 5px;
 		.reqStar {
-			color: #01A7B4;
+			color: #01a7b4;
 			margin-left: 4px;
 			font-weight: 600;
 			font-size: 20px;
@@ -95,3 +101,4 @@
 	line-height: 1;
 	padding-top: 5px;
 }
+

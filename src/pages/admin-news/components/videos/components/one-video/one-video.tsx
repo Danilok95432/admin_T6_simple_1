@@ -15,8 +15,8 @@ import { SwitchedShowSvg } from 'src/UI/icons/switchedShowSVG'
 import { AdminControllers } from 'src/components/admin-controllers/admin-controllers'
 import { AdminRoute } from 'src/routes/admin-routes/consts'
 import { MainSection } from './components/main-section/main-section'
-import { SwitchedKeyNewsSvg } from 'src/UI/icons/switchedKeyNewsSVG'
-import { SwitchedDefaultNewsSvg } from 'src/UI/icons/switchedDefaultNewsSVG'
+// import { SwitchedKeyNewsSvg } from 'src/UI/icons/switchedKeyNewsSVG'
+// import { SwitchedDefaultNewsSvg } from 'src/UI/icons/switchedDefaultNewsSVG'
 
 import styles from './index.module.scss'
 
@@ -96,7 +96,7 @@ export const OneVideo = () => {
 								/>
 							</div>
 							<div className={styles.oneVideoContentRight}>
-								<SwitchedRadioBtns
+								{/* <SwitchedRadioBtns
 									name='key'
 									label='Ключевая запись'
 									$variant='keySwitcher'
@@ -112,7 +112,7 @@ export const OneVideo = () => {
 											Обычное
 										</>
 									}
-								/>
+								/> */}
 								<SwitchedRadioBtns
 									name='hidden'
 									label='Спрятать'

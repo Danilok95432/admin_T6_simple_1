@@ -42,17 +42,7 @@ export const ProgramElements = () => {
 		return newIdResponse.id
 	}
 
-	const tableTitles = [
-		'Название подсобытия',
-		'Тип',
-		'Вид',
-		'Регистрация',
-		'Дата',
-		'Начало',
-		'Окончание',
-		'Локация',
-		'',
-	]
+	const tableTitles = ['Пункт программы', 'Дата', 'Начало', 'Окончание', '']
 
 	const formatObjectsTableData = (programData: EventSubEvent[]) => {
 		return programData.map((programEl) => {
@@ -66,33 +56,21 @@ export const ProgramElements = () => {
 						{programEl.title}
 					</p>,
 					<p className={cn({ 'hidden-cell': programEl.hidden })} key='1'>
-						{programEl.type}
-					</p>,
-					<p className={cn({ 'hidden-cell': programEl.hidden })} key='2'>
-						{programEl.vid_name}
-					</p>,
-					<p className={cn({ 'hidden-cell': programEl.hidden })} key='3'>
-						{programEl.use_reg ? 'Обязательна' : 'Отключена'}
-					</p>,
-					<p className={cn({ 'hidden-cell': programEl.hidden })} key='4'>
 						{typeof programEl.date === 'string'
 							? formatDateToYYYYMMDD(programEl.date, '.', 2)
 							: mainFormatDate(programEl.date[0])}
 					</p>,
-					<p className={cn({ 'hidden-cell': programEl.hidden })} key='5'>
+					<p className={cn({ 'hidden-cell': programEl.hidden })} key='2'>
 						{formatTimeToTable(programEl.begin_time as string | null | undefined)}
 					</p>,
-					<p className={cn({ 'hidden-cell': programEl.hidden })} key='6'>
+					<p className={cn({ 'hidden-cell': programEl.hidden })} key='3'>
 						{formatTimeToTable(programEl.end_time)}
-					</p>,
-					<p className={cn({ 'hidden-cell': programEl.hidden })} key='7'>
-						{programEl.place}
 					</p>,
 					<RowController
 						id={programEl.id}
 						hideHandler={rowHideHandler}
 						removeHandler={rowDeleteHandler}
-						textOfHidden='Скрыть подсобытие'
+						textOfHidden='Скрыть программу'
 						key='4'
 					/>,
 				],

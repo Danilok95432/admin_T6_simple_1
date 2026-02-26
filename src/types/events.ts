@@ -613,6 +613,7 @@ export type EventPlacementData = {
 	use_create_land: boolean
 	landing: string
 	color_schema: SelOption[]
+	domains_list: SelOption[]
 }
 
 export type EventWidget = {
