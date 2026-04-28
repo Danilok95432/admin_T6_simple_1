@@ -82,7 +82,7 @@ export const FormInput: React.FC<TextInputProps> = ({
 	const [showOptions, setShowOptions] = useState(false)
 	const fieldValue = watch(name)
 	const shouldRaiseLabel = isFocused || fieldValue?.length > 0
-	const [accepted, setAccepted] = useState<boolean>(false)
+	const [, setAccepted] = useState<boolean>(false)
 
 	const [getCode] = useGetRegistrationCodeMutation()
 
