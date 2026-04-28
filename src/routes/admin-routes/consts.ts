@@ -102,4 +102,6 @@ export enum AdminRoute {
 	OrgIncome = 'income',
 	OrgReqRefund = 'req-refund',
 	OrgRefund = 'refund',
+	OrgFond = 'fond',
+	OrgDocs = 'docs',
 }

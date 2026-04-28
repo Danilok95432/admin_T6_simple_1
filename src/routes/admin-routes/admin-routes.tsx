@@ -88,13 +88,8 @@ import { PaymentsPage } from 'src/pages/one-event-layout/pages/admin-event-setti
 import { StatisticGatesPage } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/gates-page/gates-page'
 import { SMSPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sms-page/sms-page'
 import { SMSElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sms-page/components/sms-elements/sms-elements'
-import { AdminOrgLayout } from 'src/pages/admin-org/admin-org-layout'
 import { AdminGuestsLayout } from 'src/pages/admin-guests/admin-guests-layout'
 import { AdminStatisticLayout } from 'src/pages/admin-statistic/admin-statistic-layout'
-import { OrgInfo } from 'src/pages/admin-org/pages/org-info/org-info'
-import { OrgFinances } from 'src/pages/admin-org/pages/org-finances/org-finances'
-import { OrgStatistic } from 'src/pages/admin-org/pages/org-statistic/org-statistic'
-import { OrgProfile } from 'src/pages/admin-org/pages/org-profile/org-profile'
 import { PlacementEventLayout } from 'src/pages/one-event-layout/pages/admin-event-placement/placement-event-layout'
 import { OnePersonStatistic } from 'src/pages/one-event-layout/pages/admin-event-statistic/layout/one-person-statistic/one-person-statistic'
 import { AdminExpressEventLayout } from 'src/pages/admin-express-event/admin-express-event-layout'
@@ -109,21 +104,24 @@ import { EntersListPage } from 'src/pages/one-event-layout/pages/admin-event-vis
 import { EntersListElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/enters-list-page/components/enters-list-elements/enters-list-elements'
 import { SaleStatPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sale-stat-page/sale-stat-page'
 import { SaleStatElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sale-stat-page/components/sale-stat-elements/sale-stat-elements'
-import { InfoElements } from 'src/pages/admin-org/pages/org-info/components/info-elements/info-elements'
-import { OneDocument } from 'src/pages/admin-org/pages/org-info/components/one-document/one-document'
-import { OrgProfileInfo } from 'src/pages/admin-org/pages/org-profile/layout/org-info/org-profile-info'
-import { OrgDetails } from 'src/pages/admin-org/pages/org-profile/layout/org-details/org-details'
-import { OrgAuth } from 'src/pages/admin-org/pages/org-profile/layout/org-auth/org-auth'
-import { OrgFinancesStat } from 'src/pages/admin-org/pages/org-finances/layout/org-finances-stat/org-finances-stat'
-import { OrgIncome } from 'src/pages/admin-org/pages/org-finances/layout/org-income/org-income'
-import { OrgReqRefund } from 'src/pages/admin-org/pages/org-finances/layout/org-req-refund/org-req-refund'
-import { OrgRefund } from 'src/pages/admin-org/pages/org-finances/layout/org-refund/org-refund'
 import { AdminEventPass } from 'src/pages/one-event-layout/pages/admin-event-pass/admin-event-pass'
 import { RegistrationsElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/registrations-page/components/registrations-elements/registrations-elements'
 import { RegistrationsPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/registrations-page/registrations-page'
 import { LocationsList } from 'src/pages/events-list/components/locations-list/locations-list'
 import { LocationsTable } from 'src/pages/events-list/components/locations-list/components/location-table/location-table'
 import { LocationInfo } from 'src/pages/events-list/components/locations-list/components/location-info/location-info'
+import { AdminOrgLayout } from 'src/pages/admin-new-org/admin-org-layout'
+import { OrgProfile } from 'src/pages/admin-new-org/pages/org-profile/org-profile'
+import { OrgProfileInfo } from 'src/pages/admin-new-org/pages/org-profile/layout/org-info/org-profile-info'
+import { OrgAuth } from 'src/pages/admin-new-org/pages/org-profile/layout/org-auth/org-auth'
+import { OrgDetails } from 'src/pages/admin-new-org/pages/org-profile/layout/org-details/org-details'
+import { OrgDocs } from 'src/pages/admin-new-org/pages/org-docs/org-docs'
+import { OrgStatistic } from 'src/pages/admin-new-org/pages/org-statistic/org-statistic'
+import { OrgFinances } from 'src/pages/admin-new-org/pages/org-finances/org-finances'
+import { OrgFinancesStat } from 'src/pages/admin-new-org/pages/org-finances/layout/org-finances-stat/org-finances-stat'
+import { OrgIncome } from 'src/pages/admin-new-org/pages/org-finances/layout/org-income/org-income'
+import { OrgReqRefund } from 'src/pages/admin-new-org/pages/org-finances/layout/org-req-refund/org-req-refund'
+import { OrgRefund } from 'src/pages/admin-new-org/pages/org-finances/layout/org-refund/org-refund'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -146,7 +144,7 @@ export const AdminRoutes: FC = () => {
 					<Route path={AdminRoute.ExpressPasses} element={<StepPass />} />
 					<Route path={AdminRoute.ExpressPlacement} element={<StepPlacement />} />
 				</Route>
-				<Route path={AdminRoute.AdminOrg} element={<AdminOrgLayout />}>
+				{/* <Route path={AdminRoute.AdminOrg} element={<AdminOrgLayout />}>
 					<Route path={AdminRoute.OrgInfo} element={<OrgInfo />}>
 						<Route index element={<InfoElements />} />
 						<Route path=':id' element={<OneDocument />} />
@@ -156,6 +154,21 @@ export const AdminRoutes: FC = () => {
 						<Route path={AdminRoute.OrgAuth} element={<OrgAuth />} />
 						<Route path={AdminRoute.OrgDetails} element={<OrgDetails />} />
 					</Route>
+					<Route path={AdminRoute.OrgStatistic} element={<OrgStatistic />} />
+					<Route path={AdminRoute.OrgFinances} element={<OrgFinances />}>
+						<Route path={AdminRoute.OrgStat} element={<OrgFinancesStat />} />
+						<Route path={AdminRoute.OrgIncome} element={<OrgIncome />} />
+						<Route path={AdminRoute.OrgReqRefund} element={<OrgReqRefund />} />
+						<Route path={AdminRoute.OrgRefund} element={<OrgRefund />} />
+					</Route>
+				</Route> */}
+				<Route path={AdminRoute.AdminOrg} element={<AdminOrgLayout />}>
+					<Route path={AdminRoute.OrgFond} element={<OrgProfile />}>
+						<Route path={AdminRoute.OrgInfo} element={<OrgProfileInfo />} />
+						<Route path={AdminRoute.OrgAuth} element={<OrgAuth />} />
+						<Route path={AdminRoute.OrgDetails} element={<OrgDetails />} />
+					</Route>
+					<Route path={AdminRoute.OrgDocs} element={<OrgDocs />} />
 					<Route path={AdminRoute.OrgStatistic} element={<OrgStatistic />} />
 					<Route path={AdminRoute.OrgFinances} element={<OrgFinances />}>
 						<Route path={AdminRoute.OrgStat} element={<OrgFinancesStat />} />

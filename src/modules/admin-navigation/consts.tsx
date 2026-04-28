@@ -13,7 +13,7 @@ export const adminMenuItems: NavigationItem[] = [
 	{
 		title: 'Организатор',
 		icon: <AdminOrgIconSVG />,
-		link: 'org/info',
+		link: 'org/fond/info',
 	},
 	{
 		title: 'Новости',
