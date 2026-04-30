@@ -22,7 +22,7 @@ type GallerySectionProps = {
 export const GallerySection: FC<GallerySectionProps> = ({ images, idItem }) => {
 	const [localeImages, setLocaleImages] = useState<ImageItemWithText[]>(images ?? [])
 	const { refetch: getNewId } = useGetNewIdImageQuery({
-		imgtype: 'pages_fond_gallery',
+		imgtype: 'pages_org_gallery',
 		idItem,
 	})
 
@@ -53,7 +53,7 @@ export const GallerySection: FC<GallerySectionProps> = ({ images, idItem }) => {
 		openModal(
 			<ImageModal
 				id={newId}
-				imgtype='pages_fond_gallery'
+				imgtype='pages_org_gallery'
 				syncAddHandler={syncAddImagesHandler}
 				syncEditHandler={syncEditImagesHandler}
 			/>,
@@ -77,7 +77,7 @@ export const GallerySection: FC<GallerySectionProps> = ({ images, idItem }) => {
 			fileImages={localeImages}
 			syncAdd={syncAddImagesHandler}
 			syncEdit={syncEditImagesHandler}
-			imgtype='pages_fond_gallery'
+			imgtype='pages_org_gallery'
 			dzAreaClassName={styles.eventGalleryController}
 			multiple
 			customOpenModal={

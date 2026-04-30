@@ -13,7 +13,7 @@ import { transformToFormData } from 'src/helpers/utils'
 import { useGetHeaderEditQuery, useSaveHeaderMutation } from 'src/store/pages/pages.api'
 
 export const OrgProfileInfo = () => {
-	const { data: headerData } = useGetHeaderEditQuery('fond')
+	const { data: headerData } = useGetHeaderEditQuery('org')
 	const [saveHeader] = useSaveHeaderMutation()
 	const [, setAction] = useState<'apply' | 'save'>('apply')
 
@@ -27,7 +27,7 @@ export const OrgProfileInfo = () => {
 	const onSubmit: SubmitHandler<OrgProfileInputs> = async (data) => {
 		const newData = {
 			...data,
-			page_type: 'fond',
+			page_type: 'org',
 		}
 		try {
 			const res = await saveHeader(transformToFormData(newData))

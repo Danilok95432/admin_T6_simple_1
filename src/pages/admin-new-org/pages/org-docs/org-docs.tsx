@@ -21,7 +21,7 @@ type DocsSectionProps = {
 }
 
 export const OrgDocs: FC<DocsSectionProps> = ({ files = [] }) => {
-	const { data: headerData } = useGetHeaderEditQuery('fond')
+	const { data: headerData } = useGetHeaderEditQuery('org')
 	const methods = useForm<EventContentInputs>({
 		mode: 'onBlur',
 		resolver: yupResolver(eventContentSchema),

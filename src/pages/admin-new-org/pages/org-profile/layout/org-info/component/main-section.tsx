@@ -61,7 +61,7 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 				accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 				margin='0 0 20px'
 				previewVariant='sm-img'
-				imgtype='pages_fond'
+				imgtype='pages_org'
 				fileImages={photo}
 				className={styles.dropzone}
 			/>

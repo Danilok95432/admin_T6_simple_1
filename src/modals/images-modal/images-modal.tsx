@@ -1,6 +1,5 @@
-import { imageSchema, type ImagesInputs } from './schema'
+import { type ImagesInputs } from './schema'
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
 
 import { useActions } from 'src/hooks/actions/actions'
 import { ControlledInput } from 'src/components/controlled-input/controlled-input'
@@ -70,7 +69,6 @@ export const ImageModal: FC<ImageModalProps> = ({
 		: []
 	const methods = useForm<ImagesInputs>({
 		mode: 'onBlur',
-		resolver: yupResolver(imageSchema),
 	})
 
 	const { isSent, markAsSent } = useIsSent(methods.control)
@@ -133,14 +131,14 @@ export const ImageModal: FC<ImageModalProps> = ({
 							label='Название изображения *'
 							placeholder='Добавьте название'
 							margin='0 0 20px 0'
-							disabled={!(imageArr?.length > 0)}
+							disabled
 						/>
 						<ControlledInput
 							name='author'
 							label='Автор изображения'
 							placeholder='Добавьте имя автора'
 							margin='0 0 20px 0'
-							disabled={!(imageArr?.length > 0)}
+							disabled
 						/>
 						<ReactDropzone
 							name='thumbnail'

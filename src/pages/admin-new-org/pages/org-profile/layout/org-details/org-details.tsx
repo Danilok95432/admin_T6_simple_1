@@ -18,7 +18,7 @@ import { ControlledCheckbox } from 'src/components/controlled-checkbox/controlle
 
 export const OrgDetails = () => {
 	const [, setAction] = useState<'apply' | 'save'>('apply')
-	const { data: reqData } = useGetFondDetailsQuery('')
+	const { data: reqData } = useGetFondDetailsQuery('org')
 	const [saveDetails] = useSaveFondDetailsMutation()
 	const passStatus = true
 
