@@ -27,4 +27,7 @@ export type SiteSettingsResponse = {
 	email: string
 	vk: string
 	title: string
+	rutube: string
+	address: string
+	certificate: string
 }

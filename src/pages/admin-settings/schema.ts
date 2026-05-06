@@ -15,6 +15,9 @@ export type SettingsInputs = {
 	vk: string
 	title: string
 	copyright: string
+	rutube: string
+	address: string
+	certificate: string
 }
 
 export const defaultMainBlocksValues = {

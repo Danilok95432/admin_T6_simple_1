@@ -28,7 +28,7 @@ export const MainSection: FC<MainSectionProps> = ({ partnerTypes = [], partnersL
 				Введите часть названия партнера и выберите из предложенного системой списка
 			</CustomText>
 			<CustomText $fontSize='14px' $fontWeight='600' $margin='0 0 18px'>
-				Виды партнерства (возможен выбор нескольких видов)
+				Где показывать партнера
 			</CustomText>
 			<FlexRow $margin='0 0 40px' $direction='row' $gap='45px'>
 				<PartnerEventTypesSection partnerTypes={partnerTypes} />

@@ -13,6 +13,15 @@ export const FooterSection = () => {
 				placeholder='Международная премия имени Александра Беляева'
 				margin='0 0 20px 0'
 			/>
+			<ControlledInput name='address' label='Адрес' placeholder='Адрес' margin='0 0 20px 0' />
+			<ControlledInput
+				name='certificate'
+				label='Сертификат'
+				placeholder='Сертификат'
+				margin='0 0 20px 0'
+				isTextarea
+				height='150px'
+			/>
 		</AdminSection>
 	)
 }

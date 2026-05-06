@@ -21,6 +21,12 @@ export const ContactsSection = () => {
 				margin='0 0 20px 0'
 			/>
 			<ControlledInput name='vk' label='Адрес ВК' placeholder='Адрес ВК' margin='0 0 20px 0' />
+			<ControlledInput
+				name='rutube'
+				label='Адрес RuTube'
+				placeholder='Адрес RuTube'
+				margin='0 0 20px 0'
+			/>
 		</AdminSection>
 	)
 }
