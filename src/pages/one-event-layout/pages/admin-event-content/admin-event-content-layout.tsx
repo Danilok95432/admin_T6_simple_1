@@ -26,6 +26,10 @@ export const AdminEventContentLayout = () => {
 			title: 'Программа',
 			link: `/event/event-content/${id}/event-program/${id}`,
 		},
+		{
+			title: 'Частые вопросы',
+			link: `/event/event-content/${id}/event-faq/${id}`,
+		},
 	]
 
 	return (

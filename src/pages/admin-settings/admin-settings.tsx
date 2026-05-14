@@ -36,9 +36,6 @@ export const AdminSettings: FC = () => {
 	const onSubmit: SubmitHandler<SettingsInputs> = async (data) => {
 		const formData = new FormData()
 		formData.append('isShowPromo', booleanToNumberString(data.isShowPromo))
-		formData.append('isShowBtnRequest', booleanToNumberString(data.isShowBtnRequest))
-		formData.append('isShowBtnBel', booleanToNumberString(data.isShowBtnBel))
-		formData.append('isShowBtnRasp', booleanToNumberString(data.isShowBtnRasp))
 		formData.append('isShowNews', booleanToNumberString(data.isShowNews))
 		formData.append('isShowHistory', booleanToNumberString(data.isShowHistory))
 		formData.append('isShowInfo', booleanToNumberString(data.isShowInfo))

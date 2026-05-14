@@ -122,6 +122,9 @@ import { OrgFinancesStat } from 'src/pages/admin-new-org/pages/org-finances/layo
 import { OrgIncome } from 'src/pages/admin-new-org/pages/org-finances/layout/org-income/org-income'
 import { OrgReqRefund } from 'src/pages/admin-new-org/pages/org-finances/layout/org-req-refund/org-req-refund'
 import { OrgRefund } from 'src/pages/admin-new-org/pages/org-finances/layout/org-refund/org-refund'
+import { EventFaqLayout } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-faq/event-faq-layout'
+import { EventFaqQuestionsElements } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-faq/components/questions-elements/questions-elements'
+import { EventFaqQuestion } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-faq/components/question/question'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -269,6 +272,13 @@ export const AdminRoutes: FC = () => {
 							<Route
 								path={`${AdminRoute.Participants}`}
 								element={<AdminEventParticipantsLayout />}
+							/>
+						</Route>
+						<Route path={`${AdminRoute.AdminEventFaq}/:id`} element={<EventFaqLayout />}>
+							<Route index element={<EventFaqQuestionsElements />} />
+							<Route
+								path={`${AdminRoute.AdminEventOneQuestion}/:questionId`}
+								element={<EventFaqQuestion />}
 							/>
 						</Route>
 					</Route>

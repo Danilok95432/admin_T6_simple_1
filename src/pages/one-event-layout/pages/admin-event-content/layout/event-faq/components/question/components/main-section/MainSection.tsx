@@ -3,6 +3,7 @@ import { type SelOption } from 'src/types/select'
 
 import { AdminSection } from 'src/components/admin-section/admin-section'
 import { ControlledInput } from 'src/components/controlled-input/controlled-input'
+import { ControlledSelect } from 'src/components/controlled-select/controlled-select'
 
 import styles from './index.module.scss'
 
@@ -13,12 +14,12 @@ type MainSectionProps = {
 export const MainSection: FC<MainSectionProps> = ({ chapterOptions }) => {
 	return (
 		<AdminSection isBlock={false} className={styles.oneQuestionInputsSection}>
-			{/* <ControlledSelect
-				name='chapter'
+			<ControlledSelect
+				name='faq_cats'
 				label='Выберите раздел'
 				selectOptions={chapterOptions ?? [{ label: 'Не выбран', value: '0' }]}
 				margin='0 0 20px 0'
-			/> */}
+			/>
 			<ControlledInput
 				name='title'
 				label='Введите вопрос *'

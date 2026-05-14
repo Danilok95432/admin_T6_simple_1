@@ -14,24 +14,6 @@ export const MainBlocksSection = () => {
 				type='checkbox'
 			/>
 			<ControlledCheckbox
-				name='isShowBtnRequest'
-				label='Показать кнопку "Подать заявку"'
-				$margin='0 0 20px 0'
-				type='checkbox'
-			/>
-			<ControlledCheckbox
-				name='isShowBtnBel'
-				label='Показать кнопку "Посетить Белфест"'
-				$margin='0 0 20px 0'
-				type='checkbox'
-			/>
-			<ControlledCheckbox
-				name='isShowBtnRasp'
-				label='Показать кнопку "Открыть расписание"'
-				$margin='0 0 20px 0'
-				type='checkbox'
-			/>
-			<ControlledCheckbox
 				name='isShowNews'
 				label='Показать блок «Новости»'
 				$margin='0 0 20px 0'

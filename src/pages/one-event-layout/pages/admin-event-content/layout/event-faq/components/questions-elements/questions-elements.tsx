@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import { type FaqItem } from 'src/types/faq'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import cn from 'classnames'
 import {
 	useDeleteQuestionByIdMutation,
@@ -18,9 +18,10 @@ import { AdminContent } from 'src/components/admin-content/admin-content'
 
 import styles from './index.module.scss'
 
-export const QuestionsElements: FC = () => {
-	const { data: faqInfoData, isLoading } = useGetAllFaqQuery({ idEvent: '0' })
-	const { refetch: getNewId } = useGetNewIdFaqQuery({ idEvent: '0' })
+export const EventFaqQuestionsElements: FC = () => {
+	const { id = '' } = useParams()
+	const { data: faqInfoData, isLoading } = useGetAllFaqQuery({ idEvent: id })
+	const { refetch: getNewId } = useGetNewIdFaqQuery({ idEvent: id })
 	const [deleteQuestionById] = useDeleteQuestionByIdMutation()
 	const [hideQuestionById] = useHideQuestionByIdMutation()
 
@@ -60,13 +61,13 @@ export const QuestionsElements: FC = () => {
 		await hideQuestionById(id)
 	}
 
-	const rowClickHandler = (id: string) => {
-		navigate(`/frequent-questions/question/${id}`)
+	const rowClickHandler = (stringId: string) => {
+		navigate(`/event/event-content/${id}/event-faq/${id}/one-question/${stringId}`)
 	}
 
 	const handleAddQuestionClick = async () => {
 		const newId = await addQuestion()
-		navigate(`/frequent-questions/question/${newId}`)
+		navigate(`/event/event-content/${id}/event-faq/${id}/one-question/${newId}`)
 	}
 
 	if (isLoading || !faqInfoData?.faq) return <Loader />
@@ -74,10 +75,7 @@ export const QuestionsElements: FC = () => {
 	return (
 		<AdminContent
 			$backgroundColor='#ffffff'
-			$height='786px'
-			$padding='30px 0'
-			link='/'
-			hasBottomLink
+			$padding='0'
 			className={styles.questionsPageContent}
 			classNameLink={styles.questionsPageLinks}
 		>

@@ -1,3 +1,5 @@
+import { type SelOption } from './select'
+
 export type FaqItem = {
 	id: string
 	title: string
@@ -17,4 +19,6 @@ export type FaqInfoResponse = {
 	title: string
 	content: string
 	hidden: boolean
+	faq_cats: SelOption[]
+	faq_cats_id: string
 }

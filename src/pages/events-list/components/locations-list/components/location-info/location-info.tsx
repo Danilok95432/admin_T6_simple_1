@@ -101,7 +101,7 @@ export const LocationInfo = () => {
 				</form>
 			</FormProvider>
 			<Link
-				to={`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminCiclesList}`}
+				to={`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminLocationsList}`}
 				className={adminStyles.adminReturnLink}
 			>
 				Возврат к списку площадок

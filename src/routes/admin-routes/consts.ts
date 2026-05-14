@@ -20,6 +20,8 @@ export enum AdminRoute {
 	AdminFunRules = 'fun-rules',
 	AdminObjects = 'objects',
 	AdminObject = 'object',
+	AdminEventFaq = 'event-faq',
+	AdminEventOneQuestion = 'one-question',
 	AdminObjInfo = 'object-info',
 	AdminObjNews = 'object-news',
 	AdminObjHistory = 'object-history',
