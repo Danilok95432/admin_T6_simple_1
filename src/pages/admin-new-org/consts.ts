@@ -7,8 +7,13 @@ export const orgTabs: TabNavigationItem[] = [
 		indexLink: `/org/fond/info`,
 	},
 	{
-		title: 'Документы организатора',
+		title: 'Документы',
 		link: `/org/docs`,
 		indexLink: `/org/docs`,
+	},
+	{
+		title: 'Финансы',
+		link: `/org/finances/stat`,
+		indexLink: `/org/finances/stat`,
 	},
 ]

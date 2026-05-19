@@ -22,14 +22,19 @@ import { formatDateToYYYYMMDD, formatTimeToTable, mainFormatDate } from 'src/hel
 import { useAppSelector } from 'src/hooks/store'
 import { getFiltrationValues } from 'src/modules/table-filtration/store/table-filtration.selectors'
 import { Loader } from 'src/components/loader/loader'
+import { useState } from 'react'
 
 export const ProgramElements = () => {
 	const { id = '' } = useParams()
 	const filterValues = useAppSelector(getFiltrationValues)
+	const [currentPage, setCurrentPage] = useState(1)
+	const [itemsPerPage, setItemsPerPage] = useState<number | 'all'>(100)
 
 	const { data: programDataResponse, isLoading } = useGetSubEventsByEventIdQuery({
 		idEvent: id,
 		title: filterValues.title,
+		limit: itemsPerPage === 'all' ? undefined : itemsPerPage,
+		page: itemsPerPage === 'all' ? undefined : currentPage,
 	})
 	const { refetch: getNewId } = useGetNewSubEventIdQuery(id)
 	const [deletePartnerById] = useDeleteSubEventByIdMutation()
@@ -78,6 +83,16 @@ export const ProgramElements = () => {
 		})
 	}
 
+	const handlePageChange = (newPage: number) => {
+		setCurrentPage(newPage)
+	}
+
+	const handleItemsPerPageChange = (value: string) => {
+		const newValue = value === 'all' ? 'all' : parseInt(value)
+		setItemsPerPage(newValue)
+		setCurrentPage(1)
+	}
+
 	const rowDeleteHandler = async (id: string) => {
 		await deletePartnerById(id)
 	}
@@ -111,7 +126,14 @@ export const ProgramElements = () => {
 			/>
 			<TableFooter
 				className={styles.tableFooterProgramWrapper}
-				totalElements={programDataResponse?.sub_events.length}
+				totalElements={Number(programDataResponse?.total)}
+				currentPage={currentPage}
+				totalPages={Math.ceil(
+					Number(programDataResponse.total) /
+						(itemsPerPage === 'all' ? Number(programDataResponse.total) : itemsPerPage),
+				)}
+				onPageChange={handlePageChange}
+				onLimitChange={handleItemsPerPageChange}
 				addClickHandler={handleAddPartnerClick}
 				addText='Добавить пособытие'
 			/>

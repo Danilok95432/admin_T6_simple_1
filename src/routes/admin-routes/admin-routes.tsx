@@ -125,6 +125,7 @@ import { OrgRefund } from 'src/pages/admin-new-org/pages/org-finances/layout/org
 import { EventFaqLayout } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-faq/event-faq-layout'
 import { EventFaqQuestionsElements } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-faq/components/questions-elements/questions-elements'
 import { EventFaqQuestion } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-faq/components/question/question'
+import { AdminEventDocsContent } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-docs/event-docs'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -281,6 +282,10 @@ export const AdminRoutes: FC = () => {
 								element={<EventFaqQuestion />}
 							/>
 						</Route>
+						<Route
+							path={`${AdminRoute.AdminEventDocsContent}/:id`}
+							element={<AdminEventDocsContent />}
+						/>
 					</Route>
 					<Route path={`${AdminRoute.AdminEventProgram}/:id`} element={<AdminProgramLayout />}>
 						<Route

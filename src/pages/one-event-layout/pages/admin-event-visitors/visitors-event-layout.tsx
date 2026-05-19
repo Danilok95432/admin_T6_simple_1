@@ -26,18 +26,18 @@ export const VisitorsEventLayout = () => {
 			title: 'Сводка продаж',
 			link: `/event/event-lists/${id}/sales`,
 		},
-		{
-			title: 'Наплывы',
-			link: `/event/event-lists/${id}/naplivi`,
-		},
+		// {
+		// 	title: 'Наплывы',
+		// 	link: `/event/event-lists/${id}/naplivi`,
+		// },
 		{
 			title: 'Статистика SMS',
 			link: `/event/event-lists/${id}/sms`,
 		},
-		{
-			title: 'Агентский баланс',
-			link: `/event/event-lists/${id}/balance`,
-		},
+		// {
+		// 	title: 'Агентский баланс',
+		// 	link: `/event/event-lists/${id}/balance`,
+		// },
 	]
 
 	return (

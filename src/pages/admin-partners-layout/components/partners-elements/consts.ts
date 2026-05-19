@@ -7,13 +7,8 @@ export const PartnerElementsFiltrationInputs: FilterTableInput[] = [
 		type: 'text',
 	},
 	{
-		name: 'partner_vids',
-		placeholder: 'искать по виду организации',
-		type: 'text',
-	},
-	{
 		name: 'partner_types',
-		placeholder: 'искать по типу партнерства',
+		placeholder: 'искать по отображению',
 		type: 'text',
 	},
 ]

@@ -27,7 +27,6 @@ export const PartnersElements: FC = () => {
 
 	const { data: partnersInfoData, isLoading } = useGetAllPartnersQuery({
 		title: filterValues.title,
-		partnerVids: filterValues.partner_vids,
 		partnerTypes: filterValues.partner_types,
 	})
 	const { refetch: getNewId } = useGetNewIdPartnerQuery(null)
@@ -41,14 +40,7 @@ export const PartnersElements: FC = () => {
 		return newIdResponse.id
 	}
 
-	const tableTitles = [
-		'Наименование',
-		'События',
-		'Вид организации',
-		'Тип партнерства',
-		'Очередность',
-		'',
-	]
+	const tableTitles = ['Наименование', 'События', 'Отображение', 'Очередность', '']
 	const formatObjectsTableData = (partnersData: PartnerItem[]) => {
 		return partnersData.map((partnerEl) => {
 			return {
@@ -60,15 +52,12 @@ export const PartnersElements: FC = () => {
 					<p className={cn({ 'hidden-cell': partnerEl.hidden }, styles.eventCount)} key='1'>
 						{partnerEl.events_count}
 					</p>,
-					<p className={cn({ 'hidden-cell': partnerEl.hidden })} key='3'>
-						{partnerEl.partner_vids}
-					</p>,
-					<p className={cn({ 'hidden-cell': partnerEl.hidden })} key='4'>
+					<p className={cn({ 'hidden-cell': partnerEl.hidden })} key='2'>
 						{partnerEl.partner_types}
 					</p>,
 					<input
 						className={cn({ 'hidden-cell': partnerEl.hidden }, styles.priorityBox)}
-						key='5'
+						key='3'
 						type='text'
 						value={partnerEl.sortid}
 						onChange={(e) =>
@@ -84,7 +73,7 @@ export const PartnersElements: FC = () => {
 						hideHandler={rowHideHandler}
 						removeHandler={rowDeleteHandler}
 						textOfHidden='Скрыть партнёра'
-						key='3'
+						key='4'
 					/>,
 				],
 			}

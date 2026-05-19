@@ -52,7 +52,7 @@ export const OrgProfileInfo = () => {
 							photo={headerData?.page.mainphoto}
 							photos={headerData?.page.photoGallery}
 						/>
-						<AdminControllers variant='5' isSent={isSent} actionHandler={setAction} />
+						<AdminControllers variant='4' isSent={isSent} outLink={`/`} actionHandler={setAction} />
 					</form>
 				</FormProvider>
 			</Container>

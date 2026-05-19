@@ -9,6 +9,8 @@ import { useFormContext, useWatch } from 'react-hook-form'
 import { type PlacementInputs } from '../../schema'
 import { AdminButton } from 'src/UI/AdminButton/AdminButton'
 import { toast } from 'react-toastify'
+import { FlexRow } from 'src/components/flex-row/flex-row'
+import { CustomDisclaimer } from 'src/components/custom-disclaimer/custom-disclaimer'
 
 type MainSectionProps = {
 	colorList?: SelOption[]
@@ -27,7 +29,7 @@ export const MainSection: FC<MainSectionProps> = ({
 	// })
 	const domainChoice = useWatch({
 		control,
-		name: 'domain_list',
+		name: 'domains_list',
 	})
 	// const [saveColorChoice] = useSaveColorLandingChoiceMutation()
 	const [saveDomainChoice] = useSaveDomainLandingChoiceMutation()
@@ -37,12 +39,33 @@ export const MainSection: FC<MainSectionProps> = ({
 	// 	formData.append('id_color_schema', String(colorChoice))
 	// 	await saveColorChoice(formData)
 	// }
+
+	const normalizeExternalUrl = (url?: string) => {
+		if (!url) return ''
+
+		if (url.startsWith('http://') || url.startsWith('https://')) {
+			return url
+		}
+
+		return `https://${url}`
+	}
+
+	const landingHref =
+		domainList[0]?.label !== 'Поддомен не выбран' ? normalizeExternalUrl(domainList[0]?.label) : ''
+
 	const saveDomain = async () => {
+		if (!domainChoice) {
+			toast.error('Выберите поддомен')
+			return
+		}
+
 		const formData = new FormData()
 		formData.append('id', id)
 		formData.append('id_domain', String(domainChoice))
+
 		try {
-			await saveDomainChoice(formData)
+			await saveDomainChoice(formData).unwrap()
+
 			toast.success('Поддомен сохранен')
 		} catch (err) {
 			console.error('Ошибка при сохранении:', err)
@@ -52,24 +75,46 @@ export const MainSection: FC<MainSectionProps> = ({
 
 	return (
 		<AdminSection isBlock={false} className={styles.titleSectionInner}>
-			<ControlledSelect
-				label='Выбор поддомена'
-				name='domain_list'
-				isRequired
-				selectOptions={domainList ?? [{ label: 'Не выбрано', value: '0' }]}
-				disabled={domainList[0].label !== 'Поддомен не выбран'}
-				className={styles.selectSchema}
-				margin='0 0 15px 0'
-			/>
-			<AdminButton
-				as='button'
-				$height='40px'
-				$margin='0 0 20px 0'
-				onClick={saveDomain}
-				$variant={domainList[0].label !== 'Поддомен не выбран' ? 'disabled' : 'primary'}
-			>
-				Сохранить выбор поддомена
-			</AdminButton>
+			<CustomDisclaimer className={styles.disc}>
+				<p>
+					Выбранный и сохраненный поддомен нельзя изменить самостоятельно. Обратитесь к оператору{' '}
+					<a href={`mailto:info@npotau.ru`}>технической поддержки</a>
+				</p>
+			</CustomDisclaimer>
+			<FlexRow className={styles.placementRow}>
+				<ControlledSelect
+					label='Выбор поддомена'
+					name='domains_list'
+					isRequired
+					selectOptions={domainList ?? [{ label: 'Не выбрано', value: '0' }]}
+					disabled={domainList[0].label !== 'Поддомен не выбран'}
+					className={styles.selectSchema}
+					margin='0 0 15px 0'
+				/>
+				<AdminButton
+					as='button'
+					$height='40px'
+					$margin='0 0 20px 0'
+					onClick={saveDomain}
+					$variant={domainList[0].label !== 'Поддомен не выбран' ? 'disabled' : 'primary'}
+				>
+					Сохранить выбор поддомена
+				</AdminButton>
+				<a
+					className={`${styles.link} ${!landingHref ? styles.linkDisabled : ''}`}
+					href={landingHref || undefined}
+					target={landingHref ? '_blank' : undefined}
+					rel={landingHref ? 'noreferrer' : undefined}
+					aria-disabled={!landingHref}
+					onClick={(event) => {
+						if (!landingHref) {
+							event.preventDefault()
+						}
+					}}
+				>
+					Перейти на лендинг события
+				</a>
+			</FlexRow>
 			{/* <FlexRow className={styles.checkboxRow}>
 				<ControlledCheckbox
 					name='use_widget_event'

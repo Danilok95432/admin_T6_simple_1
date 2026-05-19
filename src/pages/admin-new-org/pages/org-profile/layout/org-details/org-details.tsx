@@ -92,7 +92,12 @@ export const OrgDetails = () => {
 								/>
 								<OrgMainInfoSection checked={typeValue} />
 								<OrgAdditionalInfoSection dirOptions={reqData?.positionDir} />
-								<AdminControllers variant='5' isSent={isSent} actionHandler={setAction} />
+								<AdminControllers
+									variant='4'
+									isSent={isSent}
+									outLink={`/`}
+									actionHandler={setAction}
+								/>
 							</>
 						) : (
 							<FlexRow className={styles.passRow}>

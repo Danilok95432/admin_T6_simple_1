@@ -1,4 +1,5 @@
 import { type FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { AdminButton } from 'src/UI/AdminButton/AdminButton'
 
@@ -33,6 +34,7 @@ export const AdminControllers: FC<AdminControllersProps> = ({
 	actionHandler,
 	...props
 }) => {
+	const navigate = useNavigate()
 	const renderButtonsVariant = (variant: AdminControllersProps['variant']) => {
 		switch (variant) {
 			case '1':
@@ -119,7 +121,12 @@ export const AdminControllers: FC<AdminControllersProps> = ({
 							type='submit'
 							$variant='light'
 							$height='40px'
-							onClick={() => actionHandler('save')}
+							onClick={() => {
+								actionHandler('save')
+								if (outLink) {
+									navigate(outLink)
+								}
+							}}
 						>
 							Сохранить и выйти
 						</AdminButton>

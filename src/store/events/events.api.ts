@@ -291,13 +291,15 @@ export const eventsApi = createApi({
 		}),
 		getSubEventsByEventId: build.query<
 			EventSubEventsResponse,
-			{ idEvent: string | undefined; title?: string }
+			{ idEvent: string | undefined; title?: string; limit?: number; page?: number }
 		>({
-			query: ({ idEvent, title }) => ({
+			query: ({ idEvent, title, limit, page }) => ({
 				url: `sub_events/list`,
 				params: {
 					id_event: idEvent,
 					title,
+					limit,
+					page,
 				},
 			}),
 			providesTags: ['Events', 'SubEvent'],

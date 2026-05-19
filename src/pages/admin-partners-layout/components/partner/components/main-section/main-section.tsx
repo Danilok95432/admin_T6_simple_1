@@ -5,6 +5,10 @@ import { AdminSection } from 'src/components/admin-section/admin-section'
 import { ControlledInput } from 'src/components/controlled-input/controlled-input'
 import { ReactDropzone } from 'src/components/react-dropzone/react-dropzone'
 import { type ImageItemWithText } from 'src/types/photos'
+import { CustomText } from 'src/components/custom-text/custom-text'
+import { FlexRow } from 'src/components/flex-row/flex-row'
+import { Disclaimer } from './components/disclaimer/disclaimer'
+import { PartnerTypesSection } from './components/partnerTypes/partnerTypes'
 
 type MainSectionProps = {
 	partnerVids?: PartnerCheckBoxesInfo[]
@@ -27,13 +31,6 @@ export const MainSection: FC<MainSectionProps> = ({
 				margin='0 0 20px 0'
 			/>
 			{/* <CustomText $fontSize='14px' $fontWeight='600' $margin='0 0 18px'>
-				Виды партнерства (возможен выбор нескольких видов)
-			</CustomText>
-			<FlexRow $margin='0 0 40px' $direction='row' $gap='45px'>
-				<PartnerVidsSection partnerVids={partnerVids} />
-				<Disclaimer />
-			</FlexRow>
-			<CustomText $fontSize='14px' $fontWeight='600' $margin='0 0 18px'>
 				Тип организации по роду деятельности (возможен выбор нескольких типов)
 			</CustomText>
 			<FlexRow $margin='0 0 40px' $direction='row' $gap='45px'>
@@ -47,6 +44,13 @@ export const MainSection: FC<MainSectionProps> = ({
 				maxWidth='1140px'
 				margin='0 0 40px 0'
 			/>
+			<CustomText $fontSize='14px' $fontWeight='600' $margin='0 0 18px'>
+				Где показывать партнера
+			</CustomText>
+			<FlexRow $margin='0 0 40px' $direction='row' $gap='45px'>
+				<PartnerTypesSection partnerTypes={partnerTypes} />
+				<Disclaimer />
+			</FlexRow>
 			<ReactDropzone
 				label='Логотип партнера *'
 				name='logoPartner'

@@ -25,8 +25,6 @@ import { InfoSection } from './components/info-section/info-section'
 import { PreviewSection } from './components/preview-section/preview-section'
 import { PlacementSection } from './components/placement-section/placement-section'
 import { GallerySection } from './components/gallery-section/gallery-section'
-import { LinksSection } from './components/links-section/links-section'
-import { DocsSection } from './components/docs-section/docs-section'
 
 export const AdminEventContent: FC = () => {
 	const { id = '0' } = useParams()
@@ -69,7 +67,7 @@ export const AdminEventContent: FC = () => {
 
 		eventInfoFormData.append('linksBlock_title', data.linksBlock_title ?? '')
 		eventInfoFormData.append('hide_placements', booleanToNumberString(data.hide_placements))
-		eventInfoFormData.append('hide_gallery', booleanToNumberString(data.hide_gallery))
+		eventInfoFormData.append('hide_gallery', booleanToNumberString(!data.hide_gallery))
 		eventInfoFormData.append('hide_links', booleanToNumberString(data.hide_links))
 		eventInfoFormData.append('hide_documents', booleanToNumberString(data.hide_documents))
 
@@ -98,6 +96,7 @@ export const AdminEventContent: FC = () => {
 	useEffect(() => {
 		if (contentInfoData) {
 			const modifiedContentInfoData = { ...contentInfoData }
+			modifiedContentInfoData.hide_gallery = !contentInfoData.hide_gallery
 			if (modifiedContentInfoData.links) {
 				modifiedContentInfoData.links = modifiedContentInfoData.links.map((link) => {
 					if (link.date === '0000-00-00') {
@@ -117,8 +116,8 @@ export const AdminEventContent: FC = () => {
 					<PreviewSection logo={contentInfoData?.photo} />
 					<PlacementSection />
 					<GallerySection images={contentInfoData?.photos} idItem={id} />
-					<DocsSection files={contentInfoData?.documents} />
-					<LinksSection />
+					{/* <DocsSection files={contentInfoData?.documents} /> */}
+					{/* <LinksSection /> */}
 					<PromoSection images={contentInfoData?.promo} idItem={id} />
 					<InfoSection photo={contentInfoData?.infoblock?.photo} />
 					<AdminControllers

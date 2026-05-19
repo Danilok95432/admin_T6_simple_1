@@ -56,7 +56,9 @@ export const EventFaqQuestion = () => {
 		if (res) {
 			markAsSent(true)
 			if (action === 'save') {
-				navigate(`/${AdminRoute.AdminFrequentQuestions}`)
+				navigate(
+					`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventContent}/${id}/${AdminRoute.AdminEventFaq}/${id}`,
+				)
 			}
 		}
 	}
@@ -115,7 +117,7 @@ export const EventFaqQuestion = () => {
 
 							<AdminControllers
 								variant='4'
-								outLink={`/${AdminRoute.AdminFrequentQuestions}`}
+								outLink={`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventContent}/${id}/${AdminRoute.AdminEventFaq}/${id}`}
 								isSent={isSent}
 								actionHandler={setAction}
 							/>

@@ -51,12 +51,6 @@ export const PlacementEventLayout = () => {
 	})
 
 	useEffect(() => {
-		if (placementData) {
-			methods.reset({ ...(placementData as unknown as PlacementInputs) })
-		}
-	}, [placementData])
-
-	useEffect(() => {
 		if (useWidgetEvent && widgetData?.widget_event_code) {
 			methods.setValue('widget_event_code', widgetData.widget_event_code)
 		}
@@ -80,6 +74,13 @@ export const PlacementEventLayout = () => {
 	const onSubmit: SubmitHandler<PlacementInputs> = async (data) => {
 		console.log(data)
 	}
+
+	useEffect(() => {
+		if (placementData) {
+			methods.reset({ ...placementData })
+		}
+	}, [placementData])
+
 	return (
 		<AdminContent $padding='0' $backgroundColor='#ffffff' className={styles.placementPage}>
 			<Container $padding='35px 35px 55px 35px' $paddingMobile='35px'>

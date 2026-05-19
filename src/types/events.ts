@@ -89,6 +89,7 @@ export type EventSubEventInfoReponse = {
 
 export type EventSubEventsResponse = {
 	sub_events: EventSubEvent[]
+	total: string
 }
 
 export type EventPartnersResponse = {

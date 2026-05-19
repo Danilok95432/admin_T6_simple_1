@@ -9,5 +9,5 @@ export type PlacementInputs = {
 	use_create_land?: boolean
 	landing?: FileUploadRespone | string
 	color_schema?: SelOption[] | string
-	domain_list?: SelOption[] | string
+	domains_list?: SelOption[] | string
 }
