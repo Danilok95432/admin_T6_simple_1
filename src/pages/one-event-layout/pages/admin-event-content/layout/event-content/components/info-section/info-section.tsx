@@ -3,7 +3,7 @@ import { AdminSection } from 'src/components/admin-section/admin-section'
 import { type ImageItemWithText } from 'src/types/photos'
 import { ControlledInput } from 'src/components/controlled-input/controlled-input'
 import { QuillEditor } from 'src/components/quill-editor/quill-editor'
-import { ReactDropzone } from 'src/components/react-dropzone/react-dropzone'
+// import { ReactDropzone } from 'src/components/react-dropzone/react-dropzone'
 import styles from './index.module.scss'
 import { ControlledCheckbox } from 'src/components/controlled-checkbox/controlled-checkbox'
 import { GridRow } from 'src/components/grid-row/grid-row'
@@ -22,7 +22,7 @@ export const InfoSection: FC<InfoSectionProps> = ({ photo = [] }) => {
 				maxWidth='1140px'
 			/>
 			<QuillEditor name='infoblock.short' label='Текст' $heightEditor='250px' $maxWidth='1140px' />
-			<ReactDropzone
+			{/* <ReactDropzone
 				label='Основное изображение'
 				name='infoblock.photo'
 				prompt='PNG, JPG, JPEG. 1000 х1000px, не более 3 Мб'
@@ -31,13 +31,14 @@ export const InfoSection: FC<InfoSectionProps> = ({ photo = [] }) => {
 				previewVariant='sm-img'
 				imgtype='event_infoblock'
 				fileImages={photo}
-			/>
+			/> */}
 			<div className={styles.inputWrapper}>
 				<ControlledCheckbox
 					name='infoblock.reg_participants'
 					label='Включить регистрацию участников'
 					type='checkbox'
 					className={styles.checkbox}
+					$margin='20px 0 0 0'
 				/>
 			</div>
 			<div className={styles.inputWrapper}>

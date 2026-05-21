@@ -193,16 +193,6 @@ export const RegistrationPage: FC = () => {
 					<FlexRow>
 						<AdminButton
 							as='button'
-							$height='40px'
-							$fontSize='14px'
-							$padding='0px 24px'
-							type='submit'
-							onClick={() => setAction('save')}
-						>
-							Сохранить и выйти
-						</AdminButton>
-						<AdminButton
-							as='button'
 							type='submit'
 							$height='40px'
 							$fontSize='14px'
@@ -211,6 +201,16 @@ export const RegistrationPage: FC = () => {
 							onClick={() => setAction('apply')}
 						>
 							Применить и продолжить
+						</AdminButton>
+						<AdminButton
+							as='button'
+							$height='40px'
+							$fontSize='14px'
+							$padding='0px 24px'
+							type='submit'
+							onClick={() => setAction('save')}
+						>
+							Сохранить и выйти
 						</AdminButton>
 					</FlexRow>
 				</form>

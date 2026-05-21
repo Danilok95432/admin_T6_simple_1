@@ -166,9 +166,6 @@ export const OneProgram = () => {
 						{/* <DocsSection /> */}
 						<FlexRow $margin='0 0 40px 0' $maxWidth='1140px' $justifyContent='space-between'>
 							<FlexRow>
-								<AdminButton as='button' type='submit' onClick={() => setAction('save')}>
-									Сохранить и выйти
-								</AdminButton>
 								<AdminButton
 									as='button'
 									type='submit'
@@ -176,6 +173,9 @@ export const OneProgram = () => {
 									onClick={() => setAction('apply')}
 								>
 									Применить и продолжить
+								</AdminButton>
+								<AdminButton as='button' type='submit' onClick={() => setAction('save')}>
+									Сохранить и выйти
 								</AdminButton>
 							</FlexRow>
 							<AdminButton

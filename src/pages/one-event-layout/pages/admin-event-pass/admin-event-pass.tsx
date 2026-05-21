@@ -94,20 +94,20 @@ export const AdminEventPass = () => {
 						<AdminButton
 							as='button'
 							type='submit'
-							$height='40px'
-							$variant={isSent ? 'sent' : 'primary'}
-							onClick={() => setAction('save')}
-						>
-							Сохранить и выйти
-						</AdminButton>
-						<AdminButton
-							as='button'
-							type='submit'
 							$variant='light'
 							$height='40px'
 							onClick={() => setAction('apply')}
 						>
 							{isSent ? 'Изменения сохранены' : 'Применить и продолжить'}
+						</AdminButton>
+						<AdminButton
+							as='button'
+							type='submit'
+							$height='40px'
+							$variant={isSent ? 'sent' : 'primary'}
+							onClick={() => setAction('save')}
+						>
+							Сохранить и выйти
 						</AdminButton>
 						<AdminButton as='link' to={'/'} $variant='cancel' $height='40px'>
 							Отменить изменения
