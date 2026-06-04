@@ -5,7 +5,7 @@ export type SettingsInputs = {
 	isShowBtnRasp: boolean
 	isShowNews: boolean
 	isShowHistory: boolean
-	isShowInfo: boolean
+	isShowOrgs: boolean
 	isShowVideos: boolean
 	isShowEvents: boolean
 	isShowPartners: boolean
@@ -27,7 +27,7 @@ export const defaultMainBlocksValues = {
 	isShowBtnRasp: false,
 	isShowNews: false,
 	isShowHistory: false,
-	isShowInfo: false,
+	isShowOrgs: false,
 	isShowVideos: false,
 	isShowEvents: false,
 	isShowPartners: false,

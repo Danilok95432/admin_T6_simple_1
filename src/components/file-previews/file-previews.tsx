@@ -24,6 +24,7 @@ type FilePreviewsProps = {
 	syncAdd?: (file: ImageItemWithText) => void
 	syncEdit?: (file: ImageItemWithText) => void
 	isPromoModal?: boolean
+	isBigPreview?: boolean
 }
 export const FilePreviews: FC<FilePreviewsProps> = ({
 	files,
@@ -33,6 +34,7 @@ export const FilePreviews: FC<FilePreviewsProps> = ({
 	uploadBtn,
 	isPromoModal = false,
 	imgtype = '',
+	isBigPreview = false,
 	syncAdd,
 	syncEdit,
 }) => {
@@ -47,7 +49,7 @@ export const FilePreviews: FC<FilePreviewsProps> = ({
 			<ul className={styles.smImgFilesList}>
 				{files.map((img, idx) => (
 					<li key={img.id}>
-						<div className={styles.smImgWrapper}>
+						<div className={isBigPreview ? styles.bigImgWrapper : styles.smImgWrapper}>
 							<img
 								src={img.thumbnail}
 								alt={img.title}
@@ -107,7 +109,7 @@ export const FilePreviews: FC<FilePreviewsProps> = ({
 			<ul className={styles.filesList}>
 				{files.map((file, idx) => (
 					<li key={file.id}>
-						<div className={styles.imgFileWrapper}>
+						<div className={isBigPreview ? styles.bigImgWrapper : styles.imgFileWrapper}>
 							<img
 								src={file.thumbnail}
 								alt={file.title}
@@ -161,7 +163,7 @@ export const FilePreviews: FC<FilePreviewsProps> = ({
 			<ul className={styles.filesList}>
 				{files.map((file, idx) => (
 					<li key={file.id}>
-						<div className={styles.imgFileWrapper}>
+						<div className={isBigPreview ? styles.bigImgWrapper : styles.imgFileWrapper}>
 							<img
 								src={file.thumbnail}
 								alt={file.title}

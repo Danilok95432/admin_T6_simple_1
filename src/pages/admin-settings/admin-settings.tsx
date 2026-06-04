@@ -38,7 +38,7 @@ export const AdminSettings: FC = () => {
 		formData.append('isShowPromo', booleanToNumberString(data.isShowPromo))
 		formData.append('isShowNews', booleanToNumberString(data.isShowNews))
 		formData.append('isShowHistory', booleanToNumberString(data.isShowHistory))
-		formData.append('isShowInfo', booleanToNumberString(data.isShowInfo))
+		formData.append('isShowOrgs', booleanToNumberString(data.isShowOrgs))
 		formData.append('isShowVideos', booleanToNumberString(data.isShowVideos))
 		formData.append('isShowEvents', booleanToNumberString(data.isShowEvents))
 		formData.append('isShowPartners', booleanToNumberString(data.isShowPartners))

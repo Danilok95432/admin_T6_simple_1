@@ -46,7 +46,23 @@
 
   li {
     position: relative;
-
+    .bigImgWrapper {
+      border-radius: 3px;
+      width: 480px;
+      height: 130px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      .titleImg{
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .authorImg {
+        color: #868686;
+        font-size: 12px;
+        font-weight: 400;
+      }
+    }
     .imgFileWrapper {
       border-radius: 3px;
       width: 175px;
@@ -71,6 +87,7 @@
       max-height: 130px;
       border-radius: 3px;
       border: 1px solid #AFAFAF;
+      object-fit: inherit;
     }
   }
 
@@ -182,8 +199,19 @@
   }
 
   .smImgWrapper {
-    width: 300px;
-    height: 150px;
+    width: 244px;
+    height: 96px;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .bigImgWrapper {
+    width: 480px;
+    height: 130px;
     position: relative;
 
     img {

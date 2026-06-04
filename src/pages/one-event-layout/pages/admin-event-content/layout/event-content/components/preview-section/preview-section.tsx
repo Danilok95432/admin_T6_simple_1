@@ -10,10 +10,10 @@ type TitleSectionProps = {
 
 export const PreviewSection: FC<TitleSectionProps> = ({ logo }) => {
 	return (
-		<AdminSection titleText='Логотип'>
+		<AdminSection titleText='Главное изображение события'>
 			<ReactDropzone
 				name='logo'
-				prompt='PNG, JPG, JPEG. 1000 х1000px, не более 3 Мб'
+				prompt='PNG, JPG, JPEG. 1220х480px, не более 3 Мб'
 				accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 				margin='0 0 20px 0'
 				previewVariant='sm-img'
