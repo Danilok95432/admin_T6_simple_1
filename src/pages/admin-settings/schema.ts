@@ -18,6 +18,7 @@ export type SettingsInputs = {
 	rutube: string
 	address: string
 	certificate: string
+	metric?: string
 }
 
 export const defaultMainBlocksValues = {

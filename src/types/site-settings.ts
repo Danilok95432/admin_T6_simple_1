@@ -30,4 +30,5 @@ export type SiteSettingsResponse = {
 	rutube: string
 	address: string
 	certificate: string
+	metric: string
 }
