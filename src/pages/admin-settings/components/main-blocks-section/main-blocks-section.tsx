@@ -13,14 +13,23 @@ import { useGetNewIdImageQuery } from 'src/store/uploadImages/uploadImages.api'
 import { type ImageItemWithText } from 'src/types/photos'
 import { AddButton } from 'src/UI/AddButton/AddButton'
 import { AddImageCulturePlusSVG } from 'src/UI/icons/addImageCulturePlusSVG'
+import { type SelOption } from 'src/types/select'
 
 type MainBlocksSectionProps = {
 	images?: ImageItemWithText[]
 	idItem?: string
 	logo?: ImageItemWithText[]
+	events?: SelOption[]
+	promoBlocks?: SelOption[]
 }
 
-export const MainBlocksSection = ({ images, idItem, logo }: MainBlocksSectionProps) => {
+export const MainBlocksSection = ({
+	images,
+	idItem,
+	logo,
+	events,
+	promoBlocks,
+}: MainBlocksSectionProps) => {
 	const { control } = useFormContext()
 
 	const usePromo = useWatch({
@@ -31,13 +40,13 @@ export const MainBlocksSection = ({ images, idItem, logo }: MainBlocksSectionPro
 
 	const usePromoBlockSelected = useWatch({
 		control,
-		name: 'promo-block',
+		name: 'promo_blocks',
 		defaultValue: '1',
 	})
 
 	const [localeImages, setLocaleImages] = useState<ImageItemWithText[]>(images ?? [])
 	const { refetch: getNewId } = useGetNewIdImageQuery({
-		imgtype: 'events_photo',
+		imgtype: 'settings_slider',
 		idItem,
 	})
 
@@ -68,7 +77,7 @@ export const MainBlocksSection = ({ images, idItem, logo }: MainBlocksSectionPro
 		openModal(
 			<ImageModal
 				id={newId}
-				imgtype='events_photo'
+				imgtype='settings_slider'
 				syncAddHandler={syncAddImagesHandler}
 				syncEditHandler={syncEditImagesHandler}
 			/>,
@@ -91,38 +100,32 @@ export const MainBlocksSection = ({ images, idItem, logo }: MainBlocksSectionPro
 			{usePromo && (
 				<div className={styles.promoSettings}>
 					<ControlledSelect
-						name='promo-block'
-						selectOptions={[
-							{ value: '1', label: 'Главное событие' },
-							{ value: '2', label: 'Слайдер' },
-						]}
+						name='promo_blocks'
+						selectOptions={promoBlocks ?? []}
 						label='Выбор промо-блока'
 						margin='0 0 16px 0'
 					/>
 					<ControlledSelect
 						name='events'
-						selectOptions={[
-							{ value: '1', label: 'Cобытие 1' },
-							{ value: '2', label: 'Cобытие 2' },
-						]}
+						selectOptions={events ?? []}
 						label='Выбор события'
 						margin='0 0 16px 0'
 					/>
 					<FlexRow className={styles.checkboxRow}>
 						<ControlledCheckbox
-							name='useRasp'
+							name='isShowBtnRasp'
 							label='Показать ссылку «Расписание события»'
 							type='checkbox'
 							$margin='0 0 16px 0'
 						/>
 						<ControlledCheckbox
-							name='useReg'
+							name='isShowBtnBel'
 							label='Показать кнопку «Регистрация и билеты»'
 							type='checkbox'
 							$margin='0 0 16px 0'
 						/>
 						<ControlledCheckbox
-							name='useReq'
+							name='isShowBtnRequest'
 							label='Показать кнопку «Подать заявку для участников»'
 							type='checkbox'
 							$margin='0 0 16px 0'
@@ -138,7 +141,7 @@ export const MainBlocksSection = ({ images, idItem, logo }: MainBlocksSectionPro
 							accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 							margin='0 0 20px 0'
 							previewVariant='sm-img'
-							imgtype='events'
+							imgtype='settings_promo'
 							fileImages={logo}
 							label='Изображение (1920px × 480px)'
 							className={styles.dropzone}
@@ -155,7 +158,7 @@ export const MainBlocksSection = ({ images, idItem, logo }: MainBlocksSectionPro
 							fileImages={localeImages}
 							syncAdd={syncAddImagesHandler}
 							syncEdit={syncEditImagesHandler}
-							imgtype='events_photo'
+							imgtype='settings_slider'
 							dzAreaClassName={styles.eventGalleryController}
 							className={styles.dropzone}
 							multiple
@@ -207,7 +210,7 @@ export const MainBlocksSection = ({ images, idItem, logo }: MainBlocksSectionPro
 				type='checkbox'
 			/>
 			<ControlledCheckbox
-				name='isShowOrgs'
+				name='isShowOrg'
 				label='Показать блок «Организаторы игр»'
 				$margin='0 0 20px 0'
 				type='checkbox'

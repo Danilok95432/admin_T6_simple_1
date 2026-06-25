@@ -1,4 +1,6 @@
 import { type FileWithPreview } from 'src/types/files'
+import { type SelOption } from './select'
+import { type ImageItemWithText } from './photos'
 
 export type PromoBlock = {
 	id: string
@@ -31,4 +33,11 @@ export type SiteSettingsResponse = {
 	address: string
 	certificate: string
 	metric: string
+	promo_blocks: SelOption[]
+	events: SelOption[]
+	promo_blocks_id: string
+	events_id: string
+	isShowOrg: boolean
+	promo_photo: ImageItemWithText[]
+	slider_photo: ImageItemWithText[]
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { useEffect, useState, type FC } from 'react'
 import { defaultMainBlocksValues, type SettingsInputs } from 'src/pages/admin-settings/schema'
 
@@ -38,11 +39,14 @@ export const AdminSettings: FC = () => {
 		formData.append('isShowPromo', booleanToNumberString(data.isShowPromo))
 		formData.append('isShowNews', booleanToNumberString(data.isShowNews))
 		formData.append('isShowHistory', booleanToNumberString(data.isShowHistory))
-		formData.append('isShowOrgs', booleanToNumberString(data.isShowOrgs))
+		formData.append('isShowOrg', booleanToNumberString(data.isShowOrg))
 		formData.append('isShowVideos', booleanToNumberString(data.isShowVideos))
 		formData.append('isShowEvents', booleanToNumberString(data.isShowEvents))
 		formData.append('isShowPartners', booleanToNumberString(data.isShowPartners))
 		formData.append('isShowFaq', booleanToNumberString(data.isShowFaq))
+		formData.append('isShowBtnBel', booleanToNumberString(data.isShowBtnBel))
+		formData.append('isShowBtnRasp', booleanToNumberString(data.isShowBtnRasp))
+		formData.append('isShowBtnRequest', booleanToNumberString(data.isShowBtnRequest))
 		formData.append('phone', data?.phone ?? '')
 		formData.append('email', data?.email ?? '')
 		formData.append('vk', data?.vk ?? '')
@@ -52,6 +56,18 @@ export const AdminSettings: FC = () => {
 		formData.append('address', data?.address ?? '')
 		formData.append('certificate', data?.certificate ?? '')
 		formData.append('metric', data.metric ?? '')
+		formData.append(
+			'id_promo_block',
+			typeof data.promo_blocks === 'string'
+				? data.promo_blocks
+				: data.promo_blocks
+					? data.promo_blocks[0].value
+					: '0',
+		)
+		formData.append(
+			'id_event',
+			typeof data.events === 'string' ? data.events : data.events ? data.events[0].value : '0',
+		)
 		try {
 			const res = await saveSettings(formData)
 			if (res) markAsSent(true)
@@ -62,7 +78,26 @@ export const AdminSettings: FC = () => {
 
 	useEffect(() => {
 		if (settingsData) {
-			methods.reset({ ...settingsData })
+			const brandsOptions = settingsData.promo_blocks ?? []
+			const catalogsOptions = settingsData.events ?? []
+
+			// Находим нужные объекты для селектов
+			const brandsOption = brandsOptions.find(
+				(el) => Number(el.value) === Number(settingsData.promo_blocks_id),
+			)
+			const catalogOption = catalogsOptions.find(
+				(el) => Number(el.value) === Number(settingsData.events_id),
+			)
+			// Исключаем не только brands_id/catalogs_id, но и brands/catalogs из restData
+			const { promo_blocks_id, events_id, promo_blocks, events, ...restData } = settingsData
+
+			methods.reset({
+				// Поля для React Select
+				promo_blocks: brandsOption ? [brandsOption] : [],
+				events: catalogOption ? [catalogOption] : [],
+				// Все остальные поля (без brands/catalogs/brands_id/catalogs_id)
+				...restData,
+			})
 		}
 	}, [settingsData])
 
@@ -84,7 +119,12 @@ export const AdminSettings: FC = () => {
 						onSubmit={methods.handleSubmit(onSubmit)}
 						noValidate
 					>
-						<MainBlocksSection />
+						<MainBlocksSection
+							logo={settingsData?.promo_photo}
+							images={settingsData?.slider_photo}
+							promoBlocks={settingsData?.promo_blocks}
+							events={settingsData?.events}
+						/>
 						<ContactsSection />
 						<FooterSection />
 						<SettingsSection />
