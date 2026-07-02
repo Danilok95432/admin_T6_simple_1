@@ -14,6 +14,12 @@ export const SettingsSection = () => {
 				margin='0 0 20px 0'
 			/>
 			<ControlledInput
+				name='aboutTitle'
+				label='Название раздела «О нас»'
+				placeholder='Название раздела «О нас»'
+				margin='0 0 20px 0'
+			/>
+			<ControlledInput
 				name='metric'
 				label='Код счетика'
 				placeholder='Код счетика'

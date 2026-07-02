@@ -1,6 +1,3 @@
-import { type ImageItemWithText } from 'src/types/photos'
-import { type SelOption } from 'src/types/select'
-
 export type SettingsInputs = {
 	isShowPromo: boolean
 	isShowBtnRequest: boolean
@@ -13,21 +10,9 @@ export type SettingsInputs = {
 	isShowEvents: boolean
 	isShowPartners: boolean
 	isShowFaq: boolean
-	phone: string
-	email: string
-	vk: string
 	title: string
-	copyright: string
-	rutube: string
-	address: string
-	certificate: string
-	metric?: string
-	promo_blocks: SelOption[] | string
-	events: SelOption[] | string
-	promo_blocks_id: string
-	events_id: string
-	promo_photo: ImageItemWithText[]
-	slider_photo: ImageItemWithText[]
+	aboutTitle: string
+	metric: string
 }
 
 export const defaultMainBlocksValues = {

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { useEffect, useState, type FC } from 'react'
-import { defaultMainBlocksValues, type SettingsInputs } from 'src/pages/admin-settings/schema'
 
 import { Helmet } from 'react-helmet-async'
 
@@ -9,23 +8,19 @@ import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form'
 import { AdminControllers } from 'src/components/admin-controllers/admin-controllers'
 import { AdminRoute } from 'src/routes/admin-routes/consts'
 
-import { MainBlocksSection } from 'src/pages/admin-settings/components/main-blocks-section/main-blocks-section'
-// import { PromoTable } from 'src/pages/admin-settings/components/promo-table/promo-table'
-
 import styles from './index.module.scss'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
-import { ContactsSection } from './components/contacts-section/contacts-section'
-import { SettingsSection } from './components/settings-section/settings-section'
-import {
-	useGetSettingsQuery,
-	useSaveSettingsMutation,
-} from 'src/store/site-settings/site-settings.api'
 import { booleanToNumberString } from 'src/helpers/utils'
-import { FooterSection } from './components/footer-section/footer-section'
+import { defaultMainBlocksValues, type SettingsInputs } from './schema'
+import { MainBlocksSection } from './components/main-blocks-section/main-blocks-section'
+import {
+	useGetSettingsPromoQuery,
+	useSaveSettingsPromoMutation,
+} from 'src/store/site-settings/site-settings.api'
 
-export const AdminSettings: FC = () => {
-	const { data: settingsData } = useGetSettingsQuery(null)
-	const [saveSettings] = useSaveSettingsMutation()
+export const PromoSettings: FC = () => {
+	const { data: settingsData } = useGetSettingsPromoQuery(null)
+	const [saveSettings] = useSaveSettingsPromoMutation()
 	const methods = useForm<SettingsInputs>({
 		mode: 'onBlur',
 		defaultValues: defaultMainBlocksValues,
@@ -37,25 +32,11 @@ export const AdminSettings: FC = () => {
 	const onSubmit: SubmitHandler<SettingsInputs> = async (data) => {
 		const formData = new FormData()
 		formData.append('isShowPromo', booleanToNumberString(data.isShowPromo))
-		formData.append('isShowNews', booleanToNumberString(data.isShowNews))
-		formData.append('isShowHistory', booleanToNumberString(data.isShowHistory))
-		formData.append('isShowOrg', booleanToNumberString(data.isShowOrg))
-		formData.append('isShowVideos', booleanToNumberString(data.isShowVideos))
-		formData.append('isShowEvents', booleanToNumberString(data.isShowEvents))
-		formData.append('isShowPartners', booleanToNumberString(data.isShowPartners))
-		formData.append('isShowFaq', booleanToNumberString(data.isShowFaq))
 		formData.append('isShowBtnBel', booleanToNumberString(data.isShowBtnBel))
 		formData.append('isShowBtnRasp', booleanToNumberString(data.isShowBtnRasp))
 		formData.append('isShowBtnRequest', booleanToNumberString(data.isShowBtnRequest))
-		formData.append('phone', data?.phone ?? '')
-		formData.append('email', data?.email ?? '')
-		formData.append('vk', data?.vk ?? '')
-		formData.append('title', data?.title ?? '')
-		formData.append('copyright', data?.copyright ?? '')
-		formData.append('rutube', data?.rutube ?? '')
-		formData.append('address', data?.address ?? '')
-		formData.append('certificate', data?.certificate ?? '')
-		formData.append('metric', data.metric ?? '')
+		formData.append('textBtnReg', data?.textBtnReg ?? '')
+		formData.append('textBtnPart', data?.textBtnPart ?? '')
 		formData.append(
 			'id_promo_block',
 			typeof data.promo_blocks === 'string'
@@ -106,7 +87,6 @@ export const AdminSettings: FC = () => {
 			<Helmet>
 				<title>Общие настройки</title>
 			</Helmet>
-			<h1>Общие настройки</h1>
 			<AdminContent
 				className={styles.settingsContent}
 				$backgroundColor='#ffffff'
@@ -125,9 +105,6 @@ export const AdminSettings: FC = () => {
 							promoBlocks={settingsData?.promo_blocks}
 							events={settingsData?.events}
 						/>
-						<ContactsSection />
-						<FooterSection />
-						<SettingsSection />
 						<AdminControllers
 							outLink={AdminRoute.AdminHome}
 							isSent={isSent}

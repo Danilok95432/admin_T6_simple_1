@@ -5,6 +5,15 @@
 	width: 100%;
 }
 
+div.wrapperRow {
+	flex-direction: column;
+	gap: 5px;
+	margin-bottom: 20px;
+	.desc {
+		font-size: 12px;
+	}
+}
+
 .tooltip {
 	margin-top: 10px;
 }

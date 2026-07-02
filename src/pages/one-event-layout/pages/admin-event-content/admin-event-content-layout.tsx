@@ -11,6 +11,10 @@ export const AdminEventContentLayout = () => {
 	const { id = '' } = useParams()
 	const eventTabs: TabNavigationItem[] = [
 		{
+			title: 'Информация',
+			link: `/event/event-content/${id}/event-info`,
+		},
+		{
 			title: 'Контент',
 			link: `/event/event-content/${id}/content`,
 		},

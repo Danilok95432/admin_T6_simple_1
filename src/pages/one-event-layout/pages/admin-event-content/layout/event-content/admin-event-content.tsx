@@ -21,10 +21,12 @@ import {
 import { booleanToNumberString, currentDateString, formatDateToYYYYMMDD } from 'src/helpers/utils'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
 import { PromoSection } from './components/promo-section/promo-section'
-import { InfoSection } from './components/info-section/info-section'
 import { PreviewSection } from './components/preview-section/preview-section'
 import { PlacementSection } from './components/placement-section/placement-section'
 import { GallerySection } from './components/gallery-section/gallery-section'
+import { LocationSection } from './components/location-preview/location-preview'
+import { RouteSection } from './components/route-section/route-section'
+import { LogoEventSection } from './components/logo-event-section/logo-event-section'
 
 export const AdminEventContent: FC = () => {
 	const { id = '0' } = useParams()
@@ -56,6 +58,12 @@ export const AdminEventContent: FC = () => {
 			eventInfoFormData.append(`placements_title[${index}]`, placement.title)
 			eventInfoFormData.append(`placements_desc[${index}]`, placement.desc)
 			eventInfoFormData.append(`placements_location[${index}]`, placement.location)
+		})
+
+		data.routes?.forEach((route, index) => {
+			eventInfoFormData.append(`routes_title[${index}]`, route.title)
+			eventInfoFormData.append(`routes_desc[${index}]`, route.desc)
+			eventInfoFormData.append(`routes_location[${index}]`, route.location)
 		})
 
 		data.links?.forEach((link, index) => {
@@ -114,12 +122,15 @@ export const AdminEventContent: FC = () => {
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} noValidate autoComplete='off'>
 					<PreviewSection logo={contentInfoData?.photo} />
+					<LogoEventSection logo={contentInfoData?.logoEvent} />
+					<LocationSection schema={contentInfoData?.schema} />
 					<PlacementSection />
+					<RouteSection />
 					<GallerySection images={contentInfoData?.photos} idItem={id} />
 					{/* <DocsSection files={contentInfoData?.documents} /> */}
 					{/* <LinksSection /> */}
 					<PromoSection images={contentInfoData?.promo} idItem={id} />
-					<InfoSection photo={contentInfoData?.infoblock?.photo} />
+					{/* <InfoSection photo={contentInfoData?.infoblock?.photo} /> */}
 					<AdminControllers
 						variant={'2'}
 						outLink={`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminEventsList}`}

@@ -24,7 +24,7 @@ export const OneEventLayout = () => {
 		{
 			title: 'Контент',
 			link: `/event/event-content/${id ?? 'new'}`,
-			indexLink: `/event/event-content/${id}/content`,
+			indexLink: `/event/event-content/${id}/event-info`,
 		},
 		{
 			title: 'Пропуск',

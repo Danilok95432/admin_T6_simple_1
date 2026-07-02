@@ -47,7 +47,7 @@ export const adminMenuItems: NavigationItem[] = [
 	// },
 	{
 		title: 'Настройки сайта',
-		link: 'admin-settings',
+		link: 'admin-settings/common-settings',
 		icon: <AdminSettingsIconSvg />,
 	},
 ]

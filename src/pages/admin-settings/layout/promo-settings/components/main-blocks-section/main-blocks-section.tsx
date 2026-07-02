@@ -14,6 +14,7 @@ import { type ImageItemWithText } from 'src/types/photos'
 import { AddButton } from 'src/UI/AddButton/AddButton'
 import { AddImageCulturePlusSVG } from 'src/UI/icons/addImageCulturePlusSVG'
 import { type SelOption } from 'src/types/select'
+import { ControlledInput } from 'src/components/controlled-input/controlled-input'
 
 type MainBlocksSectionProps = {
 	images?: ImageItemWithText[]
@@ -87,10 +88,10 @@ export const MainBlocksSection = ({
 	useEffect(() => {
 		setLocaleImages(images ?? [])
 	}, [images])
-	console.log(usePromoBlockSelected)
+
 	return (
 		<AdminSection className={styles.mainBlocksSection} noBorder>
-			<h2>Блоки главной страницы</h2>
+			<h2>Промо-блок</h2>
 			<ControlledCheckbox
 				name='isShowPromo'
 				label='Показывать промо-блок'
@@ -105,32 +106,51 @@ export const MainBlocksSection = ({
 						label='Выбор промо-блока'
 						margin='0 0 16px 0'
 					/>
-					<ControlledSelect
-						name='events'
-						selectOptions={events ?? []}
-						label='Выбор события'
-						margin='0 0 16px 0'
-					/>
-					<FlexRow className={styles.checkboxRow}>
-						<ControlledCheckbox
-							name='isShowBtnRasp'
-							label='Показать ссылку «Расписание события»'
-							type='checkbox'
-							$margin='0 0 16px 0'
-						/>
-						<ControlledCheckbox
-							name='isShowBtnBel'
-							label='Показать кнопку «Регистрация и билеты»'
-							type='checkbox'
-							$margin='0 0 16px 0'
-						/>
-						<ControlledCheckbox
-							name='isShowBtnRequest'
-							label='Показать кнопку «Подать заявку для участников»'
-							type='checkbox'
-							$margin='0 0 16px 0'
-						/>
-					</FlexRow>
+					{usePromoBlockSelected === '1' ||
+						(usePromoBlockSelected &&
+							usePromoBlockSelected.length > 0 &&
+							usePromoBlockSelected[0].value === '1' && (
+								<>
+									<ControlledSelect
+										name='events'
+										selectOptions={events ?? []}
+										label='Выбор события'
+										margin='0 0 16px 0'
+									/>
+									<ControlledInput
+										name='textBtnReg'
+										label='Текст на кнопке регистрации'
+										placeholder='Текст на кнопке регистрации'
+										margin='0 0 16px 0'
+									/>
+									<ControlledInput
+										name='textBtnPart'
+										label='Текст на кнопке участия'
+										placeholder='Текст на кнопке участия'
+										margin='0 0 16px 0'
+									/>
+									<FlexRow className={styles.checkboxRow}>
+										<ControlledCheckbox
+											name='isShowBtnRasp'
+											label='Показать ссылку «Расписание события»'
+											type='checkbox'
+											$margin='0 0 16px 0'
+										/>
+										<ControlledCheckbox
+											name='isShowBtnBel'
+											label='Показать кнопку регистрации'
+											type='checkbox'
+											$margin='0 0 16px 0'
+										/>
+										<ControlledCheckbox
+											name='isShowBtnRequest'
+											label='Показать кнопку участия'
+											type='checkbox'
+											$margin='0 0 16px 0'
+										/>
+									</FlexRow>
+								</>
+							))}
 					{usePromoBlockSelected === '1' ||
 					(usePromoBlockSelected &&
 						usePromoBlockSelected.length > 0 &&
@@ -185,48 +205,6 @@ export const MainBlocksSection = ({
 					)}
 				</div>
 			)}
-			<ControlledCheckbox
-				name='isShowHistory'
-				label='Показать блок «История»'
-				$margin='0 0 20px 0'
-				type='checkbox'
-			/>
-			<ControlledCheckbox
-				name='isShowEvents'
-				label='Показать блок «События»'
-				$margin='0 0 20px 0'
-				type='checkbox'
-			/>
-			<ControlledCheckbox
-				name='isShowNews'
-				label='Показать блок «Новости»'
-				$margin='0 0 20px 0'
-				type='checkbox'
-			/>
-			<ControlledCheckbox
-				name='isShowVideos'
-				label='Показать блок «Видеолента»'
-				$margin='0 0 20px 0'
-				type='checkbox'
-			/>
-			<ControlledCheckbox
-				name='isShowOrg'
-				label='Показать блок «Организаторы игр»'
-				$margin='0 0 20px 0'
-				type='checkbox'
-			/>
-			<ControlledCheckbox
-				name='isShowPartners'
-				label='Показать блок «Партнеры»'
-				$margin='0 0 20px 0'
-				type='checkbox'
-			/>
-			<ControlledCheckbox
-				name='isShowFaq'
-				label='Показать блок «Часто задаваемые вопросы»'
-				type='checkbox'
-				$margin='0 0 20px 0'
-			/>
 		</AdminSection>
 	)
 }

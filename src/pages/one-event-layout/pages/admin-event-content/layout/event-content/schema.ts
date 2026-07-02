@@ -4,8 +4,10 @@ import * as yup from 'yup'
 
 export type EventContentInputs = {
 	placements?: placementsEvent[]
+	routes?: placementsEvent[]
 	linksBlock_title?: string
 	hide_placements?: boolean
+	hide_routes?: boolean
 	hide_gallery?: boolean
 	links?: linksEvent[]
 	hide_links?: boolean

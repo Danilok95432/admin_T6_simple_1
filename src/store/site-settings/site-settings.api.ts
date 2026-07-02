@@ -16,14 +16,40 @@ export const siteSettingsApi = createApi({
 				url: `promo-blocks`,
 			}),
 		}),
-		getSettings: build.query<SiteSettingsResponse, null>({
+		getSettingsCommon: build.query<SiteSettingsResponse, null>({
 			query: () => ({
-				url: `settings/edit`,
+				url: `settings/edit_common`,
 			}),
 		}),
-		saveSettings: build.mutation<null, FieldValues>({
+		saveSettingsCommon: build.mutation<null, FieldValues>({
 			query: (formData) => ({
-				url: `settings/save`,
+				url: `settings/save_common`,
+				method: 'POST',
+				body: formData,
+			}),
+			invalidatesTags: ['SiteSettings'],
+		}),
+		getSettingsPromo: build.query<SiteSettingsResponse, null>({
+			query: () => ({
+				url: `settings/edit_promo`,
+			}),
+		}),
+		saveSettingsPromo: build.mutation<null, FieldValues>({
+			query: (formData) => ({
+				url: `settings/save_promo`,
+				method: 'POST',
+				body: formData,
+			}),
+			invalidatesTags: ['SiteSettings'],
+		}),
+		getSettingsContacts: build.query<SiteSettingsResponse, null>({
+			query: () => ({
+				url: `settings/edit_contacts`,
+			}),
+		}),
+		saveSettingsContacts: build.mutation<null, FieldValues>({
+			query: (formData) => ({
+				url: `settings/save_contacts`,
 				method: 'POST',
 				body: formData,
 			}),
@@ -32,4 +58,12 @@ export const siteSettingsApi = createApi({
 	}),
 })
 
-export const { useGetPromosQuery, useGetSettingsQuery, useSaveSettingsMutation } = siteSettingsApi
+export const {
+	useGetPromosQuery,
+	useGetSettingsCommonQuery,
+	useSaveSettingsCommonMutation,
+	useGetSettingsPromoQuery,
+	useSaveSettingsPromoMutation,
+	useGetSettingsContactsQuery,
+	useSaveSettingsContactsMutation,
+} = siteSettingsApi

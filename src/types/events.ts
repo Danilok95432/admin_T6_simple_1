@@ -128,6 +128,8 @@ export type EventInfoResponse = {
 	locations_list?: SelOption[]
 	main?: boolean
 	hidden?: boolean
+	location: string
+	location_name: string
 }
 
 export type CicleInfoResponse = {
@@ -208,14 +210,18 @@ export type EventRules = {
 
 export type EventContent = {
 	placements: placementsEvent[]
+	routes: placementsEvent[]
 	linksBlock_title: string
 	hide_placements?: boolean
 	hide_gallery?: boolean
 	hide_documents?: boolean
+	hide_routes?: boolean
 	links: linksEvent[]
 	hide_links?: boolean
 	photo?: ImageItemWithText[]
 	photos?: ImageItemWithText[]
+	schema?: ImageItemWithText[]
+	logoEvent?: ImageItemWithText[]
 	promo?: ImageItemWithText[]
 	documents?: FileItem[]
 	infoblock: InfoBlockContent

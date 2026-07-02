@@ -9,8 +9,8 @@ import { type SelOption } from 'src/types/select'
 import styles from './index.module.scss'
 import { Tooltip } from 'src/components/tooltip/Tooltip'
 import { InfoIconSvg } from 'src/UI/icons/infoIcon'
-import { QuillEditor } from 'src/components/quill-editor/quill-editor'
 import { AdminRoute } from 'src/routes/admin-routes/consts'
+import { ControlledInput } from 'src/components/controlled-input/controlled-input'
 
 type DescSectionProps = {
 	ageList?: SelOption[]
@@ -20,48 +20,6 @@ type DescSectionProps = {
 export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) => {
 	return (
 		<AdminSection isBlock={false}>
-			<div className={styles.inputWrapperTextArea}>
-				<QuillEditor
-					name='description'
-					label='Краткое описание *'
-					$heightEditor='150px'
-					$maxWidth='1140px'
-					$width='1140px'
-				/>
-
-				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip_textAria}>
-					<InfoIconSvg />
-				</Tooltip>
-			</div>
-			{/*
-			<div className={styles.inputWrapperTextArea}>
-				<QuillEditor
-					name='fullinfo'
-					label='Подробное описание *'
-					$heightEditor='150px'
-					$maxWidth='1140px'
-					$width='1140px'
-				/>
-
-				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip_textAria}>
-					<InfoIconSvg />
-				</Tooltip>
-			</div>
-			*/}
-			<div className={styles.inputWrapperTextArea}>
-				<QuillEditor
-					name='conditions'
-					label='Условия участия *'
-					$heightEditor='150px'
-					$maxWidth='1140px'
-					$width='1140px'
-				/>
-
-				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip_textAria}>
-					<InfoIconSvg />
-				</Tooltip>
-			</div>
-
 			<GridRow $template='auto/ 0.5fr' $mdTemplate='1fr / 1fr' $margin='0 0 20px 0'>
 				<div className={styles.inputWrapper}>
 					<ControlledSelect
@@ -77,11 +35,26 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 			</GridRow>
 
 			<div className={styles.inputWrapper}>
-				<ControlledSelect
-					label='Площадка *'
-					name='locations_list'
+				<ControlledInput
+					label='Точный адрес места проведения *'
+					placeholder='Точный адрес места проведения'
+					name='location'
 					margin='0 0 25px 0'
-					selectOptions={locationsList ?? [{ label: 'Не выбрано', value: '0' }]}
+					height='150px'
+					isTextarea
+				/>
+
+				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
+					<InfoIconSvg />
+				</Tooltip>
+			</div>
+
+			<div className={styles.inputWrapper}>
+				<ControlledInput
+					label='Название места проведения *'
+					placeholder='Название места проведения'
+					name='location_name'
+					margin='0 0 25px 0'
 				/>
 
 				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>

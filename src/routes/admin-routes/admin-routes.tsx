@@ -42,7 +42,7 @@ import { ObjectGallery } from 'src/pages/object-element-layout/pages/object-gall
 import { ObjectLocation } from 'src/pages/object-element-layout/pages/object-location/object-location'
 
 import { AdminSupport } from 'src/pages/admin-support/admin-support'
-import { AdminSettings } from 'src/pages/admin-settings/admin-settings'
+import { CommonSettings } from 'src/pages/admin-settings/layout/common-settings/common-settings'
 import { Partner } from 'src/pages/admin-partners-layout/components/partner/partner'
 import { PartnersElements } from 'src/pages/admin-partners-layout/components/partners-elements/partners-elements'
 import { AdminQuestionsLayout } from 'src/pages/admin-questions/admin-questions-layout'
@@ -126,6 +126,10 @@ import { EventFaqLayout } from 'src/pages/one-event-layout/pages/admin-event-con
 import { EventFaqQuestionsElements } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-faq/components/questions-elements/questions-elements'
 import { EventFaqQuestion } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-faq/components/question/question'
 import { AdminEventDocsContent } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-docs/event-docs'
+import { AdminEventInfo } from 'src/pages/one-event-layout/pages/admin-event-content/layout/admin-event-info/admin-event-info'
+import { AdminSettingsLayout } from 'src/pages/admin-settings/admin-settings-layout'
+import { PromoSettings } from 'src/pages/admin-settings/layout/promo-settings/promo-settings'
+import { ContactsSettings } from 'src/pages/admin-settings/layout/contacts-settings/contacts-settings'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -250,6 +254,7 @@ export const AdminRoutes: FC = () => {
 						element={<PlacementEventLayout />}
 					/>
 					<Route path={`${AdminRoute.AdminEventContent}/:id`} element={<AdminEventContentLayout />}>
+						<Route path={`${AdminRoute.AdminEventInfo}`} element={<AdminEventInfo />} />
 						<Route path={`${AdminRoute.AdminContent}`} element={<AdminEventContent />} />
 						<Route path={`${AdminRoute.AdminEventPartners}`} element={<AdminEventPartnersLayout />}>
 							<Route index element={<PartnerElements />} />
@@ -395,7 +400,11 @@ export const AdminRoutes: FC = () => {
 
 				<Route path={AdminRoute.AdminSupport} element={<AdminSupport />} />
 
-				<Route path={AdminRoute.AdminSettings} element={<AdminSettings />} />
+				<Route path={AdminRoute.AdminSettings} element={<AdminSettingsLayout />}>
+					<Route path={AdminRoute.AdminSettingsCommon} element={<CommonSettings />} />
+					<Route path={AdminRoute.AdminSettingsPromo} element={<PromoSettings />} />
+					<Route path={AdminRoute.AdminSettingsContacts} element={<ContactsSettings />} />
+				</Route>
 			</Route>
 		</Routes>
 	)

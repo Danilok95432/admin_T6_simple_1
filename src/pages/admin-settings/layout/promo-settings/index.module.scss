@@ -1,0 +1,11 @@
+div.settingsContent {
+  max-width: 1570px;
+  min-height: max-content;
+  .disc {
+    width: max-content;
+    margin-bottom: 30px;
+    p {
+      font-size: 14px;
+    }
+  }
+}

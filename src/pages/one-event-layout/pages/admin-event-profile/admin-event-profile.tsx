@@ -55,36 +55,18 @@ export const AdminEventProfile: FC = () => {
 		if (dateFormatTo) data.date_to = dateFormatTo
 		const serverData = {
 			title: data.title,
-			tags: data.tags,
+			full_name: data.full_name,
 			date_from: data.date_from,
 			time_from: timeFormatFrom,
 			date_to: data.date_to,
 			time_to: timeFormatTo,
-			description: data.description,
-			conditions: data.conditions,
-			id_event_type:
-				typeof data.event_types_list === 'string'
-					? data.event_types_list
-					: data?.event_types_list[0].value,
-			/* id_event_level:
-				typeof data.event_levels_list === 'string'
-					? data.event_levels_list
-					: data?.event_levels_list[0].value,
-					*/
-			/* id_brand:
-				typeof data.brands_list === 'string' ? data.brands_list : data?.brands_list[0].value,
-			*/
+			location: data.location,
+			location_name: data.location_name,
 			id_age_limit:
 				typeof data.age_list === 'string'
 					? data.age_list
 					: data.age_list
 						? data.age_list[0].value
-						: '0',
-			id_location:
-				typeof data.locations_list === 'string'
-					? data.locations_list
-					: data.locations_list
-						? data.locations_list[0].value
 						: '0',
 		}
 		const eventInfoFormData = transformToFormData(serverData)
@@ -167,12 +149,7 @@ export const AdminEventProfile: FC = () => {
 					noValidate
 					autoComplete='off'
 				>
-					<TitleSection
-						objectsList={eventInfoData?.objects_list}
-						eventTypesList={eventInfoData?.event_types_list}
-						eventLevelsList={eventInfoData?.event_levels_list}
-						brandsList={eventInfoData?.brands_list}
-					/>
+					<TitleSection />
 					<DateSection />
 					<DescSection
 						ageList={eventInfoData?.age_list}
