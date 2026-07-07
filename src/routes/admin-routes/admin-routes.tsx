@@ -130,6 +130,7 @@ import { AdminEventInfo } from 'src/pages/one-event-layout/pages/admin-event-con
 import { AdminSettingsLayout } from 'src/pages/admin-settings/admin-settings-layout'
 import { PromoSettings } from 'src/pages/admin-settings/layout/promo-settings/promo-settings'
 import { ContactsSettings } from 'src/pages/admin-settings/layout/contacts-settings/contacts-settings'
+import { OnePurchasedTicket } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/purchased-tickets-page/components/one-purchased-ticket/one-ticket'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -356,7 +357,7 @@ export const AdminRoutes: FC = () => {
 						</Route>
 						<Route path={`${AdminRoute.Tickets}`} element={<PurchasedTicketsPage />}>
 							<Route index element={<PurchasedTicketsElements />} />
-							<Route path=':subId' element={<OneTicket />} />
+							<Route path=':subId' element={<OnePurchasedTicket />} />
 						</Route>
 						<Route path={`${AdminRoute.LogEnters}`} element={<EntersListPage />}>
 							<Route index element={<EntersListElements />} />

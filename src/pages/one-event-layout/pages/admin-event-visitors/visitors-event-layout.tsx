@@ -45,8 +45,8 @@ export const VisitorsEventLayout = () => {
 			<Container $padding='35px 35px 0 35px' $paddingMobile='35px'>
 				{!location.pathname.includes('/requests/') &&
 					!location.pathname.includes('/participants/') &&
-					!location.pathname.includes('/inspectors/') &&
-					!location.pathname.includes('/guests/') &&
+					!location.pathname.includes('/tickets/') &&
+					!location.pathname.includes('/registrations/') &&
 					!location.pathname.includes('/person-statistic/') && (
 						<div className={styles.headRow}>
 							<div className={styles.adminTitleTab}>

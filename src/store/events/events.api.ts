@@ -35,6 +35,7 @@ import {
 	type EventWidget,
 	type EventWidgetReg,
 	type EventPassResponse,
+	type TicketRegistrationsResponse,
 } from 'src/types/events'
 import { type FieldValues } from 'react-hook-form'
 
@@ -919,6 +920,20 @@ export const eventsApi = createApi({
 			}),
 			invalidatesTags: ['EventPass'],
 		}),
+		getRegistrationsOneTicket: build.query<
+			TicketRegistrationsResponse,
+			{ event?: string; limit?: number; page?: number }
+		>({
+			query: ({ event, limit, page }) => ({
+				url: `events/regs`,
+				params: {
+					event,
+					limit,
+					page,
+				},
+			}),
+			providesTags: ['EventPass'],
+		}),
 	}),
 })
 
@@ -926,6 +941,7 @@ export const {
 	useGetAllEventsQuery,
 	useGetAllCiclesQuery,
 	useGetCicleInfoQuery,
+	useGetRegistrationsOneTicketQuery,
 	useHideCicleByIdMutation,
 	useSaveCicleInfoMutation,
 	useDeleteCicleByIdMutation,

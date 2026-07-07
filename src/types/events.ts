@@ -540,6 +540,17 @@ export type EventTicketsElem = {
 	status: string
 }
 
+export type OneTicketRegistrationsElem = {
+	id: string
+	age: string
+	fio: string
+	role: string
+	ticket_number: string
+	birthday: string
+	paid: string
+	status: string
+}
+
 export type EventTicketsList = {
 	tickets: EventTicketsElem[]
 	total: string
@@ -654,4 +665,9 @@ export type EventPassResponse = {
 	signed: string
 	ready: string
 	inWork: string
+}
+
+export type TicketRegistrationsResponse = {
+	regs: OneTicketRegistrationsElem[]
+	total: string
 }

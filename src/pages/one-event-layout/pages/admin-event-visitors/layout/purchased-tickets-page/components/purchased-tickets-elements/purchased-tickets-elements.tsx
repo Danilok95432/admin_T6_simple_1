@@ -88,9 +88,9 @@ export const PurchasedTicketsElements = () => {
 		}
 	}
 
-	const rowClickHandler = (personId: string) => {
+	const rowClickHandler = (subId: string) => {
 		navigate(
-			`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventLists}/${id}/${AdminRoute.OnePersonStatistic}/${personId}`,
+			`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventLists}/${id}/${AdminRoute.Tickets}/${subId}`,
 		)
 	}
 

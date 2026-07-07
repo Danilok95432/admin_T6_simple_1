@@ -8,6 +8,7 @@ import { FlexRow } from 'src/components/flex-row/flex-row'
 
 import styles from './index.module.scss'
 import { useFormContext, useWatch } from 'react-hook-form'
+import { ControlledCheckbox } from 'src/components/controlled-checkbox/controlled-checkbox'
 
 type TicketSectionProps = {
 	index?: number
@@ -51,6 +52,12 @@ export const TicketSection: FC<TicketSectionProps> = ({
 		>
 			<MainSection idx={index} />
 			<DescSection idx={index} />
+			<ControlledCheckbox
+				type='checkbox'
+				name='use_ticket'
+				label='Билет требует подтверждения'
+				$margin='0 0 20px 0'
+			/>
 			{saleActive && <SaleSection idx={index} />}
 			<FlexRow className={styles.btnsRow}>
 				<AdminButton
