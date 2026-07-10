@@ -93,6 +93,12 @@ export const MainBlocksSection = ({
 		<AdminSection className={styles.mainBlocksSection} noBorder>
 			<h2>Промо-блок</h2>
 			<ControlledCheckbox
+				name='isClicked'
+				label='Изображение кликабельно'
+				type='checkbox'
+				$margin='0 0 16px 0'
+			/>
+			<ControlledCheckbox
 				name='isShowPromo'
 				label='Показывать промо-блок'
 				$margin='0 0 16px 0'

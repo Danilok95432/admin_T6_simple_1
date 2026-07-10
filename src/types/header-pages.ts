@@ -34,3 +34,18 @@ export type ContactsInfo = {
 	rasChet: string
 	title: string
 }
+
+export type AboutInfoOrg = {
+	info: string
+	rewards: string
+	history: string
+}
+
+export type AboutDetailsOrg = {
+	title1: string
+	text1: string
+	title2: string
+	text2: string
+	title3: string
+	text3: string
+}

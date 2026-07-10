@@ -13,6 +13,18 @@ export type PromoBlock = {
 	promoMobileImage: FileWithPreview[]
 }
 
+export type HistoryItem = {
+	id: string
+	datename: string
+	datetext: string
+	hidden?: boolean
+	marker?: ImageItemWithText[]
+}
+
+export type HistoryResponse = {
+	history: HistoryItem[]
+}
+
 export type SiteSettingsResponse = {
 	isShowPromo: boolean
 	isShowBtnRequest: boolean

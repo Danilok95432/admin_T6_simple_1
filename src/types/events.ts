@@ -208,23 +208,30 @@ export type EventRules = {
 	politic_text: string
 }
 
+export type EventEditInfo = {
+	description: string
+	fullinfo: string
+	conditions: string
+}
+
 export type EventContent = {
 	placements: placementsEvent[]
-	routes: placementsEvent[]
+	schemas: placementsEvent[]
 	linksBlock_title: string
 	hide_placements?: boolean
 	hide_gallery?: boolean
 	hide_documents?: boolean
-	hide_routes?: boolean
+	hide_shemas?: boolean
 	links: linksEvent[]
 	hide_links?: boolean
 	photo?: ImageItemWithText[]
 	photos?: ImageItemWithText[]
 	schema?: ImageItemWithText[]
-	logoEvent?: ImageItemWithText[]
+	event_logo?: ImageItemWithText[]
 	promo?: ImageItemWithText[]
 	documents?: FileItem[]
 	infoblock: InfoBlockContent
+	event_schema?: ImageItemWithText[]
 }
 
 export type EventPartnerInfoResponse = {

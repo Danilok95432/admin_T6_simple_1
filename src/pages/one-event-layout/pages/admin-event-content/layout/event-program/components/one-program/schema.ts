@@ -15,6 +15,7 @@ export type ProgramInputs = {
 	begin_time: Date
 	end_time?: Date
 	short: string
+	full: string
 	address?: string
 	email?: string
 	phone?: string
@@ -32,6 +33,7 @@ export type ProgramInputs = {
 export const programSchema = yup.object({
 	title: yup.string().required('Введите название подсобытия'),
 	short: yup.string().required('Введите описание'),
+	full: yup.string().required('Введите описание'),
 	rules: yup.string().required('Введите краткое описание правил'),
 	place: yup.string().required('Введите локацию'),
 	itemdate: yup

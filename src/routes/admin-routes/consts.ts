@@ -111,4 +111,5 @@ export enum AdminRoute {
 	OrgRefund = 'refund',
 	OrgFond = 'fond',
 	OrgDocs = 'docs',
+	AdminSettingsHistory = 'history-settings',
 }

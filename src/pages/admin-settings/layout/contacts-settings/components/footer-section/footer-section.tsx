@@ -16,7 +16,7 @@ export const FooterSection = () => {
 			<ControlledInput name='address' label='Адрес' placeholder='Адрес' margin='0 0 20px 0' />
 			<ControlledInput
 				name='certificate'
-				label='Сертификат'
+				label='Сертификат электронных СМИ'
 				placeholder='Сертификат'
 				margin='0 0 20px 0'
 				isTextarea

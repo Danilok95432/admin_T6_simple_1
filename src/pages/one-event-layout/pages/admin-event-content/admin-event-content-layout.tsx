@@ -22,10 +22,10 @@ export const AdminEventContentLayout = () => {
 			title: 'Партнеры',
 			link: `/event/event-content/${id}/event-partners`,
 		},
-		{
-			title: 'Правила',
-			link: `/event/event-content/${id}/event-rules`,
-		},
+		// {
+		// 	title: 'Правила',
+		// 	link: `/event/event-content/${id}/event-rules`,
+		// },
 		{
 			title: 'Программа',
 			link: `/event/event-content/${id}/event-program/${id}`,

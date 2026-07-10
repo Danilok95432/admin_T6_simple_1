@@ -16,7 +16,7 @@ export const RouteSection: FC = () => {
 
 	const { fields, append } = useFieldArray({
 		control,
-		name: 'routes',
+		name: 'schemas',
 	})
 
 	return (
@@ -25,7 +25,7 @@ export const RouteSection: FC = () => {
 			sectionName='routes'
 			additionalNodeForHead={
 				<SwitchedRadioBtns
-					name='hide_routes'
+					name='hide_schemas'
 					contentRadio1='Показать всем'
 					contentRadio2='Скрыть'
 				/>
@@ -38,19 +38,19 @@ export const RouteSection: FC = () => {
 						<GridRow>
 							<FlexRow $direction='column' $gap='15px'>
 								<ControlledInput
-									name={`routes[${idx}].title`}
+									name={`schemas[${idx}].title`}
 									placeholder='Название маршрута'
 									width='100%'
 								/>
 								<ControlledInput
-									name={`routes[${idx}].desc`}
+									name={`schemas[${idx}].desc`}
 									placeholder='Описание маршрута'
 									height='58px'
 									isTextarea
 								/>
 							</FlexRow>
 							<ControlledInput
-								name={`routes[${idx}].location`}
+								name={`schemas[${idx}].location`}
 								placeholder='Текст скрипта Яндекса'
 								height='106px'
 								isTextarea

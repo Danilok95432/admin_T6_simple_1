@@ -18,6 +18,18 @@ export const DescSection: FC<DescSectionProps> = ({ photo }) => {
 			<div className={styles.inputWrapperTextArea}>
 				<QuillEditor
 					name='short'
+					label='Анонс подсобытия *'
+					$heightEditor='150px'
+					$maxWidth='1140px'
+					$width='1140px'
+				/>
+				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip_textArea}>
+					<InfoIconSvg />
+				</Tooltip>
+			</div>
+			<div className={styles.inputWrapperTextArea}>
+				<QuillEditor
+					name='full'
 					label='Описание подсобытия *'
 					$heightEditor='150px'
 					$maxWidth='1140px'

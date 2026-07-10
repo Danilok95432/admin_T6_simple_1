@@ -27,46 +27,33 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 	margin,
 	dynamicError,
 	disabled,
-	isRequired,
-	bigFont = false,
 	...props
 }) => {
 	const {
+		register,
 		control,
 		formState: { errors },
 	} = useFormContext()
 
 	const {
-		field: { value, onChange, onBlur },
+		field: { onChange },
 	} = useController({
 		name,
 		control,
-		defaultValue: [],
+		defaultValue: selectOptions[0].value,
 	})
-
 	return (
-		<div
-			className={cn(styles.selectWrapper, { [styles.selectHugeWrapper]: bigFont }, className)}
-			style={{ margin }}
-		>
-			{label && (
-				<label>
-					{label} {isRequired ? <span className={styles.reqStar}>*</span> : null}
-				</label>
-			)}
-
+		<div className={cn(styles.selectWrapper, className)} style={{ margin }}>
+			{label && <label>{label}</label>}
 			<Select
+				{...register(name)}
 				{...props}
 				options={selectOptions}
-				values={Array.isArray(value) ? value : []}
-				onChange={(values) => onChange(values)}
-				onDropdownClose={onBlur}
+				values={[selectOptions[0]]}
+				onChange={(values) => onChange(values[0]?.value)}
 				disabled={disabled}
-				className={cn({ [styles.disabled]: disabled })}
 			/>
-
 			{dynamicError && <p className={styles.warningMessage}>{dynamicError.message}</p>}
-
 			{errors[name] && (
 				<p className={styles.warningMessage}>
 					<ErrorMessage errors={errors} name={name} />

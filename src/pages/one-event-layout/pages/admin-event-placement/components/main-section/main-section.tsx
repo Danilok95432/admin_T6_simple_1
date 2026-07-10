@@ -61,7 +61,10 @@ export const MainSection: FC<MainSectionProps> = ({
 
 		const formData = new FormData()
 		formData.append('id', id)
-		formData.append('id_domain', String(domainChoice))
+		formData.append(
+			'id_domain',
+			typeof domainChoice === 'string' ? domainChoice : domainChoice ? domainChoice[0].value : '0',
+		)
 
 		try {
 			await saveDomainChoice(formData).unwrap()

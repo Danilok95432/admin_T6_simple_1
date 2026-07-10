@@ -1,0 +1,31 @@
+div.settingsContent {
+  max-width: 1570px;
+  min-height: max-content;
+  .disc {
+    width: max-content;
+    margin-bottom: 30px;
+    p {
+      font-size: 14px;
+    }
+  }
+}
+.title {
+  font-size: 25px;
+}
+
+.newsTable {
+  grid-template-columns:
+  minmax(260px, 260px)
+  minmax(300px, 25fr)
+  minmax(50px, 0.2fr);
+  .checkBoxWrapperNews {
+    margin: 14px auto auto 25px;
+  }
+}
+
+.titleNewsTable {
+  max-width: 750px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}

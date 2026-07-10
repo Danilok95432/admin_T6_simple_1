@@ -131,6 +131,12 @@ import { AdminSettingsLayout } from 'src/pages/admin-settings/admin-settings-lay
 import { PromoSettings } from 'src/pages/admin-settings/layout/promo-settings/promo-settings'
 import { ContactsSettings } from 'src/pages/admin-settings/layout/contacts-settings/contacts-settings'
 import { OnePurchasedTicket } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/purchased-tickets-page/components/one-purchased-ticket/one-ticket'
+import { OneHistory } from 'src/pages/admin-settings/layout/history-settings/components/one-history/one-history'
+import { HistorySettingsLayout } from 'src/pages/admin-settings/layout/history-settings/history-settings-layout'
+import { HistorySettings } from 'src/pages/admin-settings/layout/history-settings/components/history-list/history-settings'
+import { OrgAbout } from 'src/pages/admin-new-org/pages/org-about/org-about'
+import { OrgAboutInfo } from 'src/pages/admin-new-org/pages/org-about/layout/org-info/org-about-info'
+import { OrgAboutDetails } from 'src/pages/admin-new-org/pages/org-about/layout/org-details/org-details'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -184,6 +190,10 @@ export const AdminRoutes: FC = () => {
 						<Route path={AdminRoute.OrgIncome} element={<OrgIncome />} />
 						<Route path={AdminRoute.OrgReqRefund} element={<OrgReqRefund />} />
 						<Route path={AdminRoute.OrgRefund} element={<OrgRefund />} />
+					</Route>
+					<Route path={AdminRoute.AdminAbout} element={<OrgAbout />}>
+						<Route path={AdminRoute.OrgInfo} element={<OrgAboutInfo />} />
+						<Route path={AdminRoute.OrgDetails} element={<OrgAboutDetails />} />
 					</Route>
 				</Route>
 				<Route path={AdminRoute.Guests} element={<AdminGuestsLayout />} />
@@ -400,11 +410,17 @@ export const AdminRoutes: FC = () => {
 				</Route>
 
 				<Route path={AdminRoute.AdminSupport} element={<AdminSupport />} />
-
 				<Route path={AdminRoute.AdminSettings} element={<AdminSettingsLayout />}>
 					<Route path={AdminRoute.AdminSettingsCommon} element={<CommonSettings />} />
 					<Route path={AdminRoute.AdminSettingsPromo} element={<PromoSettings />} />
 					<Route path={AdminRoute.AdminSettingsContacts} element={<ContactsSettings />} />
+					<Route path={AdminRoute.AdminSettingsHistory} element={<HistorySettingsLayout />}>
+						<Route index element={<HistorySettings />} />
+						<Route
+							path={`/${AdminRoute.AdminSettings}/${AdminRoute.AdminSettingsHistory}/:id`}
+							element={<OneHistory />}
+						/>
+					</Route>
 				</Route>
 			</Route>
 		</Routes>

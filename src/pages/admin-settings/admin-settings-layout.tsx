@@ -17,9 +17,14 @@ export const AdminSettingsLayout = () => {
 			indexLink: `/admin-settings/promo-settings`,
 		},
 		{
-			title: 'Контакты и футер',
+			title: 'Контакты, лента, футер',
 			link: `/admin-settings/contacts-settings`,
 			indexLink: `/admin-settings/contacts-settings`,
+		},
+		{
+			title: 'История',
+			link: `/admin-settings/history-settings`,
+			indexLink: `/admin-settings/history-settings`,
 		},
 	]
 	return (

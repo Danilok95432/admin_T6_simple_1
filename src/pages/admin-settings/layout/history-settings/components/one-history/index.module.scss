@@ -1,0 +1,45 @@
+.inputWrapper {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+	width: 100%;
+}
+.titleNewsForm {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.oneNewsContentLeft {
+  max-width: 1171px;
+}
+
+.link {
+  margin: 20px 0;
+}
+
+.tooltip {
+	margin-top: 10px;
+}
+
+.tooltip_type {
+	margin-top: -15px;
+}
+
+.tooltip_teg {
+	margin-top: 27px;
+}
+
+.typeLevelWrapper {
+	width: 100%;
+}
+
+.selectWrap {
+  max-width: 830px;
+}
+
+div.selectRow {
+  gap: 20px;
+  align-items: center;
+  flex-wrap: nowrap;
+  max-width: 1050px;
+}

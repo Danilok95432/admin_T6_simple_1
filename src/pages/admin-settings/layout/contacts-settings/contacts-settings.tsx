@@ -17,6 +17,7 @@ import {
 import { ContactsSection } from './components/contacts-section/contacts-section'
 import { FooterSection } from './components/footer-section/footer-section'
 import { type SettingsInputs } from './schema'
+import { PromoSection } from './components/promo-section/promo-section'
 
 export const ContactsSettings: FC = () => {
 	const { data: settingsData } = useGetSettingsContactsQuery(null)
@@ -73,10 +74,12 @@ export const ContactsSettings: FC = () => {
 					>
 						<ContactsSection />
 						<FooterSection />
+						<PromoSection />
 						<AdminControllers
 							outLink={AdminRoute.AdminHome}
 							isSent={isSent}
 							actionHandler={setAction}
+							withoutSave
 						/>
 					</form>
 				</FormProvider>

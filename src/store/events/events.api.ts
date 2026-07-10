@@ -36,6 +36,7 @@ import {
 	type EventWidgetReg,
 	type EventPassResponse,
 	type TicketRegistrationsResponse,
+	type EventEditInfo,
 } from 'src/types/events'
 import { type FieldValues } from 'react-hook-form'
 
@@ -224,6 +225,23 @@ export const eventsApi = createApi({
 				},
 			}),
 			providesTags: ['EventInfo', 'Events', 'EventContacts'],
+		}),
+		getEditContentEventInfo: build.query<EventEditInfo, string>({
+			query: (id) => ({
+				url: `events/edit_content_info`,
+				params: {
+					id,
+				},
+			}),
+			providesTags: ['EventInfo'],
+		}),
+		saveEditContentEventInfo: build.mutation<string, FieldValues>({
+			query: (FormData) => ({
+				url: `events/save_content_info`,
+				method: 'POST',
+				body: FormData,
+			}),
+			invalidatesTags: ['EventInfo'],
 		}),
 		saveEventContentInfo: build.mutation<string, FieldValues>({
 			query: (FormData) => ({
@@ -1014,4 +1032,6 @@ export const {
 	useGetEventPassQuery,
 	useSaveEventPassMutation,
 	useSaveDomainLandingChoiceMutation,
+	useGetEditContentEventInfoQuery,
+	useSaveEditContentEventInfoMutation,
 } = eventsApi

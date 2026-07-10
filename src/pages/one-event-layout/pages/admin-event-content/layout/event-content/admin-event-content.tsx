@@ -60,11 +60,13 @@ export const AdminEventContent: FC = () => {
 			eventInfoFormData.append(`placements_location[${index}]`, placement.location)
 		})
 
-		data.routes?.forEach((route, index) => {
-			eventInfoFormData.append(`routes_title[${index}]`, route.title)
-			eventInfoFormData.append(`routes_desc[${index}]`, route.desc)
-			eventInfoFormData.append(`routes_location[${index}]`, route.location)
+		data.schemas?.forEach((schema, index) => {
+			eventInfoFormData.append(`schemas_title[${index}]`, schema.title)
+			eventInfoFormData.append(`schemas_desc[${index}]`, schema.desc)
+			eventInfoFormData.append(`schemas_location[${index}]`, schema.location)
 		})
+
+		eventInfoFormData.append('hide_shemas', booleanToNumberString(data.hide_schemas))
 
 		data.links?.forEach((link, index) => {
 			eventInfoFormData.append(`links_title[${index}]`, link.title)
@@ -122,8 +124,8 @@ export const AdminEventContent: FC = () => {
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} noValidate autoComplete='off'>
 					<PreviewSection logo={contentInfoData?.photo} />
-					<LogoEventSection logo={contentInfoData?.logoEvent} />
-					<LocationSection schema={contentInfoData?.schema} />
+					<LogoEventSection logo={contentInfoData?.event_logo} />
+					<LocationSection schema={contentInfoData?.event_schema} />
 					<PlacementSection />
 					<RouteSection />
 					<GallerySection images={contentInfoData?.photos} idItem={id} />

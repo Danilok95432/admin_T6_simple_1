@@ -14,6 +14,7 @@ export type SettingsInputs = {
 	slider_photo: ImageItemWithText[]
 	textBtnReg?: string
 	textBtnPart?: string
+	isClicked?: boolean
 }
 
 export const defaultMainBlocksValues = {
@@ -21,4 +22,5 @@ export const defaultMainBlocksValues = {
 	isShowBtnRequest: false,
 	isShowBtnBel: false,
 	isShowBtnRasp: false,
+	isClicked: false,
 }

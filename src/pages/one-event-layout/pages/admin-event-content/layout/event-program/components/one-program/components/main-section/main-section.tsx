@@ -73,13 +73,13 @@ export const MainSection = () => {
 					className={styles.checkbox}
 				/>
 			</div>
-			{/* <div className={styles.inputWrapper}>
+			<div className={styles.inputWrapper}>
 				<ControlledInput name='place' label='Локация *' placeholder='Название локации' />
 
 				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
 					<InfoIconSvg />
 				</Tooltip>
-			</div> */}
+			</div>
 		</AdminSection>
 	)
 }

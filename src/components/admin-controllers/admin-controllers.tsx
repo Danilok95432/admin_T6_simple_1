@@ -10,6 +10,7 @@ type AdminControllersProps = {
 	variant?: '1' | '2' | '3' | '4' | '5'
 	isSent?: boolean
 	actionHandler: (action: 'apply' | 'save') => void
+	withoutSave?: boolean
 }
 
 type AdminStyledBtns = {
@@ -32,6 +33,7 @@ export const AdminControllers: FC<AdminControllersProps> = ({
 	variant = '1',
 	isSent = false,
 	actionHandler,
+	withoutSave = false,
 	...props
 }) => {
 	const navigate = useNavigate()
@@ -49,15 +51,17 @@ export const AdminControllers: FC<AdminControllersProps> = ({
 						>
 							{isSent ? 'Изменения сохранены' : 'Применить и продолжить'}
 						</AdminButton>
-						<AdminButton
-							as='button'
-							type='submit'
-							$variant='light'
-							$height='40px'
-							onClick={() => actionHandler('save')}
-						>
-							Сохранить и выйти
-						</AdminButton>
+						{!withoutSave && (
+							<AdminButton
+								as='button'
+								type='submit'
+								$variant='light'
+								$height='40px'
+								onClick={() => actionHandler('save')}
+							>
+								Сохранить и выйти
+							</AdminButton>
+						)}
 					</>
 				)
 			case '2':

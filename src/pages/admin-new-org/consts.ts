@@ -16,4 +16,9 @@ export const orgTabs: TabNavigationItem[] = [
 		link: `/org/finances/stat`,
 		indexLink: `/org/finances/stat`,
 	},
+	{
+		title: 'Об организаторе',
+		link: `/org/about/info`,
+		indexLink: `/org/about/info`,
+	},
 ]

@@ -61,6 +61,7 @@ export const OneProgram = () => {
 			end_time: timeFormatTo,
 			use_end_time: booleanToNumberString(data.use_end_time),
 			short: data.short,
+			full: data.full,
 			rules: data.rules,
 			reglament: data.reglament,
 			trebovania: data.trebovania,

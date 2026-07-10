@@ -35,6 +35,7 @@ export const PromoSettings: FC = () => {
 		formData.append('isShowBtnBel', booleanToNumberString(data.isShowBtnBel))
 		formData.append('isShowBtnRasp', booleanToNumberString(data.isShowBtnRasp))
 		formData.append('isShowBtnRequest', booleanToNumberString(data.isShowBtnRequest))
+		formData.append('isClicked', booleanToNumberString(data.isClicked))
 		formData.append('textBtnReg', data?.textBtnReg ?? '')
 		formData.append('textBtnPart', data?.textBtnPart ?? '')
 		formData.append(
@@ -109,6 +110,7 @@ export const PromoSettings: FC = () => {
 							outLink={AdminRoute.AdminHome}
 							isSent={isSent}
 							actionHandler={setAction}
+							withoutSave
 						/>
 					</form>
 				</FormProvider>

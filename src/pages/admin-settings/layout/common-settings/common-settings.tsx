@@ -85,6 +85,7 @@ export const CommonSettings: FC = () => {
 							outLink={AdminRoute.AdminHome}
 							isSent={isSent}
 							actionHandler={setAction}
+							withoutSave
 						/>
 					</form>
 				</FormProvider>

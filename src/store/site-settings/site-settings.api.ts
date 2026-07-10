@@ -1,14 +1,20 @@
-import { type SiteSettingsResponse, type PromoBlock } from 'src/types/site-settings'
+import {
+	type SiteSettingsResponse,
+	type PromoBlock,
+	type HistoryResponse,
+	type HistoryItem,
+} from 'src/types/site-settings'
 
 import { createApi } from '@reduxjs/toolkit/query/react'
 
 import { ReducerPath } from 'src/helpers/consts'
 import { type FieldValues } from 'react-hook-form'
 import { baseQueryWithReauth } from 'src/helpers/base-query'
+import { type NewsNewIdResponse } from 'src/types/news'
 
 export const siteSettingsApi = createApi({
 	reducerPath: ReducerPath.SiteSettings,
-	tagTypes: ['SiteSettings'],
+	tagTypes: ['SiteSettings', 'History'],
 	baseQuery: baseQueryWithReauth,
 	endpoints: (build) => ({
 		getPromos: build.query<PromoBlock[], null>({
@@ -55,6 +61,47 @@ export const siteSettingsApi = createApi({
 			}),
 			invalidatesTags: ['SiteSettings'],
 		}),
+		getAllHistory: build.query<HistoryResponse, null>({
+			query: () => ({
+				url: `dates/list`,
+			}),
+			providesTags: ['History'],
+		}),
+		getNewIdHistory: build.query<NewsNewIdResponse, null>({
+			query: () => ({
+				url: `dates/getnew`,
+			}),
+			providesTags: ['History'],
+		}),
+		deleteHistoryById: build.mutation<null, string>({
+			query: (newsId) => ({
+				url: `dates/delete`,
+				method: 'DELETE',
+				body: { id: newsId },
+			}),
+			invalidatesTags: ['History'],
+		}),
+		hideHistoryById: build.mutation<null, string>({
+			query: (newsId) => ({
+				url: `dates/hide`,
+				method: 'POST',
+				body: { id: newsId },
+			}),
+			invalidatesTags: ['History'],
+		}),
+		getHistoryById: build.query<HistoryItem, string>({
+			query: (id) => ({
+				url: `dates/edit/${id}`,
+			}),
+		}),
+		saveHistory: build.mutation<null, FieldValues>({
+			query: (formData) => ({
+				url: `dates/save`,
+				method: 'POST',
+				body: formData,
+			}),
+			invalidatesTags: ['History'],
+		}),
 	}),
 })
 
@@ -66,4 +113,10 @@ export const {
 	useSaveSettingsPromoMutation,
 	useGetSettingsContactsQuery,
 	useSaveSettingsContactsMutation,
+	useDeleteHistoryByIdMutation,
+	useGetAllHistoryQuery,
+	useGetHistoryByIdQuery,
+	useGetNewIdHistoryQuery,
+	useHideHistoryByIdMutation,
+	useSaveHistoryMutation,
 } = siteSettingsApi

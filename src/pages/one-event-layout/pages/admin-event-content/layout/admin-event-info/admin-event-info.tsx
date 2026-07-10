@@ -4,10 +4,6 @@ import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-import {
-	type EventContentInputs,
-	eventContentSchema,
-} from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-content/schema'
 import { AdminContent } from 'src/components/admin-content/admin-content'
 import { AdminControllers } from 'src/components/admin-controllers/admin-controllers'
 import { AdminRoute } from 'src/routes/admin-routes/consts'
@@ -15,38 +11,35 @@ import { AdminRoute } from 'src/routes/admin-routes/consts'
 import adminStyles from 'src/routes/admin-layout/index.module.scss'
 import styles from './index.module.scss'
 import {
-	useGetContentByEventIdQuery,
-	useSaveEventContentInfoMutation,
+	useGetEditContentEventInfoQuery,
+	useSaveEditContentEventInfoMutation,
 } from 'src/store/events/events.api'
-import { currentDateString } from 'src/helpers/utils'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
 import { TextInfoSection } from './components/text-info-section/text-info-section'
+import { type EventProfileInputs, eventProfileSchema } from './schema'
 
 export const AdminEventInfo: FC = () => {
 	const { id = '0' } = useParams()
-	const { data: contentInfoData } = useGetContentByEventIdQuery(id)
-	const [saveEventContentInfo] = useSaveEventContentInfoMutation()
+	const { data: contentInfoData } = useGetEditContentEventInfoQuery(id)
+	const [saveEventContentInfo] = useSaveEditContentEventInfoMutation()
 
-	const methods = useForm<EventContentInputs>({
+	const methods = useForm<EventProfileInputs>({
 		mode: 'onBlur',
-		resolver: yupResolver(eventContentSchema),
-		defaultValues: {
-			hide_placements: false,
-			hide_gallery: false,
-			hide_links: false,
-			hide_documents: false,
-		},
+		resolver: yupResolver(eventProfileSchema),
 	})
 
 	const { isSent, markAsSent } = useIsSent(methods.control)
 	const [action, setAction] = useState<'apply' | 'save'>('apply')
 	const navigate = useNavigate()
 
-	const onSubmit: SubmitHandler<EventContentInputs> = async (data) => {
+	const onSubmit: SubmitHandler<EventProfileInputs> = async (data) => {
 		const eventId = id
 		const eventInfoFormData = new FormData()
 
 		eventInfoFormData.append('id', eventId)
+		eventInfoFormData.append('description', data.description)
+		eventInfoFormData.append('conditions', data.conditions)
+		eventInfoFormData.append('fullinfo', data.fullinfo)
 
 		const res = await saveEventContentInfo(eventInfoFormData)
 		if (res) {
@@ -59,19 +52,9 @@ export const AdminEventInfo: FC = () => {
 
 	useEffect(() => {
 		if (contentInfoData) {
-			const modifiedContentInfoData = { ...contentInfoData }
-			modifiedContentInfoData.hide_gallery = !contentInfoData.hide_gallery
-			if (modifiedContentInfoData.links) {
-				modifiedContentInfoData.links = modifiedContentInfoData.links.map((link) => {
-					if (link.date === '0000-00-00') {
-						return { ...link, date: currentDateString() }
-					}
-					return link
-				})
-			}
-			methods.reset(modifiedContentInfoData)
+			methods.reset({ ...contentInfoData })
 		}
-	}, [contentInfoData, methods.reset])
+	}, [contentInfoData])
 
 	return (
 		<AdminContent className={styles.eventContentPage}>
