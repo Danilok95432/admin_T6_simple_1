@@ -4,7 +4,7 @@ import * as yup from 'yup'
 export type OneHistoryInputs = {
 	datetext: string
 	datename: string
-	photo?: ImageItemWithText[]
+	dates_marker?: ImageItemWithText[]
 }
 
 export const oneHistorySchema = yup.object().shape({

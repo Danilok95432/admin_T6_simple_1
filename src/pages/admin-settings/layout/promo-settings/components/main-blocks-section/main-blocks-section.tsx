@@ -111,6 +111,7 @@ export const MainBlocksSection = ({
 						selectOptions={promoBlocks ?? []}
 						label='Выбор промо-блока'
 						margin='0 0 16px 0'
+						isIdActive
 					/>
 					{usePromoBlockSelected === '1' ||
 						(usePromoBlockSelected &&
@@ -122,6 +123,7 @@ export const MainBlocksSection = ({
 										selectOptions={events ?? []}
 										label='Выбор события'
 										margin='0 0 16px 0'
+										isIdActive
 									/>
 									<ControlledInput
 										name='textBtnReg'

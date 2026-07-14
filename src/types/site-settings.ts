@@ -18,11 +18,11 @@ export type HistoryItem = {
 	datename: string
 	datetext: string
 	hidden?: boolean
-	marker?: ImageItemWithText[]
+	dates_marker?: ImageItemWithText[]
 }
 
 export type HistoryResponse = {
-	history: HistoryItem[]
+	dates: HistoryItem[]
 }
 
 export type SiteSettingsResponse = {

@@ -56,8 +56,8 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 			<ReactDropzone
 				label='Логотип *'
 				name='photo'
-				prompt='PNG, JPG, JPEG. 1000 х1000px, не более 3 Мб'
-				accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
+				prompt='PNG, JPG, JPEG, SVG. 1000 х1000px, не более 3 Мб'
+				accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'], 'image/svg+xml': ['.svg'] }}
 				margin='0 0 20px'
 				previewVariant='sm-img'
 				imgtype='org'

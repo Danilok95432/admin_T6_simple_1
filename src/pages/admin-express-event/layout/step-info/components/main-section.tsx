@@ -47,7 +47,7 @@ export const MainSection = () => {
 					label='Изображение (логотип) события'
 					name='photo'
 					prompt='PNG, JPG, SVG, необходимое разрешение и размер'
-					accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
+					accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'], 'image/svg+xml': ['.svg'] }}
 					margin='20px 0 20px 0'
 					previewVariant='sm-img'
 					imgtype='news'

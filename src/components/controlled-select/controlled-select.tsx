@@ -17,6 +17,7 @@ type ControlledSelectProps = {
 	disabled?: boolean
 	isRequired?: boolean
 	bigFont?: boolean
+	isIdActive?: boolean
 }
 
 export const ControlledSelect: FC<ControlledSelectProps> = ({
@@ -27,6 +28,7 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 	margin,
 	dynamicError,
 	disabled,
+	isIdActive = false,
 	...props
 }) => {
 	const {
@@ -36,12 +38,18 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 	} = useFormContext()
 
 	const {
-		field: { onChange },
+		field: { value, onChange },
 	} = useController({
 		name,
 		control,
-		defaultValue: selectOptions[0].value,
+		defaultValue: [],
 	})
+
+	const selectedValues: SelOption[] = Array.isArray(value)
+		? value
+		: value
+			? selectOptions.filter((option) => String(option.value) === String(value))
+			: []
 	return (
 		<div className={cn(styles.selectWrapper, className)} style={{ margin }}>
 			{label && <label>{label}</label>}
@@ -49,7 +57,7 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 				{...register(name)}
 				{...props}
 				options={selectOptions}
-				values={[selectOptions[0]]}
+				values={isIdActive ? selectedValues : [selectOptions[0]]}
 				onChange={(values) => onChange(values[0]?.value)}
 				disabled={disabled}
 			/>

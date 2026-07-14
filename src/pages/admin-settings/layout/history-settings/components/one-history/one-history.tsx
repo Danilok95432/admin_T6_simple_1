@@ -97,13 +97,13 @@ export const OneHistory = () => {
 								</div>
 								<AdminSection titleText='Маркер вехи *'>
 									<ReactDropzone
-										name='logo'
+										name='dates_marker'
 										prompt='PNG, JPG, JPEG. 1920px × 480px, не более 3 Мб'
 										accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 										margin='0 0 20px 0'
 										previewVariant='sm-img'
-										imgtype='events'
-										fileImages={data?.marker}
+										imgtype='dates_marker'
+										fileImages={data?.dates_marker}
 									/>
 								</AdminSection>
 							</div>

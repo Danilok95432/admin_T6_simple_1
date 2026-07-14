@@ -7,12 +7,12 @@ export const FooterSection = () => {
 	return (
 		<AdminSection className={styles.mainBlocksSection} noBorder>
 			<h2>Информация в футере</h2>
-			<ControlledInput
+			{/* <ControlledInput
 				name='copyright'
 				label='Копирайт'
 				placeholder='Международная премия имени Александра Беляева'
 				margin='0 0 20px 0'
-			/>
+			/> */}
 			<ControlledInput name='address' label='Адрес' placeholder='Адрес' margin='0 0 20px 0' />
 			<ControlledInput
 				name='certificate'

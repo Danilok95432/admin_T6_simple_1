@@ -91,7 +91,10 @@ export const siteSettingsApi = createApi({
 		}),
 		getHistoryById: build.query<HistoryItem, string>({
 			query: (id) => ({
-				url: `dates/edit/${id}`,
+				url: `dates/edit`,
+				params: {
+					id,
+				},
 			}),
 		}),
 		saveHistory: build.mutation<null, FieldValues>({

@@ -54,8 +54,8 @@ export const MainSection: FC<MainSectionProps> = ({
 			<ReactDropzone
 				label='Логотип партнера *'
 				name='logoPartner'
-				prompt='соотношение сторон 1:1 или 3:4, JPEG, PNG'
-				accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
+				prompt='соотношение сторон 1:1 или 3:4, JPEG, PNG, SVG'
+				accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'], 'image/svg+xml': ['.svg'] }}
 				margin='0 0 40px 0'
 				previewVariant='sm-img'
 				imgtype='partners'

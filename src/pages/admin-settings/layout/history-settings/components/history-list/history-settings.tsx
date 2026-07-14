@@ -91,12 +91,12 @@ export const HistorySettings = () => {
 				<div>
 					<CustomTable
 						className={styles.newsTable}
-						rowData={formatObjectsTableData(data?.history ?? [])}
+						rowData={formatObjectsTableData(data?.dates ?? [])}
 						colTitles={tableTitles}
 						rowClickHandler={rowClickHandler}
 					/>
 					<TableFooter
-						totalElements={data?.history.length}
+						totalElements={data?.dates.length}
 						addClickHandler={handleAddNewsClick}
 						addText='Добавить веху'
 					/>
