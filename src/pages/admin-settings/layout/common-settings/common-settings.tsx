@@ -33,6 +33,7 @@ export const CommonSettings: FC = () => {
 	const onSubmit: SubmitHandler<SettingsInputs> = async (data) => {
 		const formData = new FormData()
 		formData.append('isShowPromo', booleanToNumberString(data.isShowPromo))
+		formData.append('isShowGallery', booleanToNumberString(data.isShowGallery))
 		formData.append('isShowNews', booleanToNumberString(data.isShowNews))
 		formData.append('isShowHistory', booleanToNumberString(data.isShowHistory))
 		formData.append('isShowOrg', booleanToNumberString(data.isShowOrg))

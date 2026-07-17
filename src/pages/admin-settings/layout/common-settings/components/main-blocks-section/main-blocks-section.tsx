@@ -13,6 +13,12 @@ export const MainBlocksSection = () => {
 				type='checkbox'
 			/>
 			<ControlledCheckbox
+				name='isShowGallery'
+				label='Показать галерею'
+				$margin='0 0 20px 0'
+				type='checkbox'
+			/>
+			<ControlledCheckbox
 				name='isShowEvents'
 				label='Показать блок «События»'
 				$margin='0 0 20px 0'

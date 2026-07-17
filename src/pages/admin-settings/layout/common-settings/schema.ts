@@ -10,6 +10,7 @@ export type SettingsInputs = {
 	isShowEvents: boolean
 	isShowPartners: boolean
 	isShowFaq: boolean
+	isShowGallery: boolean
 	title: string
 	aboutTitle: string
 	metric: string
@@ -17,6 +18,7 @@ export type SettingsInputs = {
 
 export const defaultMainBlocksValues = {
 	isShowPromo: false,
+	isShowGallery: false,
 	isShowBtnRequest: false,
 	isShowBtnBel: false,
 	isShowBtnRasp: false,

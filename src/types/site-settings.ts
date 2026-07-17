@@ -27,6 +27,7 @@ export type HistoryResponse = {
 
 export type SiteSettingsResponse = {
 	isShowPromo: boolean
+	isShowGallery: boolean
 	isShowBtnRequest: boolean
 	isShowBtnBel: boolean
 	isShowBtnRasp: boolean
