@@ -17,6 +17,7 @@ interface QuillEditorProps extends Omit<ControllerProps, 'render'> {
 	rules?: ControllerProps['rules']
 	dynamicError?: FieldError | undefined
 	label?: string
+	sublabel?: string
 	className?: string
 	maxDocumentSizeMb?: number
 }
@@ -364,6 +365,7 @@ export const QuillEditor: FC<QuillEditorProps & StyledEditorWrapperProps> = ({
 	rules,
 	dynamicError,
 	label,
+	sublabel,
 	$heightEditor,
 	$maxWidth,
 	$width,
@@ -618,7 +620,7 @@ export const QuillEditor: FC<QuillEditorProps & StyledEditorWrapperProps> = ({
 			className={className}
 		>
 			{label && <label>{label}</label>}
-
+			{sublabel && <p style={{ paddingBottom: '12px' }}>{sublabel}</p>}
 			<Controller
 				name={name}
 				control={control}
@@ -698,9 +700,7 @@ export const QuillEditor: FC<QuillEditorProps & StyledEditorWrapperProps> = ({
 					)
 				}}
 			/>
-
 			{dynamicError && <p className='warningMessage'>{dynamicError.message}</p>}
-
 			{errors[name] && (
 				<p className='warningMessage'>
 					<ErrorMessage errors={errors} name={name} />

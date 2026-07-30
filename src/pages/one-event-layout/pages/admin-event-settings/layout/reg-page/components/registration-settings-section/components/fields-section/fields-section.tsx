@@ -138,7 +138,7 @@ export const FieldsSection = () => {
 							/>
 							<ControlledCheckbox
 								name='regFields.phone.use_sms'
-								label='Использовать SMS для подтверждения регистрации (требует подключения тарифной опции и имени отправителя). Плату за отправку SMS взимает оператор сотовой связи.'
+								label='Использовать SMS для подтверждения регистрации.'
 								type='checkbox'
 							/>
 						</FlexRow>

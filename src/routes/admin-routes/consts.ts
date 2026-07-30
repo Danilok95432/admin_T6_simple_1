@@ -1,5 +1,6 @@
 export enum AdminRoute {
 	AdminHome = 'news/news-list',
+	AdminReg = 'reg',
 	AdminNotifications = 'notifications',
 	AdminPersonal = 'personal',
 	AdminNews = 'news',

@@ -74,7 +74,6 @@ import { AdminEventParticipantsLayout } from 'src/pages/one-event-layout/pages/a
 import { SettingsEventLayout } from 'src/pages/one-event-layout/pages/admin-event-settings/settings-event-layout'
 import { RegistrationPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/registration-page/registration-page'
 import { TypeTicketsPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/type-tickets-page/type-tickets-page'
-import { TypeParticipantsPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/type-participants-page/type-participants-page'
 import { TypeGroupsPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/type-groups-page/type-groups-page'
 import { GatesPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/gates-page/gates-page'
 import { ServicesEventLayout } from 'src/pages/one-event-layout/pages/admin-event-services/services-event-layout'
@@ -137,6 +136,10 @@ import { HistorySettings } from 'src/pages/admin-settings/layout/history-setting
 import { OrgAbout } from 'src/pages/admin-new-org/pages/org-about/org-about'
 import { OrgAboutInfo } from 'src/pages/admin-new-org/pages/org-about/layout/org-info/org-about-info'
 import { OrgAboutDetails } from 'src/pages/admin-new-org/pages/org-about/layout/org-details/org-details'
+import { RegPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/reg-page/registration-page'
+import { TypeList } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/type-participants-page/layout/type-list/type-list'
+import { TypeParticipantsLayout } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/type-participants-page/type-participants-layout'
+import { TypeParticipantPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/type-participants-page/layout/one-type/type-participants-page'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -253,9 +256,16 @@ export const AdminRoutes: FC = () => {
 					<Route path={`${AdminRoute.AdminEventProfile}/:id`} element={<AdminEventProfile />} />
 					<Route path={`${AdminRoute.AdminEventSettings}/:id`} element={<SettingsEventLayout />}>
 						<Route path={`${AdminRoute.Registration}`} element={<RegistrationPage />} />
+						<Route path={`${AdminRoute.AdminReg}`} element={<RegPage />} />
 						<Route path={`${AdminRoute.Tickets}`} element={<TypeTicketsPage />} />
+						<Route path={`${AdminRoute.Participants}`} element={<TypeParticipantsLayout />}>
+							<Route index element={<TypeList />} />
+							<Route
+								path={`/${AdminRoute.AdminEvent}/${AdminRoute.AdminEventSettings}/:id/${AdminRoute.Participants}/:subId`}
+								element={<TypeParticipantPage />}
+							/>
+						</Route>
 						<Route path={`${AdminRoute.Payments}`} element={<PaymentsPage />} />
-						<Route path={`${AdminRoute.Participants}`} element={<TypeParticipantsPage />} />
 						<Route path={`${AdminRoute.Groups}`} element={<TypeGroupsPage />} />
 						<Route path={`${AdminRoute.Gates}`} element={<GatesPage />} />
 					</Route>

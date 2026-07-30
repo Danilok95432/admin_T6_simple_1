@@ -1,3 +1,5 @@
+import { type ImageItemWithText } from 'src/types/photos'
+
 export type SettingsInputs = {
 	phone: string
 	email: string
@@ -8,4 +10,5 @@ export type SettingsInputs = {
 	address: string
 	certificate: string
 	metric?: string
+	promoband?: ImageItemWithText[]
 }

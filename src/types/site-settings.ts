@@ -53,4 +53,5 @@ export type SiteSettingsResponse = {
 	isShowOrg: boolean
 	promo_photo: ImageItemWithText[]
 	slider_photo: ImageItemWithText[]
+	promoband: ImageItemWithText[]
 }

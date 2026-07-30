@@ -37,6 +37,8 @@ import {
 	type EventPassResponse,
 	type TicketRegistrationsResponse,
 	type EventEditInfo,
+	type EventSettingsParticipantTypes,
+	type SettingsParticipantType,
 } from 'src/types/events'
 import { type FieldValues } from 'react-hook-form'
 
@@ -75,6 +77,8 @@ export const eventsApi = createApi({
 		'EventSettingsPayment',
 		'EventSettingsTicket',
 		'EventSettingsTickets',
+		'EventSettingsParticipants',
+		'EventSettingsParticipant',
 		'EventRegistrationsList',
 		'EventTicketsList',
 		'EventEntersList',
@@ -669,6 +673,38 @@ export const eventsApi = createApi({
 			}),
 			invalidatesTags: ['EventSettingsTicket'],
 		}),
+		// <--------------- Настройка -> Типы участников --------------->
+		getSettingsParticipantTypesList: build.query<EventSettingsParticipantTypes, string>({
+			query: (id) => ({
+				url: `events/participant_types`,
+				params: {
+					id_event: id,
+				},
+			}),
+			providesTags: ['EventSettingsParticipants', 'EventSettingsParticipant'],
+		}),
+		getSettingsParticipantTypeById: build.query<
+			SettingsParticipantType,
+			{ id_event: string; id_type: string }
+		>({
+			query: (id) => ({
+				url: `events/participant_type`,
+				params: {
+					id_event: id,
+					id_type: id,
+				},
+			}),
+			providesTags: ['EventSettingsParticipants', 'EventSettingsParticipant'],
+		}),
+		saveSettingsParticipantType: build.mutation<string, FieldValues>({
+			query: (FormData) => ({
+				url: `events/save_participant_type`,
+				method: 'POST',
+				body: FormData,
+			}),
+			invalidatesTags: ['EventSettingsParticipants', 'EventSettingsParticipant'],
+		}),
+
 		// <--------------- Списки и статистика -> Регистрация --------------->
 		getRegistrationsList: build.query<
 			EventRegistrationsList,
@@ -1034,4 +1070,7 @@ export const {
 	useSaveDomainLandingChoiceMutation,
 	useGetEditContentEventInfoQuery,
 	useSaveEditContentEventInfoMutation,
+	useGetSettingsParticipantTypesListQuery,
+	useGetSettingsParticipantTypeByIdQuery,
+	useSaveSettingsParticipantTypeMutation,
 } = eventsApi

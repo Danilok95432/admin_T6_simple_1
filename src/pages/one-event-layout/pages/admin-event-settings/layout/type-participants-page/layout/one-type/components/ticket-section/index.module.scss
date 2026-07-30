@@ -14,7 +14,18 @@ a.link {
   color: black;
 }
 
-div.row {
+.guestInput {
+  max-width: 250px;
+}
+
+div.settingElem {
   flex-direction: column;
-  flex-wrap: nowrap;
+  gap: 0;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+div.btnsRow {
+  gap: 8px;
 }

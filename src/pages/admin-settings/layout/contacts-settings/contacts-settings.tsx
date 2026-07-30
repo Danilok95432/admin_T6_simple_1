@@ -74,7 +74,7 @@ export const ContactsSettings: FC = () => {
 					>
 						<ContactsSection />
 						<FooterSection />
-						<PromoSection />
+						<PromoSection images={settingsData?.promoband} />
 						<AdminControllers
 							outLink={AdminRoute.AdminHome}
 							isSent={isSent}

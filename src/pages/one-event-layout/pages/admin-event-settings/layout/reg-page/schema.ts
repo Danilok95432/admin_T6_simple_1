@@ -40,9 +40,9 @@ export type RegistrationSettingsInputs = {
 	rejectPhone?: boolean
 	use_group_ticket?: boolean
 	use_follow?: boolean
-	use_placement?: boolean
 	use_transport?: boolean
-	use_sale?: boolean
+	use_placement?: boolean
+	use_group?: boolean
 }
 
 export const registrationSettingsSchema = yup.object().shape({

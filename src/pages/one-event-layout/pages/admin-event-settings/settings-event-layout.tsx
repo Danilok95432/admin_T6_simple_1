@@ -11,12 +11,20 @@ export const SettingsEventLayout = () => {
 	const { id = '' } = useParams()
 	const eventTabs: TabNavigationItem[] = [
 		{
-			title: 'Регистрация',
+			title: 'Регистрация гостей',
 			link: `/event/event-settings/${id}/registration`,
 		},
 		{
 			title: 'Виды билетов',
 			link: `/event/event-settings/${id}/tickets`,
+		},
+		{
+			title: 'Регистрация участников',
+			link: `/event/event-settings/${id}/reg`,
+		},
+		{
+			title: 'Виды и настройка участников',
+			link: `/event/event-settings/${id}/participants`,
 		},
 		{
 			title: 'Оплата',

@@ -497,6 +497,25 @@ export type EventSettingsTicketTypes = {
 	ticket_types: SettingTicketType[]
 }
 
+export type SettingsParticipantType = {
+	id: string
+	title: string
+	limit: string
+	type?: string
+	price: string
+	use_accept?: boolean
+	acceptdaylimit: string
+	desc?: string
+	use_input?: boolean
+	label_desc?: string
+	hidden?: boolean
+	use_vid: boolean
+}
+
+export type EventSettingsParticipantTypes = {
+	participant_types: SettingsParticipantType[]
+}
+
 export type SettingTicketType = {
 	id?: string
 	title?: string

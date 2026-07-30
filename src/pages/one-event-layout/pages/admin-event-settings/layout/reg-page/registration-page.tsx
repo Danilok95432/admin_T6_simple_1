@@ -11,7 +11,6 @@ import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
 import { AdminButton } from 'src/UI/AdminButton/AdminButton'
 import { FlexRow } from 'src/components/flex-row/flex-row'
 import { RegistationSettingsSection } from './components/registration-settings-section/registration-settings-section'
-import { CommonSettingsSection } from './components/common-settings-section/common-settings-section'
 import {
 	useGetSettingsRegistrationQuery,
 	useSaveSettingsRegistrationInfoMutation,
@@ -26,7 +25,7 @@ import {
 import { parse, format } from 'date-fns'
 import { AdminRoute } from 'src/routes/admin-routes/consts'
 
-export const RegistrationPage: FC = () => {
+export const RegPage: FC = () => {
 	const { id = '0' } = useParams()
 	const { data: regData } = useGetSettingsRegistrationQuery(id)
 	const [saveSettingsReg] = useSaveSettingsRegistrationInfoMutation()
@@ -65,7 +64,7 @@ export const RegistrationPage: FC = () => {
 		settingsInfoFormData.append('use_follow', booleanToNumberString(data.use_follow))
 		settingsInfoFormData.append('use_transport', booleanToNumberString(data.use_transport))
 		settingsInfoFormData.append('use_placement', booleanToNumberString(data.use_placement))
-		settingsInfoFormData.append('use_sale', booleanToNumberString(data.use_sale))
+		settingsInfoFormData.append('use_group', booleanToNumberString(data.use_group))
 		settingsInfoFormData.append(
 			'regFields.surname.active',
 			booleanToNumberString(data.regFields.surname.active),
@@ -200,7 +199,7 @@ export const RegistrationPage: FC = () => {
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} noValidate autoComplete='off'>
 					<RegistationSettingsSection />
-					<CommonSettingsSection />
+					{/* <CommonSettingsSection /> */}
 					<FlexRow>
 						<AdminButton
 							as='button'
