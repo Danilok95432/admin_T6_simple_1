@@ -487,6 +487,34 @@ export type EventSettingsRegistration = {
 	use_follow?: boolean
 }
 
+export type EventSettingsRegistrationParticipants = {
+	use_reg?: boolean
+	startDate: string
+	startTime: Date
+	endDate: string
+	endTime: Date
+	regFields: {
+		surname: regField
+		name: regField
+		patronymic: regField
+		birthday: regField
+		region: regField
+		phone: regPhoneField
+		email: regEmailField
+		dates: regField
+	}
+	guestsLimit?: string
+	use_repeat_reg?: boolean
+	repeatCount?: string
+	rejectEmail?: boolean
+	rejectPhone?: boolean
+	use_group_ticket?: boolean
+	use_follow?: boolean
+	use_transport?: boolean
+	use_placement?: boolean
+	use_group?: boolean
+}
+
 export type EventSettingsPayment = {
 	use_card_pay?: boolean
 	use_sbp?: boolean

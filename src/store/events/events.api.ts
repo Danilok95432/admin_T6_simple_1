@@ -39,6 +39,7 @@ import {
 	type EventEditInfo,
 	type EventSettingsParticipantTypes,
 	type SettingsParticipantType,
+	type EventSettingsRegistrationParticipants,
 } from 'src/types/events'
 import { type FieldValues } from 'react-hook-form'
 
@@ -95,6 +96,7 @@ export const eventsApi = createApi({
 		'EventSaveColorLanding',
 		'EventPass',
 		'EventSaveDomainLanding',
+		'EventSettingsRegistrationParticipants',
 	],
 	baseQuery: baseQueryWithReauth,
 	endpoints: (build) => ({
@@ -620,6 +622,26 @@ export const eventsApi = createApi({
 			}),
 			invalidatesTags: ['EventSettingsRegistration'],
 		}),
+		// <--------------- Настройка -> Регистрация участников --------------->
+		getSettingsRegistrationParticipants: build.query<EventSettingsRegistrationParticipants, string>(
+			{
+				query: (id) => ({
+					url: `events/edit_settings_participants`,
+					params: {
+						id,
+					},
+				}),
+				providesTags: ['EventSettingsRegistrationParticipants'],
+			},
+		),
+		saveSettingsRegistrationParticipantsInfo: build.mutation<string, FieldValues>({
+			query: (FormData) => ({
+				url: `events/save_settings_participants`,
+				method: 'POST',
+				body: FormData,
+			}),
+			invalidatesTags: ['EventSettingsRegistrationParticipants'],
+		}),
 		// <--------------- Настройка -> Оплата --------------->
 		getSettingsPayment: build.query<EventSettingsPayment, string>({
 			query: (id) => ({
@@ -1073,4 +1095,6 @@ export const {
 	useGetSettingsParticipantTypesListQuery,
 	useGetSettingsParticipantTypeByIdQuery,
 	useSaveSettingsParticipantTypeMutation,
+	useGetSettingsRegistrationParticipantsQuery,
+	useSaveSettingsRegistrationParticipantsInfoMutation,
 } = eventsApi

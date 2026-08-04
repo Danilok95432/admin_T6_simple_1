@@ -12,8 +12,8 @@ import { AdminButton } from 'src/UI/AdminButton/AdminButton'
 import { FlexRow } from 'src/components/flex-row/flex-row'
 import { RegistationSettingsSection } from './components/registration-settings-section/registration-settings-section'
 import {
-	useGetSettingsRegistrationQuery,
-	useSaveSettingsRegistrationInfoMutation,
+	useGetSettingsRegistrationParticipantsQuery,
+	useSaveSettingsRegistrationParticipantsInfoMutation,
 } from 'src/store/events/events.api'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
@@ -27,8 +27,8 @@ import { AdminRoute } from 'src/routes/admin-routes/consts'
 
 export const RegPage: FC = () => {
 	const { id = '0' } = useParams()
-	const { data: regData } = useGetSettingsRegistrationQuery(id)
-	const [saveSettingsReg] = useSaveSettingsRegistrationInfoMutation()
+	const { data: regData } = useGetSettingsRegistrationParticipantsQuery(id)
+	const [saveSettingsReg] = useSaveSettingsRegistrationParticipantsInfoMutation()
 
 	const methods = useForm<RegistrationSettingsInputs>({
 		mode: 'onBlur',
