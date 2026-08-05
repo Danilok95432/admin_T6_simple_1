@@ -23,6 +23,23 @@ export const RegistationSettingsSection = () => {
 			<DateSection />
 			<FieldsSection />
 			<FlexRow className={styles.row}>
+				<p className={styles.subtitle}>Загрузка фотографии</p>
+				<FlexRow className={styles.checkRow}>
+					<ControlledCheckbox
+						name='regFields.photoLoad.active'
+						label='Активное поле'
+						type='checkbox'
+						$margin='0 0 32px 0'
+					/>
+					<ControlledCheckbox
+						name='regFields.photoLoad.req'
+						label='Обязательное поле'
+						type='checkbox'
+						$margin='0 0 32px 0'
+					/>
+				</FlexRow>
+			</FlexRow>
+			<FlexRow className={styles.row}>
 				<p className={styles.subtitle}>Участники на собственном транспорте</p>
 				<ControlledCheckbox
 					className={styles.checkBoxSmall}

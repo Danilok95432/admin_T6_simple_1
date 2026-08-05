@@ -43,6 +43,15 @@ export const TypeParticipantPage: FC = () => {
 		formData.append('use_group', booleanToNumberString(data.use_input))
 		formData.append('use_accept', booleanToNumberString(data.use_accept))
 		formData.append('use_vid', booleanToNumberString(data.use_vid))
+		formData.append(
+			'regFields.photoLoad.active',
+			booleanToNumberString(data.regFields.photoLoad.active),
+		)
+		formData.append('regFields.photoLoad.req', booleanToNumberString(data.regFields.photoLoad.req))
+		formData.append(
+			'regFields.photoLoad.multi',
+			booleanToNumberString(data.regFields.photoLoad.multi),
+		)
 
 		await saveNewTicket(formData).unwrap()
 	}

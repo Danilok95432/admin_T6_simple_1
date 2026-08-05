@@ -74,6 +74,14 @@ export const RegPage: FC = () => {
 			booleanToNumberString(data.regFields.surname.req),
 		)
 		settingsInfoFormData.append(
+			'regFields.photoLoad.active',
+			booleanToNumberString(data.regFields.photoLoad.active),
+		)
+		settingsInfoFormData.append(
+			'regFields.photoLoad.req',
+			booleanToNumberString(data.regFields.photoLoad.req),
+		)
+		settingsInfoFormData.append(
 			'regFields.dates.active',
 			booleanToNumberString(data.regFields.dates.active),
 		)

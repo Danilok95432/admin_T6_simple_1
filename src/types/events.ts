@@ -1,4 +1,5 @@
 import {
+	type regPhotoField,
 	type regEmailField,
 	type regField,
 	type regPhoneField,
@@ -502,6 +503,7 @@ export type EventSettingsRegistrationParticipants = {
 		phone: regPhoneField
 		email: regEmailField
 		dates: regField
+		photoLoad: regField
 	}
 	guestsLimit?: string
 	use_repeat_reg?: boolean
@@ -538,6 +540,9 @@ export type SettingsParticipantType = {
 	label_desc?: string
 	hidden?: boolean
 	use_vid: boolean
+	regFields: {
+		photoLoad: regPhotoField
+	}
 }
 
 export type EventSettingsParticipantTypes = {

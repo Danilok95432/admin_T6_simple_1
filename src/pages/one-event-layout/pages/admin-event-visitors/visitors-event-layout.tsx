@@ -10,14 +10,14 @@ import { Container } from 'src/UI/Container/Container'
 export const VisitorsEventLayout = () => {
 	const { id = '' } = useParams()
 	const eventTabs: TabNavigationItem[] = [
-		{
-			title: 'Регистрация',
-			link: `/event/event-lists/${id}/registrations`,
-		},
-		{
-			title: 'Купленные билеты',
-			link: `/event/event-lists/${id}/tickets`,
-		},
+		// {
+		// 	title: 'Регистрация',
+		// 	link: `/event/event-lists/${id}/registrations`,
+		// },
+		// {
+		// 	title: 'Купленные билеты',
+		// 	link: `/event/event-lists/${id}/tickets`,
+		// },
 		{
 			title: 'Журнал проходов',
 			link: `/event/event-lists/${id}/log-enters`,

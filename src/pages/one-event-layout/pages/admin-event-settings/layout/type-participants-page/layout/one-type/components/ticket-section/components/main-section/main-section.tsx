@@ -23,6 +23,29 @@ export const MainSection = () => {
 					width='1140px'
 				/>
 			</FlexRow>
+			<FlexRow className={styles.row}>
+				<p className={styles.subtitle}>Загрузка фотографиий</p>
+				<FlexRow className={styles.checkRow}>
+					<ControlledCheckbox
+						name='regFields.photoLoad.active'
+						label='Активное поле'
+						type='checkbox'
+						$margin='0 0 0px 0'
+					/>
+					<ControlledCheckbox
+						name='regFields.photoLoad.req'
+						label='Обязательное поле'
+						type='checkbox'
+						$margin='0 0 0px 0'
+					/>
+					<ControlledCheckbox
+						name='regFields.photoLoad.multi'
+						label='Мультизагрузка (до 5 фотографий)'
+						type='checkbox'
+						$margin='0 0 0px 0'
+					/>
+				</FlexRow>
+			</FlexRow>
 			<FlexRow className={styles.commerceRow}>
 				<FlexRow className={styles.priceRow}>
 					<ControlledInput name={`price`} label='Стоимость участия *' maxWidth='200px' />

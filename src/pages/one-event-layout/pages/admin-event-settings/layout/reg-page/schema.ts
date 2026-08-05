@@ -32,6 +32,7 @@ export type RegistrationSettingsInputs = {
 		phone: regPhoneField
 		email: regEmailField
 		dates: regField
+		photoLoad: regField
 	}
 	guestsLimit?: string
 	use_repeat_reg?: boolean

@@ -17,6 +17,12 @@ export type regEmailField = {
 	use_email?: boolean
 }
 
+export type regPhotoField = {
+	active?: boolean
+	req?: boolean
+	multi?: boolean
+}
+
 export type RegistrationSettingsInputs = {
 	use_reg?: boolean
 	startDate: string

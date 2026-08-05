@@ -1,5 +1,13 @@
 export enum AdminRoute {
 	AdminHome = 'news/news-list',
+	AdminEventGuests = 'event-guests',
+	AdminEventPart = 'event-part',
+	RegGuests = 'guests-registration',
+	TicketGuests = 'guests-tickets',
+	StatGuests = 'guests-statistic',
+	StatPart = 'part-statistic',
+	PartRequests = 'part-requests',
+	PartList = 'part-list',
 	AdminReg = 'reg',
 	AdminNotifications = 'notifications',
 	AdminPersonal = 'personal',

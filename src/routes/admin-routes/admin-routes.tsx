@@ -140,6 +140,17 @@ import { RegPage } from 'src/pages/one-event-layout/pages/admin-event-settings/l
 import { TypeList } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/type-participants-page/layout/type-list/type-list'
 import { TypeParticipantsLayout } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/type-participants-page/type-participants-layout'
 import { TypeParticipantPage } from 'src/pages/one-event-layout/pages/admin-event-settings/layout/type-participants-page/layout/one-type/type-participants-page'
+import { GuestsEventLayout } from 'src/pages/one-event-layout/pages/admin-event-guests/guests-event-layout'
+import { PartEventLayout } from 'src/pages/one-event-layout/pages/admin-event-part/part-event-layout'
+import { ParticipantPage } from 'src/pages/one-event-layout/pages/admin-event-part/layout/participants-page/participants-page'
+import { ParticipantElements } from 'src/pages/one-event-layout/pages/admin-event-part/layout/participants-page/components/participant-elements/participant-elements'
+import { OneParticipant } from 'src/pages/one-event-layout/pages/admin-event-part/layout/participants-page/components/one-visitor/one-participant'
+import { ParticipantView } from 'src/pages/one-event-layout/pages/admin-event-part/layout/participants-page/components/participant-view/participant-view'
+import { RequestsPage } from 'src/pages/one-event-layout/pages/admin-event-part/layout/requests-page/requests-page'
+import { RequestsElements } from 'src/pages/one-event-layout/pages/admin-event-part/layout/requests-page/components/requests-elements/requests-elements'
+import { OneRequestList } from 'src/pages/one-event-layout/pages/admin-event-part/layout/requests-page/components/one-request/one-request'
+import { PartEventStat } from 'src/pages/one-event-layout/pages/admin-event-part/layout/part-stat/part-stat'
+import { GuestsEventStat } from 'src/pages/one-event-layout/pages/admin-event-guests/layout/guests-stat/guests-stat'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -325,6 +336,29 @@ export const AdminRoutes: FC = () => {
 							/>
 						</Route>
 						<Route path={`${AdminRoute.Participants}`} element={<AdminEventParticipantsLayout />} />
+					</Route>
+					<Route path={`${AdminRoute.AdminEventGuests}/:id`} element={<GuestsEventLayout />}>
+						<Route path={`${AdminRoute.RegGuests}`} element={<RegistrationsPage />}>
+							<Route index element={<RegistrationsElements />} />
+							<Route path=':subId' element={<OneTicket />} />
+						</Route>
+						<Route path={`${AdminRoute.TicketGuests}`} element={<PurchasedTicketsPage />}>
+							<Route index element={<PurchasedTicketsElements />} />
+							<Route path=':subId' element={<OnePurchasedTicket />} />
+						</Route>
+						<Route path={`${AdminRoute.StatGuests}`} element={<GuestsEventStat />} />
+					</Route>
+					<Route path={`${AdminRoute.AdminEventPart}/:id`} element={<PartEventLayout />}>
+						<Route path={`${AdminRoute.PartList}`} element={<ParticipantPage />}>
+							<Route index element={<ParticipantElements />} />
+							<Route path='new' element={<OneParticipant />} />
+							<Route path=':subId' element={<ParticipantView />} />
+						</Route>
+						<Route path={`${AdminRoute.PartRequests}`} element={<RequestsPage />}>
+							<Route index element={<RequestsElements />} />
+							<Route path=':subId' element={<OneRequestList />} />
+						</Route>
+						<Route path={`${AdminRoute.StatPart}`} element={<PartEventStat />} />
 					</Route>
 					<Route path={`${AdminRoute.AdminEventHistory}/:id`} element={<AdminEventHistory />} />
 					{/*

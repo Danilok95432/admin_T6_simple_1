@@ -32,6 +32,16 @@ export const OneEventLayout = () => {
 			indexLink: `/event/event-pass/${id}`,
 		},
 		{
+			title: 'Гости события',
+			link: `/event/event-guests/${id ?? 'new'}/guests-registration`,
+			indexLink: `/event/event-guests/${id}/guests-registration`,
+		},
+		{
+			title: 'Участники события',
+			link: `/event/event-part/${id ?? 'new'}/part-requests`,
+			indexLink: `/event/event-part/${id}/part-requests`,
+		},
+		{
 			title: 'Списки и статистика',
 			link: `/event/event-lists/${id}`,
 			indexLink: `/event/event-lists/${id}/registrations`,

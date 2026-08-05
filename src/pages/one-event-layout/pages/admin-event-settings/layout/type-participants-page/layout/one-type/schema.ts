@@ -1,4 +1,5 @@
 import * as yup from 'yup'
+import { type regPhotoField } from '../../../registration-page/schema'
 
 export type TypeTicketsInputs = {
 	id?: string
@@ -11,6 +12,9 @@ export type TypeTicketsInputs = {
 	use_input?: boolean
 	label_desc?: string
 	use_vid?: boolean
+	regFields: {
+		photoLoad: regPhotoField
+	}
 }
 
 export const typeTicketsSchema = yup.object().shape({})
