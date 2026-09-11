@@ -19,6 +19,7 @@ export const LogoEventSection: FC<TitleSectionProps> = ({ logo }) => {
 				previewVariant='sm-img'
 				imgtype='event_logo'
 				fileImages={logo}
+				isEventMainImg
 			/>
 		</AdminSection>
 	)

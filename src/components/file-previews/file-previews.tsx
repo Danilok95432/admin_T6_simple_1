@@ -25,6 +25,7 @@ type FilePreviewsProps = {
 	syncEdit?: (file: ImageItemWithText) => void
 	isPromoModal?: boolean
 	isBigPreview?: boolean
+	isEventMainImg?: boolean
 }
 export const FilePreviews: FC<FilePreviewsProps> = ({
 	files,
@@ -37,6 +38,7 @@ export const FilePreviews: FC<FilePreviewsProps> = ({
 	isBigPreview = false,
 	syncAdd,
 	syncEdit,
+	isEventMainImg = false,
 }) => {
 	const { openModal } = useActions()
 	if (!files.length && (variant !== 'culture-img-list' || files.some((file) => !file.thumbnail)))
@@ -49,7 +51,15 @@ export const FilePreviews: FC<FilePreviewsProps> = ({
 			<ul className={styles.smImgFilesList}>
 				{files.map((img, idx) => (
 					<li key={img.id}>
-						<div className={isBigPreview ? styles.bigImgWrapper : styles.smImgWrapper}>
+						<div
+							className={
+								isBigPreview
+									? styles.bigImgWrapper
+									: isEventMainImg
+										? styles.smImgWrapperSpecial
+										: styles.smImgWrapper
+							}
+						>
 							<img
 								src={img.thumbnail}
 								alt={img.title}
@@ -140,8 +150,12 @@ export const FilePreviews: FC<FilePreviewsProps> = ({
 									}
 								}}
 							/>
-							<p className={styles.titleImg}>{file.title}</p>
-							<p className={styles.authorImg}>{file.author}</p>
+							{file.title && file.title.length > 0 && (
+								<p className={styles.titleImg}>{file.title}</p>
+							)}
+							{file.author && file.author.length > 0 && (
+								<p className={styles.authorImg}>{file.author}</p>
+							)}
 							{removeBtn && (
 								<button
 									className={styles.removeBtn}
@@ -194,8 +208,12 @@ export const FilePreviews: FC<FilePreviewsProps> = ({
 									}
 								}}
 							/>
-							<p className={styles.titleImg}>{file.title}</p>
-							<p className={styles.authorImg}>{file.author}</p>
+							{file.title && file.title.length > 0 && (
+								<p className={styles.titleImg}>{file.title}</p>
+							)}
+							{file.author && file.author.length > 0 && (
+								<p className={styles.authorImg}>{file.author}</p>
+							)}
 							{removeBtn && (
 								<button
 									className={styles.removeBtn}

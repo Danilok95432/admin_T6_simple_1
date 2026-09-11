@@ -46,6 +46,7 @@ type ReactDropzoneProps = {
 	isProgram?: boolean
 	isPromoModal?: boolean
 	isBigPreview?: boolean
+	isEventMainImg?: boolean
 }
 
 export const ReactDropzone: FC<ReactDropzoneProps> = ({
@@ -71,6 +72,7 @@ export const ReactDropzone: FC<ReactDropzoneProps> = ({
 	fileImages = [],
 	imgEditId = '',
 	isBigPreview = false,
+	isEventMainImg = false,
 	syncAdd,
 	syncEdit,
 	text,
@@ -238,6 +240,7 @@ export const ReactDropzone: FC<ReactDropzoneProps> = ({
 					uploadBtn={currentFiles.length < maxFiles ? dropzoneArea : null}
 					isPromoModal={isPromoModal}
 					isBigPreview={isBigPreview}
+					isEventMainImg={isEventMainImg}
 				/>
 				{errors[name] && (
 					<p className={styles.warningMessage}>
@@ -269,6 +272,7 @@ export const ReactDropzone: FC<ReactDropzoneProps> = ({
 				removeHandler={removeFile}
 				isPromoModal={isPromoModal}
 				isBigPreview={isBigPreview}
+				isEventMainImg={isEventMainImg}
 			/>
 			{(currentFiles.length < maxFiles || currentFiles.some((file) => !file.thumbnail)) && (
 				<div
