@@ -14,7 +14,7 @@ export const TitleSection = () => {
 				<div className={styles.inputWrapper}>
 					<ControlledInput
 						name='title'
-						label='Краткое название события *'
+						label='Название события *'
 						placeholder='Полное название события'
 						margin='0 0 0px 0'
 					/>
@@ -26,7 +26,7 @@ export const TitleSection = () => {
 					Краткое название будет показано на баннерах и в списках событий на сайте
 				</p>
 			</FlexRow>
-			<FlexRow className={styles.wrapperRow}>
+			{/* <FlexRow className={styles.wrapperRow}>
 				<div className={styles.inputWrapper}>
 					<ControlledInput
 						name='full_name'
@@ -43,7 +43,7 @@ export const TitleSection = () => {
 					Полная версия названия события: для документов, официального упоминания, указания на
 					странице самого события и подобных случаев
 				</p>
-			</FlexRow>
+			</FlexRow> */}
 		</AdminSection>
 	)
 }

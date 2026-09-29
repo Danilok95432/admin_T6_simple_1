@@ -55,7 +55,6 @@ export const AdminEventProfile: FC = () => {
 		if (dateFormatTo) data.date_to = dateFormatTo
 		const serverData = {
 			title: data.title,
-			full_name: data.full_name,
 			date_from: data.date_from,
 			time_from: timeFormatFrom,
 			date_to: data.date_to,

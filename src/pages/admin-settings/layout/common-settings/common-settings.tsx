@@ -15,15 +15,17 @@ import {
 	useSaveSettingsCommonMutation,
 } from 'src/store/site-settings/site-settings.api'
 import { booleanToNumberString } from 'src/helpers/utils'
-import { defaultMainBlocksValues, type SettingsInputs } from './schema'
+import { defaultMainBlocksValues, oneSettingsSchema, type SettingsInputs } from './schema'
 import { SettingsSection } from './components/settings-section/settings-section'
 import { MainBlocksSection } from './components/main-blocks-section/main-blocks-section'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 export const CommonSettings: FC = () => {
 	const { data: settingsData } = useGetSettingsCommonQuery(null)
 	const [saveSettings] = useSaveSettingsCommonMutation()
 	const methods = useForm<SettingsInputs>({
 		mode: 'onBlur',
+		resolver: yupResolver(oneSettingsSchema),
 		defaultValues: defaultMainBlocksValues,
 	})
 

@@ -9,10 +9,13 @@ export const SettingsSection = () => {
 			<h2>Настройки сайта</h2>
 			<ControlledInput
 				name='title'
-				label='Заголовок сайта (title)'
+				label='Заголовок сайта (title) *'
 				placeholder='Заголовок сайта (title)'
-				margin='0 0 20px 0'
+				margin='0 0 5px 0'
 			/>
+			<p className={styles.disc}>
+				Заголовок сайта показывается в адресной строке и закладках. Его заполнение обязательно
+			</p>
 			<ControlledInput
 				name='aboutTitle'
 				label='Название раздела «О нас»'

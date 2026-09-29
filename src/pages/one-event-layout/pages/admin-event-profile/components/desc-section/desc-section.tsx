@@ -9,7 +9,6 @@ import { type SelOption } from 'src/types/select'
 import styles from './index.module.scss'
 import { Tooltip } from 'src/components/tooltip/Tooltip'
 import { InfoIconSvg } from 'src/UI/icons/infoIcon'
-import { AdminRoute } from 'src/routes/admin-routes/consts'
 import { ControlledInput } from 'src/components/controlled-input/controlled-input'
 
 type DescSectionProps = {
@@ -23,7 +22,7 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 			<GridRow $template='auto/ 0.5fr' $mdTemplate='1fr / 1fr' $margin='0 0 20px 0'>
 				<div className={styles.inputWrapper}>
 					<ControlledSelect
-						label='Возрастной рейтинг *'
+						label='Возрастной рейтинг'
 						name='age_list'
 						selectOptions={ageList ?? [{ label: 'Не выбрано', value: '0' }]}
 					/>
@@ -62,12 +61,12 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 				</Tooltip>
 			</div>
 
-			<p className={styles.placeRequest}>
+			{/* <p className={styles.placeRequest}>
 				Если площадки нет в списке, Вы можете{' '}
 				<a href={`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminLocationsList}/1`}>
 					запросить добавление новой площадки
 				</a>
-			</p>
+			</p> */}
 		</AdminSection>
 	)
 }

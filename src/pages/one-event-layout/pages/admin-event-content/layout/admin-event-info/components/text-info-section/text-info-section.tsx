@@ -14,6 +14,7 @@ export const TextInfoSection = () => {
 					$heightEditor='150px'
 					$maxWidth='1140px'
 					$width='1140px'
+					noBtnsQueue={['image', 'video', 'file', 'link', 'tx', 'lists']}
 				/>
 
 				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip_textAria}>

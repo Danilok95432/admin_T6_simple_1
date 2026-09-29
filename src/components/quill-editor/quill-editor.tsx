@@ -20,6 +20,7 @@ interface QuillEditorProps extends Omit<ControllerProps, 'render'> {
 	sublabel?: string
 	className?: string
 	maxDocumentSizeMb?: number
+	noBtnsQueue?: string[]
 }
 
 type StyledEditorWrapperProps = {
@@ -371,6 +372,7 @@ export const QuillEditor: FC<QuillEditorProps & StyledEditorWrapperProps> = ({
 	$width,
 	className,
 	maxDocumentSizeMb = 20,
+	noBtnsQueue = [],
 	...rest
 }) => {
 	const {
@@ -383,6 +385,13 @@ export const QuillEditor: FC<QuillEditorProps & StyledEditorWrapperProps> = ({
 
 	const isFileActionLoading = isGettingNewFileId || isDocumentUploading
 	const isFileActionLoadingRef = useRef(false)
+
+	const noImage = noBtnsQueue.find((el) => el === 'image')
+	const noVideo = noBtnsQueue.find((el) => el === 'video')
+	const noLink = noBtnsQueue.find((el) => el === 'link')
+	const noTx = noBtnsQueue.find((el) => el === 'tx')
+	const noFile = noBtnsQueue.find((el) => el === 'file')
+	const noLists = noBtnsQueue.find((el) => el === 'lists')
 
 	useEffect(() => {
 		isFileActionLoadingRef.current = isFileActionLoading
@@ -659,23 +668,25 @@ export const QuillEditor: FC<QuillEditorProps & StyledEditorWrapperProps> = ({
 								<button type='button' className='ql-italic' />
 								<button type='button' className='ql-underline' />
 								<button type='button' className='ql-strike' />
-
-								<button type='button' className='ql-list' value='ordered' />
-								<button type='button' className='ql-list' value='bullet' />
-
-								<button type='button' className='ql-link' />
-								<button type='button' className='ql-image' />
-								<button type='button' className='ql-video' />
-
-								<button type='button' className='ql-document' disabled={isFileActionLoading}>
-									{isFileActionLoading ? '...' : 'FILE'}
-								</button>
+								{!noLists && (
+									<>
+										<button type='button' className='ql-list' value='ordered' />
+										<button type='button' className='ql-list' value='bullet' />
+									</>
+								)}
+								{!noLink && <button type='button' className='ql-link' />}
+								{!noImage && <button type='button' className='ql-image' />}
+								{!noVideo && <button type='button' className='ql-video' />}
+								{!noFile && (
+									<button type='button' className='ql-document' disabled={isFileActionLoading}>
+										{isFileActionLoading ? '...' : 'FILE'}
+									</button>
+								)}
 
 								<button type='button' className='ql-typography'>
 									Typo
 								</button>
-
-								<button type='button' className='ql-clean' />
+								{!noTx && <button type='button' className='ql-clean' />}
 							</div>
 
 							<input
